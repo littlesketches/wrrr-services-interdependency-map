@@ -26,6 +26,7 @@ body{
 
     --color-blend:          var(--color-op1-gray);
     --color-blend:          rgb(var(--fg-color));
+    --color-frequency:          var(--color-op1-ochre);
 
     --failure-point-color:     var(--color-op1-orange);         
     --failure-affected-color:  rgb(57, 97, 135);		

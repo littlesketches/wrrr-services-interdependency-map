@@ -64,6 +64,12 @@ h2.label{
 select{
     margin-left:        0.5rem;
 }
+input[type="checkbox"]{
+  accent-color:     var(--color-selection); 
+}
+input[type="radio"] {
+  accent-color:     var(--color-frequency); 
+}
 
 label.switch-label{
     font-size:          x-small;
