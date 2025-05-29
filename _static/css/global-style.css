@@ -15,7 +15,9 @@ select{
     height: auto;
 }
 
-
+strong{
+    font-weight: 600
+}
 
 label{ 
     font-size: x-small;

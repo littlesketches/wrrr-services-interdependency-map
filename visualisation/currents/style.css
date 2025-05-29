@@ -223,7 +223,7 @@ ul.ui-sub-mode-menu li.selected{
 .ui-info-wrapper.service-mode.frequency .frequency,
 
 .vulnerability-mode .ui-info-wrapper.vulnerability-mode,
-.ui-info-wrapper.vulnerability-mode.failure .failure,
+.ui-info-wrapper.vulnerability-mode.failure-specialised .failure-specialised,
 .ui-info-wrapper.vulnerability-mode.specialised .specialised,
 .ui-info-wrapper.vulnerability-mode.feedback .feedback,
 
@@ -348,7 +348,7 @@ ul.blend-selection-list li{
 
 .service-inputs-container{
     display:                grid;;
-    /* grid-template-columns:  1fr 1fr; */
+    grid-template-columns:  1fr 1fr;
     column-gap:             calc(var(--left-margin)* 0.5);;
 }
 
@@ -362,8 +362,27 @@ ul.blend-selection-list li{
     /* columns:                2; */
 }
 
-/** 1C. iv. VULNERABILITY MODE
+/** 1C. iv. VULNERABILITY MODE **/
+.vulnerability-mode-content{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.vulnerability-option-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    row-gap: 1rem;
+    margin-top: 1rem;;
 
+}
+.vulnerability-option-content{
+    display: flex;
+    align-items: center;
+}
+
+.vulnerability input:where([type="checkbox"][role="switch"]){
+    margin-left: 1rem;
+
+}
 
 /** 1C. v. DETAILS MODE
 

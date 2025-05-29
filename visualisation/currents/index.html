@@ -64,10 +64,10 @@
                         <div class = 'ui-info-wrapper overview-mode'>
                             <p>This visual represents RERCC Plan data submitted for <span class = 'report-year'></span>. It encodes supply chain information into network graph that shows the relationships and dependencies in the Victorian waste sector.</p>
                             <p>The graph displays <span class = 'entity-count'></span> entities as nodes:  <span class = 'responsible-entity-count'></span> responsible entities and <span class = 'non-responsible-entity-count'></span> uniquely identified customers and supplier. A total of <span class = 'link-count'></span> reported supplier-customer relationships are represented by links.</p>
-                            <p>The design of the visual highlights the supplier-customer 'flow' of the sector along the vertical axis, and separates the more complex inner network of 'intermediate' nodes &mdash; including all Responsible entities &mdash; from the outer (upstream and downstream) edge nodes. A breakdown of data according to network components is shown opposite. </p>
+                            <p>The design of the visual highlights the supplier-customer 'flow' of the sector along the vertical axis. It separates the more complex inner network of 'intermediate' nodes &mdash; including all responsible entities &mdash; from the outer (upstream and downstream) entities. A breakdown of data according to network components is shown opposite. </p>
 
                             <div class = 'guidance-container'>
-                                <p>This visualisation is interactive and encourages exploration of the network through various modes, accessible from the menu above. Further details about this visualisation can be found in the accompanying design documentation.</p>
+                                <p>This visualisation is interactive and encourages exploration of the network through various modes that are accessible from the menu above. Further details about this visualisation can be found in the accompanying <a href=""> design documentation</a>.</p>
                             </div>
                         </div>
 
@@ -81,9 +81,7 @@
                                 </ul>
                             </nav>
                             <div class = 'mode-content explore-mode-content browse'>
-                                <p>Interact with the entities (nodes) on the visualisation to explore their connections.</p>
-
-                                <p>Hover over a node to see its upstream and downstream network connections. Set how far to see connections with the switch below.</p>
+                                <p>Interact with the entities (nodes) on the visualisation to explore their individual <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections. Use the switch below to set the depth of connections in the network.</p>
 
                                 <div class = 'ui-option-content switch-selector-container'>
                                     <label class ='switch-label browse-depth-selector left'  for="browse-depth-selector">Immediate</label>
@@ -92,14 +90,13 @@
                                 </div>
 
                                 <div class = 'guidance-container'>
-                                    <p>Tap on a node to select it and enter network trace mode.</p> 
-                                    <p>To deselect/reset all nodes, tap anywhere else on the visualisation.</p>
+                                    <p>In explore mode, you can also tap on a node to select it and automatically switch to he network trace mode.</p>
+                                    <p>At any point (and in any mode), you can deselect/reset all node selection by, tapping anywhere else on the visualisation (i.e. not on a node).</p>
                                 </div>
                             </div>
 
                             <div class = 'mode-content explore-mode-content  trace'>
-                                <p>Trace shows the step-by-step upstream and downstream connections from a node.</p>
-                                <p>Tap on a node to select it. Tap the node again to trace upstream and downstream connections, one level at a time. </p>
+                                <p>Use this mode to trace upstream and downstream connections from an entity., step-by-step. Each step is triggered by repeatedly tapping on the originating entity. The available depth upstream and downstream will be displayed below once an entity is selected. </p>
 
                                 <div class = 'trace-selection-container'>
                                     <h2 class = 'trace-selection-entity selected-node'></h2>
@@ -123,16 +120,11 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class = 'guidance-container'>
-                                    <p>Tap on another to add it to the selection and enter the network blend mode.</p> 
-                                    <p>To deselect/reset all nodes, tap anywhere else on the visualisation.</p>
-                                </div>
                             </div>
 
 
                             <div class = 'mode-content explore-mode-content  blend'>
-                                <p>Blend allows you to combine the connected networks from multiple nodes to look for shared entities and links.</p>
+                                <p>Blend mode allows you to combine the connected networks from multiple entities, to visualise shared connections and areas of the sector..</p>
                                 <p>Tap on a node to select it. All of that entities connected nodes will be highlighted. Then tap on another node to blend it and its connections into the visualised network. </p>
 
                                 <div class = 'blend-selection-container'>
@@ -157,7 +149,7 @@
                             </nav>
     
                             <div class = 'mode-content service-mode-content ews'>
-                                <div class = 'esw-inputs-container service-inputs-container'></div>
+                                <div class = 'esw-inputs-container'></div>
                             </div>
 
                             <div class = 'mode-content service-mode-content service'>
@@ -185,32 +177,52 @@
                         <div class = 'ui-info-wrapper vulnerability-mode failure'>
                             <nav>
                                 <ul class = 'ui-sub-mode-menu'>
-                                    <li class = 'ui-mode-option failure-mode selected' onclick="ui.handle.setVulnerabilityMode('failure')">Failure points</li>
-                                    <li class = 'ui-mode-option specialised-mode' onclick="ui.handle.setVulnerabilityMode('specialised')">Specialised suppliers</li>
-                                    <li class = 'ui-mode-option feedback-mode' onclick="ui.handle.setVulnerabilityMode('feedback')">Feedback loops</li>
+                                    <li class = 'ui-mode-option failure-specialised-mode selected' onclick="ui.handle.setVulnerabilityMode('failure-specialised')">Failure points and specialised</li>
+                                    <li class = 'ui-mode-option feedback-mode' onclick="ui.handle.setVulnerabilityMode('feedback')">Feedback</li>
                                 </ul>
                             </nav>
-                            <p>In vulnerability mode, this pane will show information explaining what is on screen and what to look for.</p>
 
-                            <div class = 'mode-content vulnerability-mode-content failure'>
-                                <p>Single point of failure mode</p>
-                            </div>
+                            <div class = 'mode-content vulnerability-mode-content failure-specialised'>
+                                <p>Responsible entities report information about suppliers and customers are identified as either 'single points of failure'.</p>
 
-                            <div class = 'mode-content vulnerability-mode-content specialised'>
-                                <p>Specialised supplier mode</p>
+                                <div class = 'vulnerability-option-container vulnerability'>
+                                    <label class ='switch-label'  for="failure-point-selector">Show single points of failure</label>
+                                    <input  type="checkbox" role="switch" id="failure-point-selector" onchange="ui.handle.toggleFailurePoints(this.checked)" />
+            
+                                    <label class ='switch-label'  for="specialised-suppliers-selector">Show specialised suppliers</label>
+                                    <input  type="checkbox" role="switch" id="specialised-suppliers-selector" onchange="ui.handle.toggleSpecialisedSuppliers(this.checked)" />
+                                </div>
                             </div>
 
                             <div class = 'mode-content vulnerability-mode-content feedback'>
-                                <p>Feedback loop  mode</p>
+                                <p>A characteristic of network data is that there are feedback loops that create interesting interdependencies and complex relationships.</p>
+                                <p>Internal loops indicator that an entity is vertically integrated.</p>
+                                <div class = 'vulnerability-option-container vulnerability'>
+                                    <label class ='switch-label'  for="internal-loop-selector">Show vertically integrated entities</label>
+                                    <input  type="checkbox" role="switch" id="internal-loop-selector" onchange="ui.handle.toggleInternalLoops(this.checked)" />
+                                </div>
+
+                                <p>Return loops are a simple example of this behaviour where a pair of entities are both customer and supplier to one another.</p>
+                                <div class = 'vulnerability-option-container vulnerability'>
+                                    <label class ='switch-label'  for="return-loop-selector">Show return loops</label>
+                                    <input  type="checkbox" role="switch" id="return-loop-selector" onchange="ui.handle.toggleReturnLoops(this.checked)" />
+                                </div>
+
+                                <p>More complex feedback loops can be identified by looking for specific intermediate links in this visual that flow 'up' in the opposite direction to the vertical supplier-customer direction of most links ('feedback trigger links').</p>
+                                <div class = 'vulnerability-option-container vulnerability'>
+        
+                                    <label class ='switch-label'  for="feedback-links-selector">Show feedback trigger links</label>
+                                    <input  type="checkbox" role="switch" id="feedback-links-selector" onchange="ui.handle.toggleFeedbackTrigger(this.checked)" />
+                                </div>
                             </div>
                         </div>
 
                        <!-- v. DETAILS -->
                         <div class = 'ui-info-wrapper detail-mode'>
-                            <p>Detail encodes meta information about nodes into intricate marks in the visualisation. As the name implies, <i>details</i> are added for the curious who want to zoom in and use these marks to look for differences and patterns in the data. They are not intended to distracted from the view of  overall system structure. </p>
-                            <p>Essential Waste Services: are assigned only to Responsible Entities</p>
-                            <p>Services: are assigned (by RV, where possible) for RE-reported customer and suppliers relationship. This means that the majority of services information concerns non-REs, and that multiple services can multiple services assigned. Horizontal strips across non-RE nodes indicate these services, with those of common vertical position being the same service.</p>
-                            <p>Single point of failure: Data provided by REs on whether suppliers or customers are identified as a signal point of failure is encoded as triangular marks either on the inside of REs, or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) in a relationship where a single point of failure is identified.</p>
+                            <p>Meta information about entities are encoded into intricate marks in the visualisation. As the name implies, details are added for the curious who want to zoom in and use these marks to look for differences and patterns. They are not intended to distract from the high level view of overall system structure.</p>
+                            <p><strong>Essential Waste Services:</strong> are assigned only to Responsible Entities as 'petals'.</p>
+                            <p><strong>Services:</strong> are assigned (by RV, where possible) for reported customer and suppliers. This means that the majority of services information is for non-REs, and that multiple services can multiple services assigned. Horizontal stripes across non-RE nodes indicate assigned services.</p>
+                            <p><strong>Single point of failure:</strong>  Data provided by REs on whether suppliers or customers are a signal point of failure is encoded in triangular marks either on the inside of REs, or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) are.</p>
                         </div>
                     </div>
 
