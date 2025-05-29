@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>WRRR Services Map: Currents</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../../_static/assets/vic-favicon.png">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../../_static/css/global-style.css">
+    <link rel="stylesheet" href="./vis.css">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<!-- HTML MARKUP-->
+<body>
+    <main id = 'app-container' class = 'showUI show darkMode- '>
+
+        <!-- 1. UI SECTION -->
+        <section class = 'ui outer-section'>
+            <div class = 'ui-wrapper outer-wrapper'>
+                <div class = 'ui-content outer-content'>
+                    <!-- A. UI TITLE-->
+                    <div class = 'ui-title-container'>
+                        <div class = 'title-selector-container'>
+                            <h1 class = 'title label'><span class = 'minor'>Victorian</span></h1>
+                            <div class = 'year-selector-'>
+                                <div class = 'year-selector-divider-container'>
+                                    <div class = 'upper'></div>
+                                    <div class = 'lower'></div>
+                                </div>
+                                <div>
+                                    <select>
+                                        <option value = '2024'>2024</option>
+                                        <option value = '2025'>2025</option>
+                                        <option value = '2026'>2026</option>
+                                        <option value = '2027'>2027</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h1 class = 'title label'>waste, recycling and resource recovery services map</h1>
+                    </div>
+
+                    <!-- B. UI MODE NAV-->        
+                    <nav class = 'ui-mode-container'>
+                        <ul class = 'ui-mode-menu'>
+                            <li class = 'ui-mode-option overview-mode selected' onclick="ui.handle.setMode('overview')">Overview </li>
+                            <li class = 'ui-mode-option explore-mode' onclick="ui.handle.setMode('explore')">Explore </li>
+                            <li class = 'ui-mode-option service-mode' onclick="ui.handle.setMode('service')">Service</li>
+                            <li class = 'ui-mode-option vulnerability-mode' onclick="ui.handle.setMode('vulnerability')">Vulnerability</li>
+                            <li class = 'ui-mode-option detail-mode' onclick="ui.handle.setMode('detail')">Detail</li>
+                        </ul>
+                    </nav>
+        
+                    <!-- C. UI INFO / CONTENT PANE (SHOWN BY SELECTED MODE)-->    
+                    <div class = 'ui-info-container '>
+                        <!-- i. OVERVIEW -->
+                        <div class = 'ui-info-wrapper overview-mode'>
+                            <p>This visual represents RERCC Plan data submitted for <span class = 'report-year'></span>. It encodes supply chain information into network graph that shows the relationships and dependencies in the Victorian waste sector.</p>
+                            <p>The graph displays <span class = 'entity-count'></span> entities as nodes:  <span class = 'responsible-entity-count'></span> responsible entities and <span class = 'non-responsible-entity-count'></span> uniquely identified customers and supplier. A total of <span class = 'link-count'></span> reported supplier-customer relationships are represented by links.</p>
+                            <p>The design of the visual highlights the supplier-customer 'flow' of the sector along the vertical axis, and separates the more complex inner network of 'intermediate' nodes &mdash; including all Responsible entities &mdash; from the outer (upstream and downstream) edge nodes. A breakdown of data according to network components is shown opposite. </p>
+
+                            <div class = 'guidance-container'>
+                                <p>This visualisation is interactive and encourages exploration of the network through various modes, accessible from the menu above. Further details about this visualisation can be found in the accompanying design documentation.</p>
+                            </div>
+                        </div>
+
+                        <!-- ii. EXPLORE -->
+                        <div class = 'ui-info-wrapper explore-mode browse'>
+                            <nav>
+                                <ul class = 'ui-sub-mode-menu'>
+                                    <li class = 'ui-mode-option browse-mode selected' onclick="ui.handle.setExploreMode('browse')">Browse</li>
+                                    <li class = 'ui-mode-option trace-mode' onclick="ui.handle.setExploreMode('trace')">Trace</li>
+                                    <li class = 'ui-mode-option blend-mode' onclick="ui.handle.setExploreMode('blend')">Blend</li>
+                                </ul>
+                            </nav>
+                            <div class = 'mode-content explore-mode-content browse'>
+                                <p>Interact with the entities (nodes) on the visualisation to explore their connections.</p>
+
+                                <p>Hover over a node to see its upstream and downstream network connections. Set how far to see connections with the switch below.</p>
+
+                                <div class = 'ui-option-content switch-selector-container'>
+                                    <label class ='switch-label browse-depth-selector left'  for="browse-depth-selector">Immediate</label>
+                                    <input type="checkbox" role="switch" id="browse-depth-selector" onchange="ui.handle.toggleBrowseDepth(this.checked)" />
+                                    <label class ='switch-label browse-depth-selector right'  for="browse-depth-selector">Edge of network</label>
+                                </div>
+
+                                <div class = 'guidance-container'>
+                                    <p>Tap on a node to select it and enter network trace mode.</p> 
+                                    <p>To deselect/reset all nodes, tap anywhere else on the visualisation.</p>
+                                </div>
+                            </div>
+
+                            <div class = 'mode-content explore-mode-content  trace'>
+                                <p>Trace shows the step-by-step upstream and downstream connections from a node.</p>
+                                <p>Tap on a node to select it. Tap the node again to trace upstream and downstream connections, one level at a time. </p>
+
+                                <div class = 'trace-selection-container'>
+                                    <h2 class = 'trace-selection-entity selected-node'></h2>
+
+                                    <div class = 'trace-selection-info-container'>
+                                        <div class = 'trace-selection-info-label'>Entity type:</div>  
+                                        <div class = 'trace-selection-info entity-type'></div>  
+                                    </div>
+    
+                                    <div class = 'trace-selection-info-container ews'></div> 
+
+                                    <div class = 'trace-depth-container'>
+                                        <div class = 'trace-depth-container-header'>Network trace levels</div>
+                                        <div class = 'trace-depth-container-upstream'>
+                                            <div class = 'trace-depth-label upstream'>Upstream</div>
+                                            <div class = 'trace-depth-indicator-container upstream'></div> 
+                                        </div>
+                                        <div class = 'trace-depth-container-downstream'>
+                                            <div class = 'trace-depth-label downstream'>Downstream</div>
+                                            <div class = 'trace-depth-indicator-container downstream'></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class = 'guidance-container'>
+                                    <p>Tap on another to add it to the selection and enter the network blend mode.</p> 
+                                    <p>To deselect/reset all nodes, tap anywhere else on the visualisation.</p>
+                                </div>
+                            </div>
+
+
+                            <div class = 'mode-content explore-mode-content  blend'>
+                                <p>Blend allows you to combine the connected networks from multiple nodes to look for shared entities and links.</p>
+                                <p>Tap on a node to select it. All of that entities connected nodes will be highlighted. Then tap on another node to blend it and its connections into the visualised network. </p>
+
+                                <div class = 'blend-selection-container'>
+                                    <h2 class = 'blend-selection-header'>Selected entities</h2>
+
+                                    <div class = 'blend-selection-list-container'>
+                                        <ul class = 'blend-selection-list'></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- iii. SERVICE -->
+                        <div class = 'ui-info-wrapper service-mode ews'>
+                            <nav>
+                                <ul class = 'ui-sub-mode-menu'>
+                                    <li class = 'ui-mode-option ews-mode selected' onclick="ui.handle.setServiceMode('ews')">Essential waste services</li>
+                                    <li class = 'ui-mode-option service-mode' onclick="ui.handle.setServiceMode('service')">Customer and supplier services</li>
+                                    <li class = 'ui-mode-option frequency-mode' onclick="ui.handle.setServiceMode('frequency')">Service frequency</li>
+                                </ul>
+                            </nav>
+    
+                            <div class = 'mode-content service-mode-content ews'>
+                                <div class = 'esw-inputs-container service-inputs-container'></div>
+                            </div>
+
+                            <div class = 'mode-content service-mode-content service'>
+                                <div class = 'service-inputs-container'>
+                                    <div>
+                                        <div class = 'service-options-label'>Upstream suppliers</div>
+                                        <div class = 'service-source-inputs-container'></div>
+                                    </div>
+
+                                    <div>
+                                        <div class = 'service-options-label'>Intermediate entities</div>
+                                        <div class = 'service-intermediate-inputs-container'></div>
+                                        <div class = 'service-options-label'>Downstream customers</div>
+                                        <div class = 'service-sink-inputs-container'></div>
+                                    </div>
+                                </div>             
+                            </div>
+
+                            <div class = 'mode-content service-mode-content frequency'>
+                                <div class = 'frequency-inputs-container'></div>
+                            </div>
+                        </div>
+
+                       <!-- iv. VULNERABILITY -->
+                        <div class = 'ui-info-wrapper vulnerability-mode failure'>
+                            <nav>
+                                <ul class = 'ui-sub-mode-menu'>
+                                    <li class = 'ui-mode-option failure-mode selected' onclick="ui.handle.setVulnerabilityMode('failure')">Failure points</li>
+                                    <li class = 'ui-mode-option specialised-mode' onclick="ui.handle.setVulnerabilityMode('specialised')">Specialised suppliers</li>
+                                    <li class = 'ui-mode-option feedback-mode' onclick="ui.handle.setVulnerabilityMode('feedback')">Feedback loops</li>
+                                </ul>
+                            </nav>
+                            <p>In vulnerability mode, this pane will show information explaining what is on screen and what to look for.</p>
+
+                            <div class = 'mode-content vulnerability-mode-content failure'>
+                                <p>Single point of failure mode</p>
+                            </div>
+
+                            <div class = 'mode-content vulnerability-mode-content specialised'>
+                                <p>Specialised supplier mode</p>
+                            </div>
+
+                            <div class = 'mode-content vulnerability-mode-content feedback'>
+                                <p>Feedback loop  mode</p>
+                            </div>
+                        </div>
+
+                       <!-- v. DETAILS -->
+                        <div class = 'ui-info-wrapper detail-mode'>
+                            <p>Detail encodes meta information about nodes into intricate marks in the visualisation. As the name implies, <i>details</i> are added for the curious who want to zoom in and use these marks to look for differences and patterns in the data. They are not intended to distracted from the view of  overall system structure. </p>
+                            <p>Essential Waste Services: are assigned only to Responsible Entities</p>
+                            <p>Services: are assigned (by RV, where possible) for RE-reported customer and suppliers relationship. This means that the majority of services information concerns non-REs, and that multiple services can multiple services assigned. Horizontal strips across non-RE nodes indicate these services, with those of common vertical position being the same service.</p>
+                            <p>Single point of failure: Data provided by REs on whether suppliers or customers are identified as a signal point of failure is encoded as triangular marks either on the inside of REs, or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) in a relationship where a single point of failure is identified.</p>
+                        </div>
+                    </div>
+
+                    <!-- D. UI OPTIONS -->   
+                    <div class = 'ui-options-container '>
+                        <div class = 'ui-option-container'>
+                            <div class = 'ui-option-content binary-selector-container'>
+                                <label class ='switch-label'  for="tips-selector">Tips</label>
+                                <input class = 'binary' type="checkbox" role="switch" id="tips-selector" onchange="ui.handle.toggleTips(this.checked)" />
+                            </div>
+                        </div>
+                        <div class = 'ui-option-container'>
+                            <div class = 'ui-option-content binary-selector-container'>
+                                <label class ='switch-label'  for="details-selector">Details</label>
+                                <input class = 'binary' type="checkbox" role="switch" id="details-selector" onchange="ui.handle.toggleVisDetails(this.checked)" />
+                            </div>
+                        </div>
+
+                        <div class = 'ui-option-container'>
+    
+                            <div class = 'ui-option-content binary binary-selector-container'>
+                                <label class ='switch-label' for="labels-selector">Labels</label>
+                                <input lass = 'binary' type="checkbox" role="switch" id="labels-selector" onchange="ui.handle.toggleLabels(this.checked)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. VIS SECTION -->
+        <section class = 'visualisation-section'>
+            <div class = 'visualisation-wrapper'>
+                <svg id = "vis" width = 100%  height = 100% 
+                    class = "
+                        mode_failure-point-
+                        mode_specialised-
+                        mode_intermediate-direction-
+                        mode-feedback-
+                        mode-services-
+                    "
+                ></svg>
+            </div>
+        </section>
+
+        <!-- 3. DATA / LEGEND SECTION -->
+        <section class = 'legend outer-section'>
+            <div class = 'legend-wrapper outer-wrapper'>
+                <div class = 'outer-content node-groups'>
+                    <div class = 'legend-source-section legend-section'>
+                        <h2  class = 'label'>Upstream</h2>
+                        <div class = 'legend-stat-group'>
+                            <div class = 'legend-stat-container headline'>
+                                <div id = "data-node-source" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-source_unit">entities</span></div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-source-multi-link" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-source-multi-link_unit">entities</span> with multiple links</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-source-single-link" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-source-single-link_unit">entities</span>  with one link</div>
+                            </div>
+                        </div>
+                        <div class = 'legend-stat-group'>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-link-source" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-link-source_unit">Links</span> to upstream entities</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class = 'legend-intermediate-section legend-section'>
+                        <h2  class = 'label'>Intermediate</h2>
+                        <div class = 'legend-stat-group'>
+                            <div class = 'legend-stat-container headline'>
+                                <div id = "data-node-intermediate" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-intermediate">entities</span> in total</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-intermediate-re" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'>Responsible <span id = "data-node-intermediate-re_unit">entities</span></div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-intermediate-non-re" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'>non-responsible <span id = "data-node-intermediate-non-re_unit">entities</span></div>
+                            </div>
+                        </div>
+
+                        <div class = 'legend-stat-group'>
+                            <div class = 'legend-label'>Intermediate network structure</div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-intermediate-unconnected" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-intermediate-unconnected_unit">entities are</span> not connected</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-intermediate-source" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-intermediate-source_unit">entities are</span> only </div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-intermediate-sink" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-intermediate-sink_unit">entities are</span> only </div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-node-intermediate-intermediate" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-node-intermediate-intermediate_unit">entities are</span> central </div>
+                            </div>
+                        </div>
+
+                        <div class = 'legend-stat-group'>
+                            <div class = 'legend-label'>Network links</div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-link-intermediate" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'> <span id = "data-link-intermediate_unit">links</span> between intermediates</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-relationships-intermediate" class = 'legend-stat-data'>x ??</div>
+                                <div class = 'legend-stat-label'>unique <span id = "data-relationships-intermediate_unit">relationships</span> between intermediate entities</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-link-loops" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-link-loops_unit">links are</span> internal to an entity (<span id = "data-node-loops"></span> vertically integrated <span id = "data-node-loops_unit">entities</span>)</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-link-return" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'>return <span id = "data-link-return_unit">links</span>  (entity <span id = "data-node-return-pairs">pairs</span>)</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-link-feedback" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'>feedback link identified</div>
+                            </div>
+                        </div>
+
+                        <!-- <div class = 'legend-stat-group'>
+                            <div class = 'legend-label'>Vulnerable links</div>
+                            <div class = 'legend-stat-container' >
+                                <div id = "data-link-failure-point" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-link-failure-point_unit">links</span> identified with single point of failure</div>
+                            </div>
+                            <div class = 'legend-stat-container'>
+                                <div id = "data-link-specialised" class = 'legend-stat-data'></div>
+                                <div class = 'legend-stat-label'><span id = "data-link-specialised_unit">links</span> to specialised suppliers</div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class = 'legend-sink-section legend-section'>
+                        <div class = 'legend-sink-section-wrapper'>
+                            <div class = 'legend-stat-group sink'>
+                                <div class = 'legend-stat-container headline'>
+                                    <div id = "data-node-sink" class = 'legend-stat-data'>x </div>
+                                    <div class = 'legend-stat-label'><span id = "data-node-sink_unit">entities</span></div>
+                                </div>
+                                <div class = 'legend-stat-container'>
+                                    <div id = "data-node-sink-multi-link" class = 'legend-stat-data'>x ??</div>
+                                    <div class = 'legend-stat-label'><span id = "data-node-sink-multi-link_unit">entities</span> with multiple links</div>
+                                </div>
+                                <div class = 'legend-stat-container'>
+                                    <div id = "data-node-sink-single-link" class = 'legend-stat-data'>x ??</div>
+                                    <div class = 'legend-stat-label'><span id = "data-node-sink-single-link_unit">entities</span>  with one link</div>
+                                </div>
+                            </div>
+                            <div class = 'legend-stat-group sink'>
+                                <div class = 'legend-stat-container'>
+                                    <div id = "data-link-sink" class = 'legend-stat-data'>x </div>
+                                    <div class = 'legend-stat-label'><span id = "data-link-sink_unit">Links</span> to downstream entities</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2  class = 'label'>Downstream</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT  -->
+    <!-- Libraries/dependencies (D3) -->
+    <script src="../../_static/js/lib/d3.js"></script> 
+    <!-- Visualisation Config and utilities-->
+    <script src="../../_static/js/config/model-schema.js"></script>    
+    <script src="../../_static/js/vis/utils.js"></script>   
+    <!-- Input data -->
+    <script src="../../_static/js/data/by-reporting-year/data-2024.js"></script>    
+    <script src="../../_static/js/data/by-reporting-year/data-2025.js"></script>    
+    <!-- Visualisation data model-->
+    <script src="../../_static/js/data/data-model.js"></script>    
+    <!-- Visualisation components -->
+    <script src="../../_static/js/vis/classes/Node.js"></script>    
+    <script src="../../_static/js/vis/classes/Link.js"></script>    
+    <script src="../../_static/js/vis/classes/Layout.js"></script>    
+    <!-- Page and visualisation interface  -->
+    <script src="../../_static/js/vis/classes/Interface.js"></script>    
+    <!-- Visualisation rendering -->
+    <script src="./main.js"></script>    
+
+</body>

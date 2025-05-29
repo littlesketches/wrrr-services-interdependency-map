@@ -1,0 +1,1 @@
+const data2025 = undefined

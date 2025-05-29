@@ -1,0 +1,539 @@
+/**
+ *  UI STYLES
+ */
+
+/***  LAYOUT OF  SECTIONS ***/
+main#app-container{
+    display:                grid;
+    grid-template-areas:    'ui vis legend';
+    grid-template-columns:  2fr auto 1fr;
+    justify-content:        center;
+
+    /** CSS Variables to be programatically added **/
+    --top-margin:           calc( 50 / 1100 * 100vh);
+    --bottom-margin:        calc( 50 / 1100 * 100vh);
+    --right-margin:         calc( 50 / 1100 * 100vh);
+    --left-margin:          calc( 50 / 1100 * 100vh);
+}
+
+main#app-container.centered{
+    grid-template-columns:  1fr auto 1fr;
+}
+
+/*** GENERAL TYPOGRAPHY AND SHARED***/
+p{
+    line-height:        1.35;
+    font-weight:        100;
+    font-size:          small;
+}
+
+ul, .label{
+    margin-block-start: 0;
+    margin-block-end:   0;
+}
+
+h1.title{
+    font-size:          x-large;
+    text-transform:     uppercase;
+    line-height:        1.1;
+    margin-block-start: 0.25rem;
+    margin-block-end:   0.25rem;
+
+}
+
+h1.title .minor,
+select{
+    font-weight:        100;
+    font-size:          medium;
+    letter-spacing:     0.25rem;   
+}
+
+h2.label{
+    text-transform:     lowercase;
+    opacity:            0.75;
+    font-size:          small;
+}
+.mode-content h2{
+    font-size:          small;
+}
+.mode-content h3{
+    text-transform:     lowercase;
+    font-size:          x-small;
+}
+
+select{
+    margin-left:        0.5rem;
+}
+
+label.switch-label{
+    font-size:          x-small;
+    padding-right:      0.5rem;
+    font-weight:        600;
+}
+
+.hide{
+    opacity:            0
+}
+
+/* Guidance / tips*/
+.guidance-container{
+    border:             1.5px dotted;
+    margin:             1rem 0;
+    padding:            0 0.5rem;
+    border-radius:      0.5rem;    
+}
+
+.guidance-container p{
+    font-size:          x-small;
+}
+
+
+
+/************************ 
+ ***  1. UI SECTION   ***  
+ ************************/
+
+/**
+ *  LAYOUT for UI SECTION
+ */
+
+section.ui{
+    grid-area:          ui;
+    padding-top:        var(--top-margin);
+    padding-bottom:     var(--bottom-margin);
+    padding-left:       var(--left-margin);
+    padding-right:      calc(var(--left-margin)* 0.5);
+}
+
+.ui-content{
+    display:            grid;
+    grid-template-rows: auto auto 1fr  auto ;
+    height:             calc(100vh - var(--top-margin) - var(--bottom-margin)); 
+}
+
+/**
+ *  1A. TITLE 
+ */
+
+.ui-title-container{
+    padding-bottom:     calc( var(--top-margin) * 0.25);
+}
+
+.title-selector-container{
+    display:            flex;
+    align-items:        baseline;
+    margin-top:         -0.7rem;
+}
+
+/**
+ *  1B. MODE / NAV: Mode and sub-mode nav 
+ */
+ul.ui-mode-menu{
+    margin-block-start: 0;
+    margin-block-end:   0;  
+    margin:             0.5rem 0;
+    display:            flex;
+    width:              100%;
+    justify-content:    space-between;
+}
+
+ul.ui-mode-menu,
+ul.ui-sub-mode-menu{
+    display:            flex;
+    padding:            0;
+    list-style-type:    none;    
+}
+
+ul.ui-mode-menu li,
+ul.ui-sub-mode-menu li{
+    font-size:          x-small;
+    text-transform:     lowercase;
+    cursor:             pointer;
+    margin-top:         1rem;
+}
+
+ul.ui-mode-menu li{
+    padding:            0.25rem 0.5rem;
+    width:              100%;
+    border-top:         1px solid rgb(var(--fg-color));
+    border-bottom:      1px solid rgb(var(--fg-color));
+}
+
+ul.ui-mode-menu li:not(:last-child){
+    padding-right:      1rem;
+}
+
+ul.ui-sub-mode-menu li:not(:last-child){
+    padding-right:      0rem;
+    margin-right:       1rem;
+}
+
+ul.ui-mode-menu li.selected,
+ul.ui-sub-mode-menu li.selected{
+    font-weight:        700;
+}
+
+ul.ui-mode-menu  li.ui-mode-option.selected{
+    color:              rgb(var(--bg-color));
+    background:         rgb(var(--fg-color));
+}
+
+ul.ui-sub-mode-menu li.selected{
+    border-bottom:      3px solid;   
+}
+
+/**
+ *  1C. INFO / CONTENT: Main content section buy mode 
+ */
+
+
+.ui-info-container{
+    padding-top:        calc( var(--top-margin) * 0.125);
+}
+
+.ui-info-wrapper{
+    height:             100%;
+}
+
+/*** INFO CONTENT VIEW: Classes to to allow content to be viewed by parent mode classes***/
+/** Set display to none by default **/
+.ui-info-wrapper, 
+.ui-info-wrapper .mode-content, 
+.sub-group-container{
+    display:                none;
+}
+
+/** Reset display when parent classes are added by mode, to control view**/
+.overview-mode .ui-info-wrapper.overview-mode,
+
+.explore-mode .ui-info-wrapper.explore-mode, 
+.ui-info-wrapper.explore-mode.browse .browse,
+.ui-info-wrapper.explore-mode.trace .trace,
+.ui-info-wrapper.explore-mode.blend .blend,
+
+.service-mode .ui-info-wrapper.service-mode,
+.ui-info-wrapper.service-mode.ews .ews,
+.ui-info-wrapper.service-mode.service .service,
+.ui-info-wrapper.service-mode.frequency .frequency,
+
+.vulnerability-mode .ui-info-wrapper.vulnerability-mode,
+.ui-info-wrapper.vulnerability-mode.failure .failure,
+.ui-info-wrapper.vulnerability-mode.specialised .specialised,
+.ui-info-wrapper.vulnerability-mode.feedback .feedback,
+
+.detail-mode .ui-info-wrapper.detail-mode{
+    display:                initial;
+}
+
+
+/** 1C. i. OVERVIEW MODE **/
+
+/** 1C. ii. EXPLORE MODE **/
+/** Trace selection container depth indicator */
+.trace-selection-container,
+.blend-selection-container{
+    border:         1px solid;
+    padding:        0.5rem 1rem;
+    transition:     all 500ms;
+}
+
+.trace-selection-entity,
+.blend-selection-entity {
+    font-weight:    600;
+    color:          var( --color-selection)
+}
+
+.trace-selection-info-container,
+.blend-selection-info-container{
+    font-size:              x-small;
+    display:                grid;
+    grid-template-columns:  1fr 3fr;
+    column-gap:             1rem;
+    margin-bottom:          0.5rem;
+}
+
+.trace-depth-container-header{
+    font-size:      small;    
+    font-weight:    600;
+    border-bottom:  1px solid;
+}
+
+.trace-depth-container-header,
+.trace-depth-container-upstream,
+.trace-depth-container-downstream{
+    margin-top:     1rem;
+}
+
+.trace-depth-indicator-container{
+    margin-top:     0.25rem;
+    display:        flex;
+}
+
+.trace-depth-label{
+    font-size:      x-small;    
+    font-weight:    600;
+}
+
+.trace-depth-label.upstream{
+    color:  var( --color-upstream);
+}
+
+.trace-depth-label.downstream{
+    color:  var( --color-downstream);
+}
+
+.trace-level-indicator{
+    font-size:          xx-small;
+    font-weight:        600;
+    display:            flex;
+    border:             1px solid;
+    aspect-ratio:       1;
+    height:             100%;
+    padding:            0.5rem;
+    align-items:        center;
+    justify-content:    center;
+    margin-right:       0.5rem;
+    border-radius:      50%;
+    opacity:            0.2;
+    color:              rgb(var(--bg-color));
+    transition:         all 500ms;
+}
+
+.trace-level-indicator.visible{
+    opacity:            1;
+}
+
+.upstream .trace-level-indicator{
+    background:         var( --color-upstream);
+}
+
+.downstream .trace-level-indicator{
+    background:         var( --color-downstream);
+}
+
+/** Blend selection **/
+.blend-selection-container{
+    font-size:      x-small;
+}
+
+.blend-selection-header{
+    font-weight:    600;
+}
+
+ul.blend-selection-list li{
+    color:  var( --color-selection);
+    font-weight:    600;
+}
+
+/** 1C. iii. SERVICE MODE **/
+.checkbox-input{
+    display:            flex;
+    align-items:        center;
+}
+
+.checkbox-input label{
+    padding-left:       0.25rem;;
+}
+
+.esw-inputs-container,
+.frequency-inputs-container{
+    margin-top:         1rem;
+}
+
+.service-inputs-container{
+    display:                grid;;
+    /* grid-template-columns:  1fr 1fr; */
+    column-gap:             calc(var(--left-margin)* 0.5);;
+}
+
+.service-options-label{
+    font-size:          x-small;
+    font-weight:        600;
+    margin:             1rem 0 0.5rem 0;
+}
+
+.frequency-inputs-container{
+    /* columns:                2; */
+}
+
+/** 1C. iv. VULNERABILITY MODE
+
+
+/** 1C. v. DETAILS MODE
+
+
+/**
+ *  D. UI OPTIONS: Global UI options
+ */
+.ui-option-content{
+    display: flex;
+    align-items: center;
+}
+
+.ui-options-container{
+    border-top:             1px solid;
+    padding-top:            calc( var(--top-margin) * 0.25);
+    display:                grid;
+    grid-template-columns:  1fr 1fr 1fr;
+}
+
+.ui-option-container{
+    display:            flex;
+    align-items:        center;
+    justify-content:    center;
+}
+
+.ui-option-container:first-child{
+    justify-content:    start;
+}
+
+.ui-option-container:last-child,
+.switch-selector-container .left{ 
+    justify-content:    end;
+}
+
+.switch-selector-container{
+    display:                grid;
+    grid-template-columns:  1fr auto 1fr;
+}
+
+.switch-selector-container .left,
+.switch-selector-container .right{
+    display:            flex;
+    padding:            0 0.5rem;
+    align-items:        center;
+    opacity:            0.5;
+}
+
+.switch-label.selected{
+    opacity:            1;
+}
+
+/************************* 
+ ***  2. VIS SECTION   ***  
+ *************************/
+section.visualisation-section{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    grid-area:          vis;
+}
+
+.visualisation-wrapper{
+    width:              100vmin;    
+}
+
+main{
+    /** CSS Variables to be programatically added **/
+    --top-margin:           calc( 50 / 1100 * 100vh);
+    --bottom-margin:        calc( 50 / 1100 * 100vh);
+    --right-margin:         calc( 50 / 1100 * 100vh);
+    --left-margin:          calc( 50 / 1100 * 100vh);
+    /** For data legend */
+    --source-section:           25%;      
+    --intermediate-section:     60%;      
+    --sink-section:             15%;      
+}
+
+/**************************** 
+ ***  3. LEGEND SECTION   ***  
+ ****************************/
+
+section.legend{
+    grid-area:          legend;
+    padding-top:        var(--top-margin);
+    padding-bottom:     var(--bottom-margin);
+    padding-right:      var(--right-margin);
+}
+
+.legend-wrapper .node-groups{
+    height:             calc(100vh - var(--top-margin) - var(--bottom-margin)); 
+    display:            flex;
+    flex-direction:     column;
+}
+.legend-section{
+    display:            flex;
+    flex-direction:     column;
+}
+
+.legend-source-section{
+    height:         var(--source-section);
+}
+
+.legend-source-link-section{
+    height:         var(--source-link-section);
+}
+
+.legend-intermediate-section{
+    height:             var(--intermediate-section);
+    padding-top:        0.75rem;
+    border-top:         0.5px solid #ddd;
+    border-bottom:      0.5px solid #ddd;
+}
+
+.legend-sink-link-section{
+    height:                 var(--sink-link-section);
+}
+
+.legend-sink-section{
+    height:                 var(--sink-section);
+    display:                flex;
+    justify-content:        end;
+}
+
+.legend-stat-group{
+    margin-top:             0.5rem;
+}
+
+.legend-sink-section-wrapper,
+.legend-stat-group.sink{
+    display:                flex;
+    flex-direction:         column-reverse;
+}
+
+.legend-stat-group.sink{
+    margin-top:          0rem;
+    margin-bottom:          0.5rem
+}
+
+.legend-stat-container{
+    font-size:              x-small;
+    display:                grid;
+    grid-template-columns:  1fr 4fr; 
+    text-transform:         lowercase;
+    cursor:                 pointer;
+    padding:                0.125rem 0
+}
+
+.legend-stat-container.headline{
+    font-weight:            600;
+}
+
+.legend-stat-container:hover{
+    font-weight:            600;
+    text-decoration:        underline;
+}
+
+.legend-label{
+    font-size:              x-small;
+}
+
+
+
+/*********************************** 
+ ***  RESPONSIVE LAYOUT: BASIC   ***  
+ ***********************************/
+
+
+
+/**************************** 
+ ***  PRINT MEDIA QUERY   ***  
+ ****************************/
+
+@media print {
+  /* All your print styles go here */
+   .ui-options-container{
+    display: none !important;
+  }
+   
+}

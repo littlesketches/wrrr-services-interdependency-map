@@ -1,0 +1,413 @@
+/**
+ *  SVG VISUALISATION STYLING
+ */
+
+body{
+    --bg-color: 255, 255, 255;
+    --fg-color: 0, 0, 0;
+
+    /** OP-1 FIELD PALETTE */
+    --color-op1-body:       rgb(226, 223, 213);
+
+    --color-op1-blue:       rgb(18, 39, 70);	
+    --color-op1-lightblue:  rgb(57, 97, 135);	
+    --color-op1-orange:     rgb(240, 80, 34);	
+    --color-op1-ochre:      rgb(178, 142, 93);	
+    --color-op1-gray:       rgb(122, 122, 122);	
+    --color-op1-darkgray:   rgb(79, 83, 86);
+
+
+    --color-failure-point:      var(--color-op1-orange);
+    --color-failure-affected:   var(--color-op1-lightblue);
+    --color-selection:      var(--color-op1-orange);
+    --color-upstream:       var(--color-op1-darkgray);
+    --color-downstream:     var(--color-op1-ochre);
+    --color-updown:         var(--color-op1-lightblue);
+
+    --color-blend:          var(--color-op1-gray);
+    --color-blend:          rgb(var(--fg-color));
+
+    --failure-point-color:     var(--color-op1-orange);         
+    --failure-affected-color:  rgb(57, 97, 135);		
+    --specialised-node-color:  var(--color-op1-orange);
+
+
+    --link-highlight-width:     0.75px;
+    /* overflow: visible; */
+}
+/* .mode_blend svg, */
+.darkMode svg{
+    --bg-color: 0, 0, 0;
+    --fg-color: 255, 255, 255;
+}
+
+
+/** Section backgrounds */
+.chart-bg, .section-bg{
+    opacity:    1;
+}
+.chart-bg{
+    fill:       rgb(235, 235, 235);
+    fill:       rgba(var(--bg-color) ,1);
+}
+.section-bg{
+    pointer-events:     none;
+    opacity:            0;
+}
+.section-bg.intermediate-unconnected{
+    fill:   rgb(255, 250, 205);
+}
+.section-bg.intermediate-intermediate{
+    fill:   rgb(204, 255, 242);
+}
+
+/**
+*  NODES
+*/
+
+.node-bg{
+    fill:           rgb(var(--bg-color));
+}
+.source.node-bg{
+    fill:           transparent
+}
+
+.node{
+    pointer-events: none;
+    opacity:        1;
+    transition:     all 200ms;
+}
+
+.node-transform-group{
+    transition:     all 500ms;
+}
+.focus.node-transform-group{
+    transform:      scale(1.5);
+}
+
+.focus.responsible-entity  .node.node-circle{
+    fill:           var(--color-op1-orange);
+    stroke:         rgb(var(--bg-color));
+}
+.focus  .node.node-circle{
+    stroke:         var(--color-op1-orange);
+}
+
+.node.source,
+.node.sink{
+    fill:           rgb(var(--fg-color));
+}
+
+
+/* Intermediate node outline circle */
+.node-circle{
+    fill:           rgb(var(--bg-color));
+    stroke:         rgb(var(--fg-color));
+    stroke-width:   1px;
+}
+
+.responsible-entity .node-circle{
+    fill:            rgb(var(--fg-color));
+    stroke:          rgb(var(--bg-color));
+}
+
+/* LINK STYLES: CORE */
+.link{
+    fill:               none;
+    stroke:             rgba(var(--fg-color), 0.3);
+    stroke-width:       0.5px;
+    pointer-events:     visible;
+}
+
+.link-loop{
+    pointer-events:     none;
+    stroke:             rgb(var(--bg-color));
+}
+
+/* LINK STYLES OPTION: TAPERED */
+.intermediate-network .link.tapered,
+.intermediate-network .link-return{
+    stroke:             rgb(var(--bg-color));
+    stroke-width:       0.5px;
+    fill:               rgba(var(--fg-color), 1);
+    mix-blend-mode:     luminosity;
+}
+
+
+/**
+ *   VISUALISATION DETAILS 
+ */
+.detail{
+    pointer-events: none;
+    opacity:        0;
+    transition:      all 500ms;
+}
+
+.mode_detail .detail{
+    opacity:        1;
+}
+
+/** ESSENTIAL WASTE SERVICES "PETALS" [RESPONSIBLE ENTITIES] **/
+path.ews-petal{
+    stroke:         rgb(var(--bg-color));
+    fill:           rgb(var(--fg-color));
+}
+
+path.single-failure-point.intermediate{
+    stroke:         rgb(var(--bg-color));
+    fill:            transparent;
+}
+
+path.single-failure-point.source{
+    fill:           rgb(var(--fg-color));
+}
+
+/** SERVICES "STRIPES" [NON-RESPONSIBLE ENTITIES]**/
+path.service-stripe{
+    fill:           none;
+}
+
+path.service-stripe.source,
+path.service-stripe.sink{
+    stroke:         rgb(var(--bg-color));
+}
+
+path.service-stripe.intermediate{
+    stroke:         rgb(var(--fg-color));
+}
+
+
+/**
+ *  HIGHLIGHTING NODE/LINK MODES  
+ */
+.mute .node,
+.mute .link,
+.mute .ews-group{
+    opacity:        0.05;
+}
+
+.mute .node-bg{
+    opacity:        0.8;
+}
+
+body{
+
+
+
+}
+
+
+
+.highlight.upstream.responsible-entity .node-circle,
+.highlight.upstream .node.source,
+.highlight.upstream .node.sink,
+.highlight.upstream .ews-petal{
+    fill:               var(--color-upstream);
+}
+.highlight.upstream:not(.responsible-entity) .node-circle,
+.highlight.upstream:not(.responsible-entity) .service-stripe{
+    stroke:             var(--color-upstream)
+}
+
+.highlight.downstream.responsible-entity .node-circle,
+.highlight.downstream .node.source,
+.highlight.downstream .node.sink,
+.highlight.downstream .ews-petal{
+    fill:               var(--color-downstream);
+}
+.highlight.downstream:not(.responsible-entity) .node-circle,
+.highlight.downstream:not(.responsible-entity) .service-stripe{
+    stroke:             var(--color-downstream)
+}
+
+.highlight.upstream.downstream.responsible-entity .node-circle,
+.highlight.upstream.downstream .node.source,
+.highlight.upstream.downstream .node.sink,
+.highlight.upstream.downstream .ews-petal{
+    fill:               var(--color-updown)
+}
+.highlight.upstream.downstream:not(.responsible-entity) .node-circle,
+.highlight.upstream.downstream:not(.responsible-entity) .service-stripe{
+    stroke:               var(--color-updown)
+}
+
+.highlight.primary.node-group.responsible-entity .node-circle,
+.highlight.primary.node-group .node.source,
+.highlight.primary.node-group .node.sink,
+.highlight.primary.node-group .ews-petal{
+    fill:               var(--color-selection);
+}
+.highlight.primary:not(.responsible-entity) .node-circle,
+.highlight.primary:not(.responsible-entity) .service-stripe{
+    stroke:             var(--color-selection)
+}
+
+.highlight.upstream .link:not(.tapered, .link-loop){
+    stroke:             var(--color-upstream);
+    /* stroke-width:       var(--link-highlight-width); */
+}
+.highlight.upstream .link.tapered{
+    fill:               var(--color-upstream);
+    mix-blend-mode:     initial;
+}
+.highlight.upstream .link.tapered.major-direction_backward {
+    fill:               var(--color-upstream);
+    stroke:             rgb(var(--fg-color));
+    stroke-width:       var(--link-highlight-width);
+    mix-blend-mode:     initial;
+}
+
+.highlight.downstream .link:not(.tapered,  .link-loop){
+    stroke:             var(--color-downstream);
+}
+.highlight.downstream .link.tapered{
+    fill:               var(--color-downstream);
+    mix-blend-mode:     initial;
+}
+.highlight.downstream .link.tapered.major-direction_backward {
+    fill:               var(--color-downstream);
+    stroke:             rgb(var(--fg-color));
+    stroke-width:       var(--link-highlight-width);
+    mix-blend-mode:     initial;
+}
+
+.highlight.upstream.downstream .link:not(.tapered,  .link-loop){
+    stroke:             var(--color-updown);
+}
+.highlight.upstream.downstream .link.tapered{
+    fill:               var(--color-updown);
+    mix-blend-mode:     initial;
+}
+.highlight.upstream.downstream .link.tapered.major-direction_backward {
+    fill:               var(--color-updown);
+    stroke:             var(--color-selection);
+    mix-blend-mode:     initial;
+}
+
+/** Blend mode overrides */
+.mode_blend .highlight.upstream.responsible-entity .node-circle,
+.mode_blend .highlight.upstream .node.source,
+.mode_blend .highlight.upstream .node.sink,
+.mode_blend .highlight.upstream .ews-petal,
+.mode_blend .highlight.downstream.responsible-entity .node-circle,
+.mode_blend .highlight.downstream .node.source,
+.mode_blend .highlight.downstream .node.sink,
+.mode_blend .highlight.downstream .ews-petal,
+.mode_blend .highlight.upstream .link.tapered,
+.mode_blend .highlight.downstream .link.tapered,
+.mode_blend .highlight.upstream.downstream.responsible-entity .node-circle,
+.mode_blend .highlight.upstream.downstream .node.source,
+.mode_blend .highlight.upstream.downstream .node.sink,
+.mode_blend .highlight.upstream.downstream .ews-petal,
+.mode_blend .highlight.upstream .link.tapered.major-direction_backward,
+.mode_blend .highlight.upstream.downstream .link.tapered,
+.mode_blend .highlight.upstream.downstream .link.tapered.major-direction_backward, 
+.mode_blend .highlight.upstream .link.tapered.major-direction_backward,
+.mode_blend .highlight.downstream .link.tapered.major-direction_backward {
+    fill:               var(--color-blend);
+}
+.mode_blend .highlight.upstream:not(.responsible-entity) .node-circle,
+.mode_blend .highlight.upstream:not(.responsible-entity) .service-stripe
+.mode_blend .highlight.downstream:not(.responsible-entity) .node-circle,
+.mode_blend .highlight.downstream:not(.responsible-entity) .service-stripe,
+.mode_blend .highlight.upstream .link:not(.tapered, .link-loop),
+.mode_blend .highlight.downstream .link:not(.tapered, .link-loop),
+.mode_blend .highlight.upstream.downstream .link:not(.tapered,  .link-loop){
+    stroke:             var(--color-blend);
+}
+
+.mode_blend .highlight.primary.node-group.responsible-entity .node-circle,
+.mode_blend .highlight.primary.node-group .node.source,
+.mode_blend .highlight.primary.node-group .node.sink,
+.mode_blend .highlight.primary.node-group .ews-petal{
+    fill:               var(--color-selection);
+}
+.mode_blend .highlight.primary:not(.responsible-entity) .node-circle,
+.mode_blend .highlight.primary:not(.responsible-entity) .service-stripe{
+    stroke:             var(--color-selection)
+}
+
+
+
+/** SPECIALISED SUPPLIERS **/
+.mode_specialised .specialised .node{
+    fill:               var(--specialised-node-color);
+}
+.mode_specialised .link.specialised{
+    stroke:             var(--specialised-node-color);
+    stroke-width:       var(--link-highlight-width);
+}
+.mode_specialised .intermediate-network .link.tapered.specialised,
+.mode_specialised .intermediate-network .link-return.specialised{
+    fill:               var(--specialised-node-color);
+    stroke:             rgb(var(--bg-color));
+    mix-blend-mode:     initial;
+}
+
+/** SINGLE POINT OF FAILURE AND DIRECTLY AFFECTED CUSTOMER **/
+.mode_failure-point  .single-failure-point.failure-point-supplier .node,
+.mode_failure-point  path.failure-point.source{         
+    fill:               var(--failure-point-color);
+}
+
+.mode_failure-point .single-failure-point.single-failure-point-customer .node,
+.mode_failure-point  path.single-failure-point.sink{
+    fill:               var(--failure-affected-color);
+}
+
+.mode_failure-point .link.single-failure-point{
+    stroke:             var(--failure-point-color);
+    stroke-width:       var(--link-highlight-width);
+}
+
+.mode_failure-point .intermediate-network .link.tapered.single-failure-point,
+.mode_failure-point .intermediate-network .link-return.single-failure-point{
+    fill:               var(--failure-point-color);
+    mix-blend-mode:     initial;
+}
+
+/** RESILIENT  SUPPLIERS **/
+
+
+/** INTERMEDIATE DIRECTION HIGHLIGHTING*/
+.mode_intermediate-direction .intermediate-network .link.major-direction_backward{
+    fill:               var(--color-selection);
+    mix-blend-mode:     initial;
+}
+
+/** FEEDBACK LOOPS **/
+
+
+
+/** LABELS  **/
+.label-bg{
+    fill:               rgb(var(--bg-color));
+    opacity:            0.9;
+    pointer-events:     none;
+}
+.node-label-text{
+    font-size:          9px;
+    dominant-baseline:  middle;
+    text-anchor:        middle;
+    pointer-events:     none;
+}
+.node-label-text.intermediate{
+    font-weight:        700;
+    stroke:             rgb(var(--bg-color));
+}
+.node-label-group,
+.node-label-group-all{
+    display:            none;
+    pointer-events:     none;
+    transition:         all 500ms;
+}
+.node-label-group-all{
+    display:            initial;
+    opacity:            0;
+}
+
+.node-label-group.visible,
+.node-label-group-all.visible{
+    display:            initial;
+    opacity:            1;
+}

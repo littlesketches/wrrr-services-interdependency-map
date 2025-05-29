@@ -1,0 +1,67 @@
+/* Global styles applied to all pages */
+body{
+    margin:         0;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+}
+select{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 100;
+    background-color: initial;
+    width: auto;
+    padding: unset;
+    border: none;
+    border-radius: 0;
+    height: auto;
+}
+
+
+
+label{ 
+    font-size: x-small;
+}
+
+.binary input[type="checkbox"]:not(:checked){
+    color: rgb(214, 213, 213);
+   
+}
+input:where([type="checkbox"][role="switch"]) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    color: inherit;
+    font-size: inherit;
+    width: 2em;
+    height: 1em;
+    box-sizing: content-box;
+    border: 1px solid ;
+    border-radius: 1em;
+    vertical-align: text-bottom;
+    margin: auto;
+}
+
+input:where([type="checkbox"][role="switch"])::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    box-sizing: border-box;
+    width: 0.7em;
+    height: 0.7em;
+    margin: 0 0.15em;
+    border: 1px solid;
+    border-radius: 50%;
+    background: currentcolor;
+    transition: all 300ms;
+}
+
+input:where([type="checkbox"][role="switch"]):checked::before {
+      left: 1em;
+}
+
+input:where([type="checkbox"][role="switch"]):disabled {
+  opacity: 0.4;
+}
+

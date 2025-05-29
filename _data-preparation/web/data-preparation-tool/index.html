@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Data preparation tool</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="../_static/assets/vic-favicon.png">
+    <link rel="apple-touch-icon" href="https://www.delwp.vic.gov.au/__data/assets/image/0005/3002/apple-touch-icon.png">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../_css/global-style.css">
+
+    <!-- Script-->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script> 
+    <script src = "./data-endpoint.mjs"></script>
+    <script> 
+        const data = await getGSheetData()
+    </script>    
+
+</head>
+
+<body>
+    <main>
+        <h1>Data preparation tool</h1>
+        <p>To be run in on webpage hosted on a 'server'. This will connected to a set of data endpoints (i.e. Google Sheet tabs) to pull in data to the browser and parse it into an Javascript object. That data object can then be copied in a .js file and stored a in a variable, for a RERCC reporting year, which an then be accessed by the WRRR Services Interdependency map.</p>
+
+        <p>Further instructions TBA as this process is refined</p>
+    </main>
+</body>
+
+<!-- VIS STYLING -->
+<style>
+
+</style>
