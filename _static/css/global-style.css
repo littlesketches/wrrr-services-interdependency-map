@@ -24,9 +24,14 @@ label{
 }
 
 .binary input[type="checkbox"]:not(:checked){
-    color: rgb(214, 213, 213);
-   
+    color: rgb(214, 213, 213);  
 }
+ input[type="checkbox"][role="switch"]:not(:checked) + label {
+    color: rgb(214, 213, 213);  
+}
+label{
+    margin-left: 0.5rem;
+}   
 input:where([type="checkbox"][role="switch"]) {
     -webkit-appearance: none;
     -moz-appearance: none;

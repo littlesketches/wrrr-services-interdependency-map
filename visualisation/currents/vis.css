@@ -86,7 +86,8 @@ body{
     transform:      scale(1.5);
 }
 
-.focus.responsible-entity  .node.node-circle{
+.focus.responsible-entity  .node.node-circle,
+.focus.responsible-entity  .ews-petal{
     fill:           var(--color-op1-orange);
     stroke:         rgb(var(--bg-color));
 }
@@ -170,7 +171,8 @@ path.service-stripe{
 
 path.service-stripe.source,
 path.service-stripe.sink{
-    stroke:         rgb(var(--bg-color));
+    stroke:         rgb(var(--bg-color)) ;
+/* stroke: red; */
 }
 
 path.service-stripe.intermediate{
@@ -183,18 +185,15 @@ path.service-stripe.intermediate{
  */
 .mute .node,
 .mute .link,
-.mute .ews-group{
+.mute .ews-group,
+.mute .source-stripe,
+.mute .service-stripe,
+.mute path.single-failure-point{
     opacity:        0.05;
 }
 
 .mute .node-bg{
     opacity:        0.8;
-}
-
-body{
-
-
-
 }
 
 
@@ -205,8 +204,7 @@ body{
 .highlight.upstream .ews-petal{
     fill:               var(--color-upstream);
 }
-.highlight.upstream:not(.responsible-entity) .node-circle,
-.highlight.upstream:not(.responsible-entity) .service-stripe{
+.highlight.upstream:not(.responsible-entity) .node-circle{
     stroke:             var(--color-upstream)
 }
 
@@ -216,8 +214,7 @@ body{
 .highlight.downstream .ews-petal{
     fill:               var(--color-downstream);
 }
-.highlight.downstream:not(.responsible-entity) .node-circle,
-.highlight.downstream:not(.responsible-entity) .service-stripe{
+.highlight.downstream:not(.responsible-entity) .node-circle{
     stroke:             var(--color-downstream)
 }
 
@@ -225,11 +222,10 @@ body{
 .highlight.upstream.downstream .node.source,
 .highlight.upstream.downstream .node.sink,
 .highlight.upstream.downstream .ews-petal{
-    fill:               var(--color-updown)
+    fill:               var(--color-updown);
 }
-.highlight.upstream.downstream:not(.responsible-entity) .node-circle,
-.highlight.upstream.downstream:not(.responsible-entity) .service-stripe{
-    stroke:               var(--color-updown)
+.highlight.upstream.downstream:not(.responsible-entity) .node-circle{
+    stroke:               var(--color-updown);
 }
 
 .highlight.primary.node-group.responsible-entity .node-circle,
@@ -238,9 +234,8 @@ body{
 .highlight.primary.node-group .ews-petal{
     fill:               var(--color-selection);
 }
-.highlight.primary:not(.responsible-entity) .node-circle,
-.highlight.primary:not(.responsible-entity) .service-stripe{
-    stroke:             var(--color-selection)
+.highlight.primary:not(.responsible-entity) .node-circle{
+    stroke:             var(--color-selection);
 }
 
 .highlight.upstream .link:not(.tapered, .link-loop){
@@ -332,38 +327,38 @@ body{
 
 /** SPECIALISED SUPPLIERS **/
 .mode_specialised .specialised .node{
-    fill:               var(--specialised-node-color);
+    fill:               var(--specialised-node-color) !important;
 }
 .mode_specialised .link.specialised{
-    stroke:             var(--specialised-node-color);
+    stroke:             var(--specialised-node-color) !important;;
     stroke-width:       var(--link-highlight-width);
 }
 .mode_specialised .intermediate-network .link.tapered.specialised,
 .mode_specialised .intermediate-network .link-return.specialised{
-    fill:               var(--specialised-node-color);
-    stroke:             rgb(var(--bg-color));
+    fill:               var(--specialised-node-color) !important;
+    stroke:             rgb(var(--bg-color)) !important;;
     mix-blend-mode:     initial;
 }
 
 /** SINGLE POINT OF FAILURE AND DIRECTLY AFFECTED CUSTOMER **/
-.mode_failure-point  .single-failure-point.failure-point-supplier .node,
+.mode_failure-point  .node,
 .mode_failure-point  path.failure-point.source{         
-    fill:               var(--failure-point-color);
+    fill:               var(--failure-point-color)  !important;
 }
 
 .mode_failure-point .single-failure-point.single-failure-point-customer .node,
 .mode_failure-point  path.single-failure-point.sink{
-    fill:               var(--failure-affected-color);
+    fill:               var(--failure-affected-color) !important;
 }
 
 .mode_failure-point .link.single-failure-point{
-    stroke:             var(--failure-point-color);
-    stroke-width:       var(--link-highlight-width);
+    stroke:             var(--failure-point-color) !important;
+    stroke-width:       var(--link-highlight-width) !important;
 }
 
 .mode_failure-point .intermediate-network .link.tapered.single-failure-point,
 .mode_failure-point .intermediate-network .link-return.single-failure-point{
-    fill:               var(--failure-point-color);
+    fill:               var(--failure-point-color) !important;
     mix-blend-mode:     initial;
 }
 

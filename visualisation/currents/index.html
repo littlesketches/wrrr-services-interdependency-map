@@ -66,7 +66,7 @@
                             <p>The graph displays <span class = 'entity-count'></span> entities as nodes:  <span class = 'responsible-entity-count'></span> responsible entities and <span class = 'non-responsible-entity-count'></span> uniquely identified customers and supplier. A total of <span class = 'link-count'></span> reported supplier-customer relationships are represented by links.</p>
                             <p>The design of the visual highlights the supplier-customer 'flow' of the sector along the vertical axis. It separates the more complex inner network of 'intermediate' nodes &mdash; including all responsible entities &mdash; from the outer (upstream and downstream) entities. A breakdown of data according to network components is shown opposite. </p>
 
-                            <div class = 'guidance-container'>
+                            <div class = 'guidance-container guidance'>
                                 <p>This visualisation is interactive and encourages exploration of the network through various modes that are accessible from the menu above. Further details about this visualisation can be found in the accompanying <a href=""> design documentation</a>.</p>
                             </div>
                         </div>
@@ -81,7 +81,11 @@
                                 </ul>
                             </nav>
                             <div class = 'mode-content explore-mode-content browse'>
-                                <p>Interact with the entities (nodes) on the visualisation to explore their individual <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections. Use the switch below to set the depth of connections in the network.</p>
+                                <p>Use this mode to visualise the network connections starting from a single entity (node). </p> 
+
+                               <p>Network connections (links and nodes) are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer) from that <span class = 'selected entity highlighted'>originating entity</span>. In a fully traced network, links can also be identified as <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the entity's network connection path. </p>
+
+                                <p>Use the switch below to set the depth of connections in the network to see while browsing.</p>
 
                                 <div class = 'ui-option-content switch-selector-container'>
                                     <label class ='switch-label browse-depth-selector left'  for="browse-depth-selector">Immediate</label>
@@ -89,16 +93,17 @@
                                     <label class ='switch-label browse-depth-selector right'  for="browse-depth-selector">Edge of network</label>
                                 </div>
 
-                                <div class = 'guidance-container'>
-                                    <p>In explore mode, you can also tap on a node to select it and automatically switch to he network trace mode.</p>
-                                    <p>At any point (and in any mode), you can deselect/reset all node selection by, tapping anywhere else on the visualisation (i.e. not on a node).</p>
+
+                                <div class = 'guidance-container guidance'>
+                                    <p>While in <span class = 'mode'>browse mode</span>, tapping on a node will select it and move you into  <span class = 'mode'>trace mode</span>. </p>
                                 </div>
                             </div>
 
                             <div class = 'mode-content explore-mode-content  trace'>
-                                <p>Use this mode to trace upstream and downstream connections from an entity., step-by-step. Each step is triggered by repeatedly tapping on the originating entity. The available depth upstream and downstream will be displayed below once an entity is selected. </p>
+                                <p>Use this mode to trace <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections from a <span class = 'selected entity highlighted'>selected entity</span>, <strong>one step at a time</strong>. Each step is triggered by repeatedly tapping on selected entity (node). 
 
                                 <div class = 'trace-selection-container'>
+                                    <hr>
                                     <h2 class = 'trace-selection-entity selected-node'></h2>
 
                                     <div class = 'trace-selection-info-container'>
@@ -119,13 +124,27 @@
                                             <div class = 'trace-depth-indicator-container downstream'></div>
                                         </div>
                                     </div>
+                                    <hr>
+                                </div>
+
+
+                                <div class = 'guidance-container guidance'>
+                                    <p>Once an entity is selected, the available depth to trace upstream and will be displayed in an information box. </p>
+                                    <p>Tapping on a another node will make it the newly selected entity. To de-select a node (and reset the visualisation), tap anywhere else on the visualisation (i.e. not on a node).</p>
+                                    </p>
                                 </div>
                             </div>
 
 
                             <div class = 'mode-content explore-mode-content  blend'>
-                                <p>Blend mode allows you to combine the connected networks from multiple entities, to visualise shared connections and areas of the sector..</p>
-                                <p>Tap on a node to select it. All of that entities connected nodes will be highlighted. Then tap on another node to blend it and its connections into the visualised network. </p>
+                                <p>Use this mode allows to combine the connected networks of <span class = 'selected entity highlighted'>multiple entities</span>. This view lets you visualise mutual connections and areas (nodes) in the network.</p>
+
+                                <p>The types of network connections shown are relative to the combined selection of nodes. This means that  &mdash; <span class = 'upstream underline'> upstream</span>, <span class = 'downstream underline'>downstream</span> connection are <strong>shared</strong> by the selected entities. Naturally, connections that are  <span class = 'upstream downstream underline'>both upstream and downstream</span> are the selection grows.</p>
+
+
+                                <div class = 'guidance-container guidance'>
+                                    <p>Tap on a node to select it. All of that entities connected nodes will be highlighted. Then tap on another node to blend it and its connections into the visualised network. </p>
+                                </div>
 
                                 <div class = 'blend-selection-container'>
                                     <h2 class = 'blend-selection-header'>Selected entities</h2>
@@ -149,27 +168,37 @@
                             </nav>
     
                             <div class = 'mode-content service-mode-content ews'>
+                                <p>Use this mode to filter the network by responsible entities that operate by Essential Waste Services.</p>
                                 <div class = 'esw-inputs-container'></div>
+
+                                <div class = 'guidance-container guidance'>
+                                    <p>The total number of responsible entities assigned to each essential waster service is shown in parenthesis. Network connections shown by type are shared <span class = 'upstream underline'> upstream</span>, <span class = 'downstream underline'>downstream</span> and  <span class = 'upstream downstream underline'>'both'</span>, by the selection.</p>
+                                </div>
                             </div>
 
                             <div class = 'mode-content service-mode-content service'>
+                                <p>Use this mode to filter the network by entities that have been assigned a service.</p>
                                 <div class = 'service-inputs-container'>
                                     <div>
-                                        <div class = 'service-options-label'>Upstream suppliers</div>
+                                        <div class = 'service-options-label upstream'>Upstream suppliers</div>
                                         <div class = 'service-source-inputs-container'></div>
                                     </div>
 
                                     <div>
-                                        <div class = 'service-options-label'>Intermediate entities</div>
+                                        <div class = 'service-options-label intermediate'>Intermediate entities</div>
                                         <div class = 'service-intermediate-inputs-container'></div>
-                                        <div class = 'service-options-label'>Downstream customers</div>
+                                        <div class = 'service-options-label downstream'>Downstream customers</div>
                                         <div class = 'service-sink-inputs-container'></div>
                                     </div>
                                 </div>             
                             </div>
 
                             <div class = 'mode-content service-mode-content frequency'>
+                                <p>Use this mode to filter links by reported service frequency.</p>
                                 <div class = 'frequency-inputs-container'></div>
+                                <div class = 'guidance-container guidance'>
+                                    <p>Service frequency selections are mutually exclusive in this visualisation as multiple services can be found on link paths. These links will appear darker (for outer links) and wider (for intermediate network links).</p>
+                                </div>
                             </div>
                         </div>
 
@@ -183,12 +212,15 @@
                             </nav>
 
                             <div class = 'mode-content vulnerability-mode-content failure-specialised'>
-                                <p>Responsible entities report information about suppliers and customers are identified as either 'single points of failure'.</p>
+                                <p>Responsible entities are asked to identify suppliers who are single point of failure (them as customers), and customers to whom they are a single point of failure.</p>
 
                                 <div class = 'vulnerability-option-container vulnerability'>
                                     <label class ='switch-label'  for="failure-point-selector">Show single points of failure</label>
                                     <input  type="checkbox" role="switch" id="failure-point-selector" onchange="ui.handle.toggleFailurePoints(this.checked)" />
-            
+                                </div>
+
+                                <p>Responsible entities are asked to identify their suppliers who they consider 'specialised'.</p>
+                                <div class = 'vulnerability-option-container vulnerability'>
                                     <label class ='switch-label'  for="specialised-suppliers-selector">Show specialised suppliers</label>
                                     <input  type="checkbox" role="switch" id="specialised-suppliers-selector" onchange="ui.handle.toggleSpecialisedSuppliers(this.checked)" />
                                 </div>
@@ -220,32 +252,33 @@
                        <!-- v. DETAILS -->
                         <div class = 'ui-info-wrapper detail-mode'>
                             <p>Meta information about entities are encoded into intricate marks in the visualisation. As the name implies, details are added for the curious who want to zoom in and use these marks to look for differences and patterns. They are not intended to distract from the high level view of overall system structure.</p>
-                            <p><strong>Essential Waste Services:</strong> are assigned only to Responsible Entities as 'petals'.</p>
-                            <p><strong>Services:</strong> are assigned (by RV, where possible) for reported customer and suppliers. This means that the majority of services information is for non-REs, and that multiple services can multiple services assigned. Horizontal stripes across non-RE nodes indicate assigned services.</p>
-                            <p><strong>Single point of failure:</strong>  Data provided by REs on whether suppliers or customers are a signal point of failure is encoded in triangular marks either on the inside of REs, or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) are.</p>
+                            <p><strong>Essential waste services:</strong> are assigned only to responsible entities as 'petals'.</p>
+                            <p><strong>Services:</strong> are assigned for reported customer and suppliers. Multiple services can be assigned to entities which are represented by horizontal stripes across these nodes.</p>
+                            <p><strong>Single points of failure:</strong> reported by responsible entities are encoded in triangular marks either on the inside of responsible entity nodes or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) are.</p>
                         </div>
                     </div>
 
                     <!-- D. UI OPTIONS -->   
                     <div class = 'ui-options-container '>
                         <div class = 'ui-option-container'>
-                            <div class = 'ui-option-content binary-selector-container'>
-                                <label class ='switch-label'  for="tips-selector">Tips</label>
+                            <div class = 'ui-option-content binary binary-selector-container'>
                                 <input class = 'binary' type="checkbox" role="switch" id="tips-selector" onchange="ui.handle.toggleTips(this.checked)" />
+                                <label class ='switch-label'  for="tips-selector">Tips</label>
                             </div>
                         </div>
                         <div class = 'ui-option-container'>
-                            <div class = 'ui-option-content binary-selector-container'>
-                                <label class ='switch-label'  for="details-selector">Details</label>
+                            <div class = 'ui-option-content binary binary-selector-container'>
+
                                 <input class = 'binary' type="checkbox" role="switch" id="details-selector" onchange="ui.handle.toggleVisDetails(this.checked)" />
+                                <label class ='switch-label'  for="details-selector">Details</label>
                             </div>
                         </div>
 
                         <div class = 'ui-option-container'>
     
                             <div class = 'ui-option-content binary binary-selector-container'>
-                                <label class ='switch-label' for="labels-selector">Labels</label>
                                 <input lass = 'binary' type="checkbox" role="switch" id="labels-selector" onchange="ui.handle.toggleLabels(this.checked)" />
+                                <label class ='switch-label' for="labels-selector">Labels</label>
                             </div>
                         </div>
                     </div>
@@ -256,15 +289,7 @@
         <!-- 2. VIS SECTION -->
         <section class = 'visualisation-section'>
             <div class = 'visualisation-wrapper'>
-                <svg id = "vis" width = 100%  height = 100% 
-                    class = "
-                        mode_failure-point-
-                        mode_specialised-
-                        mode_intermediate-direction-
-                        mode-feedback-
-                        mode-services-
-                    "
-                ></svg>
+                <svg id = "vis" width = 100%  height = 100% ></svg>
             </div>
         </section>
 
@@ -339,10 +364,10 @@
                                 <div id = "data-link-intermediate" class = 'legend-stat-data'></div>
                                 <div class = 'legend-stat-label'> <span id = "data-link-intermediate_unit">links</span> between intermediates</div>
                             </div>
-                            <div class = 'legend-stat-container'>
+                            <!-- <div class = 'legend-stat-container'>
                                 <div id = "data-relationships-intermediate" class = 'legend-stat-data'>x ??</div>
                                 <div class = 'legend-stat-label'>unique <span id = "data-relationships-intermediate_unit">relationships</span> between intermediate entities</div>
-                            </div>
+                            </div> -->
                             <div class = 'legend-stat-container'>
                                 <div id = "data-link-loops" class = 'legend-stat-data'></div>
                                 <div class = 'legend-stat-label'><span id = "data-link-loops_unit">links are</span> internal to an entity (<span id = "data-node-loops"></span> vertically integrated <span id = "data-node-loops_unit">entities</span>)</div>
@@ -356,18 +381,6 @@
                                 <div class = 'legend-stat-label'>feedback link identified</div>
                             </div>
                         </div>
-
-                        <!-- <div class = 'legend-stat-group'>
-                            <div class = 'legend-label'>Vulnerable links</div>
-                            <div class = 'legend-stat-container' >
-                                <div id = "data-link-failure-point" class = 'legend-stat-data'></div>
-                                <div class = 'legend-stat-label'><span id = "data-link-failure-point_unit">links</span> identified with single point of failure</div>
-                            </div>
-                            <div class = 'legend-stat-container'>
-                                <div id = "data-link-specialised" class = 'legend-stat-data'></div>
-                                <div class = 'legend-stat-label'><span id = "data-link-specialised_unit">links</span> to specialised suppliers</div>
-                            </div>
-                        </div> -->
                     </div>
 
                     <div class = 'legend-sink-section legend-section'>

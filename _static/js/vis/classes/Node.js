@@ -291,7 +291,6 @@ class Node{
         if(downstreamLinks.length) tree[1].link.downstream = downstreamLinks
         if(downstreamNodes.length) tree[1].node.downstream = downstreamNodes
 
-
         /**
          *  Track all nodes and links to avoid re-trace
          */ 
@@ -319,9 +318,7 @@ class Node{
         // b. Build tree with recursive function
         let traceDepth = 1      // Counter for next trace depth 
 
-const maxTrace = 10
         trace(tree, this)            
-
 
         // => Return the tree data 
         return {tree, depth}
@@ -335,15 +332,13 @@ const maxTrace = 10
                 prevDownstreamNodes = tree[traceDepth].node?.downstream
 
             const upstreamLinks = prevUpstreamNodes ? Object.values(prevUpstreamNodes).map(node => Object.values(node.link.in)).flat() : [],
-                upstreamNodes   = [...new Set(upstreamLinks?.map(link => link.node.from))].filter( node => !trackedUpstreamNodes.includes(node)), // Filter upstream nodes already tracked,
+                upstreamNodes   = [...new Set(upstreamLinks?.map(link => link.node.from).filter( node => !trackedUpstreamNodes.includes(node)) )], // Filter upstream nodes already tracked,
                 downstreamLinks = prevDownstreamNodes ? Object.values(prevDownstreamNodes).map(node => Object.values(node.link.out)).flat() : [],
-                downstreamNodes = [...new Set (downstreamLinks?.map(link => link.node.to))].filter( node => !trackedDownstreamNodes.includes(node)), // Filter upstream nodes already tracked
+                downstreamNodes = [...new Set (downstreamLinks?.map(link => link.node.to).filter( node => !trackedDownstreamNodes.includes(node)) )], // Filter upstream nodes already tracked
 
                 upstreamCollisionNodes = [...new Set(upstreamLinks?.map(link => link.node.from))].filter( node => trackedNodes.includes(node)),
                 downstreamCollisionNodes =[...new Set (downstreamLinks?.map(link => link.node.to))].filter( node => trackedNodes.includes(node)) // Filter upstream nodes already tracked
-            
-            // => Return if there are no more upstream and no downstream nodes to trace
-            if(upstreamNodes.length === 0 && downstreamNodes.length === 0) return       
+
             // 2. Update tracked nodes: note both upstream and downstream are updated, even if one may empty/finished 
             trackedNodes            = [...trackedNodes, ...upstreamNodes, ...downstreamNodes]
             trackedUpstreamNodes    = [...new Set([...trackedUpstreamNodes, ...upstreamNodes])]
@@ -373,7 +368,9 @@ const maxTrace = 10
                 depth.downstream = traceDepth // Update trace depth
             }
 
-          
+            // => Return if there are no more upstream and no downstream nodes to trace
+            if(upstreamNodes.length === 0 && downstreamNodes.length === 0) return   
+
             // 4. Recursively call trace
             trace(tree, node)    
         }

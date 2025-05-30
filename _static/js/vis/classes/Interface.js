@@ -32,9 +32,11 @@ class Interface{
                 },
                 vulnerability: {
                     mode:                   'failure-specialised',
-                    singleFailurePoint:     '',
-                    specialisedSupplier:    '',
-                    feedbackLoops:          '',
+                    failure:        false,
+                    specialised:    false,
+                    internalLoops:  false,
+                    returnLoops:    false,
+                    feedbackLinks:  false,
                 },
             },
             selection: {
@@ -64,17 +66,11 @@ class Interface{
                     vis:        true,
                     legend:     true
                 },
-                vulnerability:{
-                    failure:        false,
-                    specialised:    false,
-                    internalLoops:  false,
-                    returnLoops:    false,
-                    feedbackLinks:  false,
-                },
-                infoContent:    true,
-                traceContent:   false,
-                blendContent:   false,
-                networkLabels:  false
+                guidance:           true,
+                infoContent:        true,
+                traceContent:       false,
+                blendContent:       false,
+                networkLabels:      false
             }
         }
 
@@ -167,6 +163,7 @@ class Interface{
         return {
             // Mouse events
             nodeIn: (ev, node) => {
+                ev.stopPropagation()
                 const parent = ev.srcElement.parentElement,
                     nodeEl = d3.select(parent),
                     label = d3.select(`#node-label_${node.id}`)
@@ -212,9 +209,10 @@ class Interface{
 
                 // Update legend data
                 ui.handle.updateLegend()
-                ev.stopPropagation()
+
             },
             nodeOut: (ev, node) => {
+                ev.stopPropagation()
                 const parent = ev.srcElement.parentElement,
                     nodeEl = d3.select(parent),
                     label = d3.select(`#node-label_${node.id}`)
@@ -243,7 +241,7 @@ class Interface{
                 // Update legend data
                 ui.handle.updateLegend()
                 ui.handle.resetLabelSelection()
-                ev.stopPropagation()
+
             },
             nodeClick: (ev, node) => {
                 // Stop event propagation
@@ -322,18 +320,18 @@ class Interface{
                 ui.handle.resetLabelSelection()
 
             },
-            linkIn: (ev, link) => {
-                const parent = ev.srcElement.parentElement,
-                    linkEl = d3.select(parent).selectAll('.link')
+            // linkIn: (ev, link) => {
+            //     const parent = ev.srcElement.parentElement,
+            //         linkEl = d3.select(parent).selectAll('.link')
 
-                linkEl.style('fill', 'aquamarine')
-            },
-            linkOut: (ev, link) => {
-                const parent = ev.srcElement.parentElement,
-                    linkEl = d3.select(parent).selectAll('.link')
+            //     linkEl.style('fill', 'aquamarine')
+            // },
+            // linkOut: (ev, link) => {
+            //     const parent = ev.srcElement.parentElement,
+            //         linkEl = d3.select(parent).selectAll('.link')
 
-                linkEl.style('fill', null)
-            },
+            //     linkEl.style('fill', null)
+            // },
 
             // Update data sidebar
             updateLegend: (ev) => {
@@ -539,7 +537,6 @@ class Interface{
                 return atEnd
 
             },
-
             visualTraceMulti: (nodes) => {
 
                 // i. Get array of network trees
@@ -583,7 +580,6 @@ class Interface{
 
             },
             visualTraceToEnd: (node) => {
-
                 // Trace node to end of network
                 let end = false
                 while(!end) end = ui.handle.visualTrace(node)
@@ -691,7 +687,6 @@ class Interface{
                     return selection
                 })
             },
-
             highlightLinkSelection: (linkArray, type, opacity) => {
                 // Mute all
                 ui.state.selection.link.instances[type] = [...new Set([...ui.state.selection.link.instances[type], ...linkArray])]
@@ -780,15 +775,11 @@ class Interface{
                     .attr('transform', e.transform);
             },
 
-
             // Toggle and set
             toggleMode: (mode, isOn) => {
                 const modeClass = `mode_${mode}`
-
                 app.classed(modeClass, isOn ??!app.classed(modeClass))
-
             },
-
             toggleInfoPane: (isVisible) => {
                  ui.state.view.pane.info = isVisible ?? !ui.state.view.pane.info 
                  const display =  ui.state.view.pane.info ? 'initial' : 'none'
@@ -799,13 +790,11 @@ class Interface{
                  const display =  ui.state.view.pane.vis ? 'initial' : 'none'
                  d3.select('section.vis').style('display', display)
             },
-
             toggleLegendPane: (isVisible) => {
                  ui.state.view.pane.legend = isVisible ?? !ui.state.view.pane.legend 
                  const display =  ui.state.view.pane.legend ? 'initial' : 'none'
                  d3.select('section.legend').style('display', display)
             },
-
             toggleInfoContent: (isVisible) => {
                 ui.state.view.infoContent = isVisible ?? !ui.state.view.infoContent 
                 const display = ui.state.view.infoContent ? 'grid   ' : 'none'
@@ -815,12 +804,15 @@ class Interface{
             },
             toggleTraceContent(isVisible){
                 ui.state.view.traceContent = isVisible ?? !ui.state.view.traceContent 
-                d3.selectAll('.trace-selection-container').classed('hide',  !ui.state.view.traceContent )
+                d3.selectAll('.trace-selection-container').style('display',  isVisible ? 'revert' : 'none')       
+                setTimeout(() => {
+                    d3.selectAll('.trace-selection-container').classed('hide',  !ui.state.view.traceContent )
+                }, 10);   
             },
-
-            toggleTips: (isOn) => {
-                app.classed('mode_tips', isOn ?? !app.classed('mode_tips'))
-                document.getElementById('tips-selector').checked = app.classed('mode_tips')
+            toggleTips: (isVisible) => {
+                ui.state.view.guidance = isVisible ?? !ui.state.view.guidance 
+                document.getElementById('tips-selector').checked = ui.state.view.guidance
+                d3.selectAll('.guidance').classed('hide', !ui.state.view.guidance)
             },
             toggleVisDetails: (isOn) => {
                 app.classed('mode_detail', isOn ?? !app.classed('mode_detail'))
@@ -848,16 +840,21 @@ class Interface{
             },
             toggleBlendContent(isVisible){
                 ui.state.view.blendContent = isVisible ?? !ui.state.view.blendContent 
-                d3.selectAll('.blend-selection-container').classed('hide',  !ui.state.view.blendContent )
+
+                d3.selectAll('.blend-selection-container').style('display',  isVisible ? 'revert' : 'none')       
+                setTimeout(() => {
+                    d3.selectAll('.blend-selection-container').classed('hide',  !ui.state.view.blendContent )
+                }, 10);  
+
             },
             toggleFailurePoints: (isVisible) => {
                 ui.handle.reset()
                 // Toggle switch and set state and style mode
-                ui.state.view.vulnerability.failure = isVisible ?? !ui.state.view.vulnerability.failure 
-                app.classed('mode_failure-point', ui.state.view.vulnerability.failure)
-                document.getElementById('failure-point-selector').checked = ui.state.view.vulnerability.failure 
+                ui.state.mode.vulnerability.failure = isVisible ?? !ui.state.mode.vulnerability.failure 
+                app.classed('mode_failure-point', ui.state.mode.vulnerability.failure)
+                document.getElementById('failure-point-selector').checked = ui.state.mode.vulnerability.failure 
 
-                if(ui.state.view.vulnerability.failure){
+                if(ui.state.mode.vulnerability.failure){
                     // Get all links and nodes to highlight
                     const links = Object.values(ui.layout._data.link).filter(link => link.config.singleFailurePoint === 'yes')
                     const nodes = [...new Set(links.map( link => [link.node.from, link.node.to]).flat())]
@@ -868,9 +865,9 @@ class Interface{
                     ui.handle.highlightNodeSelection(nodes,  'upstream')
 
                     // Turn off other vulnerability views
-                    ui.state.view.vulnerability.specialised = false
-                    app.classed('mode_specialised', ui.state.view.vulnerability.specialised)
-                    document.getElementById('specialised-suppliers-selector').checked = ui.state.view.vulnerability.specialised 
+                    ui.state.mode.vulnerability.specialised = false
+                    app.classed('mode_specialised', ui.state.mode.vulnerability.specialised)
+                    document.getElementById('specialised-suppliers-selector').checked = ui.state.mode.vulnerability.specialised 
 
                 }
             },
@@ -878,11 +875,11 @@ class Interface{
                 ui.handle.reset()
 
                 // Toggle swicth and set state and style mode
-                ui.state.view.vulnerability.specialised = isVisible ?? !ui.state.view.vulnerability.specialised 
-                app.classed('mode_specialised', ui.state.view.vulnerability.specialised)
-                document.getElementById('specialised-suppliers-selector').checked = ui.state.view.vulnerability.specialised 
+                ui.state.mode.vulnerability.specialised = isVisible ?? !ui.state.mode.vulnerability.specialised 
+                app.classed('mode_specialised', ui.state.mode.vulnerability.specialised)
+                document.getElementById('specialised-suppliers-selector').checked = ui.state.mode.vulnerability.specialised 
 
-                if(ui.state.view.vulnerability.specialised){
+                if(ui.state.mode.vulnerability.specialised){
                     // Get all links and nodes to highlight
                     const links = Object.values(ui.layout._data.link).filter(link => link.config.fromSpecial === 'yes')
                     const nodes = [...new Set(links.map( link => [link.node.from, link.node.to]).flat())]
@@ -892,40 +889,39 @@ class Interface{
                     ui.handle.highlightLinkSelection(links, 'upstream')
                     ui.handle.highlightNodeSelection(nodes,  'upstream')
 
-
                     // Turn off other vulnerability views
-                    ui.state.view.vulnerability.failure = false 
-                    app.classed('mode_failure-point', ui.state.view.vulnerability.failure)
-                    document.getElementById('failure-point-selector').checked = ui.state.view.vulnerability.failure 
+                    ui.state.mode.vulnerability.failure = false 
+                    app.classed('mode_failure-point', ui.state.mode.vulnerability.failure)
+                    document.getElementById('failure-point-selector').checked = ui.state.mode.vulnerability.failure 
                 }
             },
             toggleOffVulnerabilityOptions: () => {
-                ui.state.view.vulnerability.specialised = false
-                app.classed('mode_specialised', ui.state.view.vulnerability.specialised)
-                document.getElementById('specialised-suppliers-selector').checked = ui.state.view.vulnerability.specialised 
+                ui.state.mode.vulnerability.specialised = false
+                app.classed('mode_specialised', ui.state.mode.vulnerability.specialised)
+                document.getElementById('specialised-suppliers-selector').checked = ui.state.mode.vulnerability.specialised 
 
-                ui.state.view.vulnerability.failure = false 
-                app.classed('mode_failure-point', ui.state.view.vulnerability.failure)
-                document.getElementById('failure-point-selector').checked = ui.state.view.vulnerability.failure 
+                ui.state.mode.vulnerability.failure = false 
+                app.classed('mode_failure-point', ui.state.mode.vulnerability.failure)
+                document.getElementById('failure-point-selector').checked = ui.state.mode.vulnerability.failure 
 
-                ui.state.view.vulnerability.internalLoops =  false
-                document.getElementById('internal-loop-selector').checked = ui.state.view.vulnerability.internalLoops 
+                ui.state.mode.vulnerability.internalLoops =  false
+                document.getElementById('internal-loop-selector').checked = ui.state.mode.vulnerability.internalLoops 
 
-                ui.state.view.vulnerability.returnLoops = false
-                document.getElementById('return-loop-selector').checked = ui.state.view.vulnerability.returnLoops 
+                ui.state.mode.vulnerability.returnLoops = false
+                document.getElementById('return-loop-selector').checked = ui.state.mode.vulnerability.returnLoops 
 
-                ui.state.view.vulnerability.feedbackLinks = false
-                document.getElementById('feedback-links-selector').checked = ui.state.view.vulnerability.feedbackLinks 
+                ui.state.mode.vulnerability.feedbackLinks = false
+                document.getElementById('feedback-links-selector').checked = ui.state.mode.vulnerability.feedbackLinks 
 
             },
             toggleInternalLoops: (isVisible) => {
                 ui.handle.reset()
 
                 // Toggle switch and set state and style mode
-                ui.state.view.vulnerability.internalLoops = isVisible ?? !ui.state.view.vulnerability.internalLoops 
-                document.getElementById('internal-loop-selector').checked = ui.state.view.vulnerability.internalLoops 
+                ui.state.mode.vulnerability.internalLoops = isVisible ?? !ui.state.mode.vulnerability.internalLoops 
+                document.getElementById('internal-loop-selector').checked = ui.state.mode.vulnerability.internalLoops 
 
-                if(ui.state.view.vulnerability.internalLoops){
+                if(ui.state.mode.vulnerability.internalLoops){
                     // Get all links and nodes to highlight
                     const links = Object.values(ui.layout._data.link).filter(link => link.config.isLoop)
                     const nodes = [...new Set(links.map( link => [link.node.from, link.node.to]).flat())]
@@ -940,10 +936,10 @@ class Interface{
                 ui.handle.reset()
 
                 // Toggle switch and set state and style mode
-                ui.state.view.vulnerability.returnLoops = isVisible ?? !ui.state.view.vulnerability.returnLoops 
-                document.getElementById('return-loop-selector').checked = ui.state.view.vulnerability.returnLoops 
+                ui.state.mode.vulnerability.returnLoops = isVisible ?? !ui.state.mode.vulnerability.returnLoops 
+                document.getElementById('return-loop-selector').checked = ui.state.mode.vulnerability.returnLoops 
 
-                if(ui.state.view.vulnerability.returnLoops){
+                if(ui.state.mode.vulnerability.returnLoops){
                     // Get all links and nodes to highlight
                     const nodes = Object.values(ui.layout._data.node).filter(node => node.state.config.returnNodes.length > 0)
 
@@ -970,10 +966,10 @@ class Interface{
                 ui.handle.reset()
 
                 // Toggle switch and set state and style mode
-                ui.state.view.vulnerability.feedbackLinks = isVisible ?? !ui.state.view.vulnerability.feedbackLinks 
-                document.getElementById('feedback-links-selector').checked = ui.state.view.vulnerability.feedbackLinks 
+                ui.state.mode.vulnerability.feedbackLinks = isVisible ?? !ui.state.mode.vulnerability.feedbackLinks 
+                document.getElementById('feedback-links-selector').checked = ui.state.mode.vulnerability.feedbackLinks 
 
-                if(ui.state.view.vulnerability.feedbackLinks){
+                if(ui.state.mode.vulnerability.feedbackLinks){
                     // Get all links and nodes to highlight
                     const links = Object.values(ui.layout._data.link).filter(link => link.config.direction.major === 'backward')
                     const nodes = [... new Set(links.map(link => [link.node.from, link.node.to]).flat() )]
@@ -986,7 +982,7 @@ class Interface{
                 }
             },
 
-            // Set app mode
+            // SET APP MODE
             setMode: function(mode) {
                 // Setup if coming from mode (i.e. app state in prior mode)
                 switch( ui.state.mode.app){
@@ -1045,7 +1041,7 @@ class Interface{
 
             },
 
-            /** SERVICE OPTIONS */
+            /** UPDATE SERVICE OPTIONS */
             setEWS:  function(el, id) {
                 ui.state.mode.service.eswSelect[id] = el.checked
                 // i. Get selected EWSs
@@ -1117,14 +1113,17 @@ class Interface{
 
                 }
             },
-
             setFrequency:  function(el, id) {
                 ui.state.mode.service.frequencySelect = el.value
                 ui.handle.reset()
-                const linkArray = Object.values(ui.layout._data.link).filter( link => link.config.frequency === el.value)
-                ui.state.selection.link.instances['downstream'] = []
+                const links = Object.values(ui.layout._data.link).filter( link => link.config.frequency === el.value)
+                const nodes = [...new Set(links.map(link => [link.node.from, link.node.to]).flat())]
+
+                // ui.state.selection.link.instances['downstream'] = []
                 ui.handle.muteLinks()
-                ui.handle.highlightLinkSelection(linkArray, 'downstream')
+                ui.handle.muteNodes()
+                ui.handle.highlightLinkSelection(links, 'upstream')
+                ui.handle.highlightNodeSelection(nodes, 'upstream')
             }
         }
     }

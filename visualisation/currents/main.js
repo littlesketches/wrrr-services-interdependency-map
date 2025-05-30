@@ -34,7 +34,7 @@ console.log( visData[reportYear])
 ///     and interactivity of nodes and links                ///
 ///////////////////////////////////////////////////////////////
 
-/*   
+/**    
  *  - The 'layout' works out custom node placements and adds  
  *      - coordinates to the node instances (i.e. to the node data) that can be thou of as groupings/clustering
  *      - 'path' information to the link instances to render links between nodes (added to the link data)
@@ -75,7 +75,6 @@ function renderVis(layout, ui){
 
     const defs = svg.append('defs')
 
-
     // 2. Add a 'chart' group to draw the visualisation: this is the canvas dimensions minus the margins one each side
     const chart = svg.append('g')
         .attr('id', 'chart')
@@ -84,15 +83,16 @@ function renderVis(layout, ui){
         .call(d3.zoom().scaleExtent([1, 10])
                 .translateExtent([[0, 0], [layout.config.dims.chart.width, layout.config.dims.chart.height]])
                 .on('zoom', ui.handle.zoom)
-        ).on("dblclick.zoom", null);
+        )       
+        .on("dblclick.zoom", null)
 
 
     /**
-    *  PART I. ADD LAYOUT SECTIONS / GROUPS
-    *  - These groups are akin to 'layers' in graphics software and can be thought of as layers for rendering on
-    *  - "Child" layers are added in the order that we want visual layers to appear
-    *  - At the highest level, there are groups for 'links', 'nodes' and 'annotation' that are setup in that order. This is because we want to paint nodes 'over' links, and any annotation to appear 'over' both 
-    */
+     *  PART I. ADD LAYOUT SECTIONS / GROUPS
+     *  - These groups are akin to 'layers' in graphics software and can be thought of as layers for rendering on
+     *  - "Child" layers are added in the order that we want visual layers to appear
+     *  - At the highest level, there are groups for 'links', 'nodes' and 'annotation' that are setup in that order. This is because we want to paint nodes 'over' links, and any annotation to appear 'over' both 
+     */
 
     // 1. Append SVG section backgrounds/outlines
     const sections          = chart.append('g').attr('id', 'section-area-group'),
@@ -138,9 +138,9 @@ function renderVis(layout, ui){
         nodeAnnotation      = annotation.append('g').attr('id', 'node-annotation-group')
 
     /**
-    *  PART II. RENDERING HELPER METHODS 
-    *  - Helper methods that can be shared between nodes/links: these are used to 'clean up' the rendering methods for nodes and links and make them (slightly) more readable
-    */
+     *  PART II. RENDERING HELPER METHODS 
+     *  - Helper methods that can be shared between nodes/links: these are used to 'clean up' the rendering methods for nodes and links and make them (slightly) more readable
+     */
 
     const render = {
         node: {
@@ -368,14 +368,13 @@ function renderVis(layout, ui){
     }
 
     /**
-    *  PART III. RENDER NODES 
-    *  - Positioned and styled individually from node data (where each node is an "entity" class where layout data has been computed)
-    *  - Note: 
-    *      - Entities are grouped into categories of "SOURCE", "SINK" and "INTERMEDIATE" which is the first factor of determining node positioning/grouping
-    *      - Intermediate nodes are broken down into similar sub categories for further placement (particularly intermediate nodes which include the Responsible Entities)
-    *      - The general ideas is to introduce a 'flow' from 'source > intermediate > sink". This naturally centers Responsible Entity nodes as they are most connected, while reducing link 'crossover' 
-    */ 
-
+     *  PART III. RENDER NODES 
+     *  - Positioned and styled individually from node data (where each node is an "entity" class where layout data has been computed)
+     *  - Note: 
+     *      - Entities are grouped into categories of "SOURCE", "SINK" and "INTERMEDIATE" which is the first factor of determining node positioning/grouping
+     *      - Intermediate nodes are broken down into similar sub categories for further placement (particularly intermediate nodes which include the Responsible Entities)
+     *      - The general ideas is to introduce a 'flow' from 'source > intermediate > sink". This naturally centers Responsible Entity nodes as they are most connected, while reducing link 'crossover' 
+     */ 
 
     /// 1. "SOURCE" NODES: "supplier only" positioned at 'start of supply chain (i.e. upstream)' 
 
@@ -435,7 +434,6 @@ function renderVis(layout, ui){
             })
 
 
-
     //// 2. "SINK" NODES: "customer only" positioned at 'end of supply chain (i.e. downstream)'
 
     // a. Add 'groups' for each sink node
@@ -478,7 +476,7 @@ function renderVis(layout, ui){
             .attr('d', (d, i, el) => {
                 const node  = el[0].parentNode.__data__,
                     nodeSize    = layout.node.layout.sink.nodeSize 
-                    width       = nodeSize * layout.scale.node.sourceAndSink(node.data.count.link.out.degree),
+                    width       = nodeSize * layout.scale.node.sourceAndSink(node.data.count.link.in.degree),
                     scaled      = (layout.scale.node.sink.service.indexOf(d) * 2) / (layout.scale.node.sink.service.length * 2 + 2)
                     nodeHeight  = nodeSize * layout.config.dims.node.sink.majorRatio,
                     offset      = - nodeHeight * 0.5
@@ -496,12 +494,11 @@ function renderVis(layout, ui){
             })
 
 
-
     //// 3. INTERMEDIATE NODES: "INTERMEDIATE NETWORK"
     /*   - Intermediate nodes have a sub-layout where intermediate nodes are grouped into 
-    *      - 'unconnected' to other intermediate nodes: these are positioned 'off to the sides'
-    *      - further (similar) categories of 'source', 'sink' and 'intermediate', depending on their connections to other intermediate nodes
-    */ 
+     *      - 'unconnected' to other intermediate nodes: these are positioned 'off to the sides'
+     *      - further (similar) categories of 'source', 'sink' and 'intermediate', depending on their connections to other intermediate nodes
+     */ 
 
         // a. INTERMEDIATE "UNCONNECTED" INTERMEDIATE NODES: Positioned as two equal groups on the sides to be 'out of the way' of the central intermediate network
             // i. Add node groups for 'intermediate unconnected' for both sides
@@ -705,7 +702,6 @@ function renderVis(layout, ui){
                 .attr('r', render.node.intermediateRadius)
                 .call(render.node.addClass)     
 
-
             // iv. Add Loops for vertically integrated entities
             const interSinkNodeLoopGroup = interSinkNode
                 .filter( d => d.state.config.hasLoop)           // Filter to add group only for those that have loops
@@ -761,8 +757,8 @@ function renderVis(layout, ui){
     /************************/
 
     /**
-    *  1. SOURCE LINKS
-    */ 
+     *  1. SOURCE LINKS
+     */ 
 
         // a. Add 'groups' for each source node: this allows for multiple links per group
         const sourceLink = sourceLinkGroup.selectAll('g')
@@ -776,9 +772,8 @@ function renderVis(layout, ui){
             .attr('class', d => `link from-source`)
 
     /**
-    *  2. INTERMEDIATE LINKS 
-    */ 
-
+     *  2. INTERMEDIATE LINKS 
+     */ 
         // a. Unconnected intermediate Node links 
         const intermediateUnconnectedLinkSideA = intermediateLink.unconnected.sideA.selectAll('g')
             .data(linkData.intermediate.unconnected.sideA)
@@ -837,10 +832,10 @@ function renderVis(layout, ui){
 
 
     /**
-    *  3. ADD PATHS AND ID TO ALL LINKS
-    *  - This is done to the selection of all links once they are all setup for convenience and conciseness. 
-    *  - This could (more traditionally) be done while appending each type of path
-    */ 
+     *  3. ADD PATHS AND ID TO ALL LINKS
+     *  - This is done to the selection of all links once they are all setup for convenience and conciseness. 
+     *  - This could (more traditionally) be done while appending each type of path
+     */ 
         d3.selectAll('.link')
             .attr('id', d => `link-path_${d.id}`)
             .attr('d', render.link.path)
@@ -955,7 +950,7 @@ function renderVis(layout, ui){
         .attr('class', `node-label-group intermediate`)    
         .attr('transform',  render.annotation.position)   
 
-   intermediateLabels.call(render.annotation.addIntermediateLabel)  
+    intermediateLabels.call(render.annotation.addIntermediateLabel)  
 
     const intermediateLabelGroupAll = nodeAnnotation
         .append('g')
@@ -971,4 +966,3 @@ function renderVis(layout, ui){
    intermediateLabelsAll.call(render.annotation.addIntermediateLabelAll)  
 
 }
-

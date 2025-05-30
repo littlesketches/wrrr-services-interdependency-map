@@ -494,6 +494,21 @@ class Layout{
                     sortedNodes.splice(insertIndex, 0, node)
                 })
 
+                // vi. Reposition any nodes that are only linked in intermediate source/sink in the center (safest as intermediate source/sink are not yet positioned)
+                // sortedNodes.forEach((node, i) => {
+                //     const linksToSortedNodes    = Object.values(node.link.out).filter(link => sortedNodes.includes(link.node.to)),
+                //         linksFromSortedNodes    = Object.values(node.link.in).filter(link => sortedNodes.includes(link.node.from)),
+                //         nodesLinkedToIndexes    = linksToSortedNodes.map(link => sortedNodes.indexOf(link.node.to)),
+                //         nodesLinkedFromIndexes  = linksFromSortedNodes.map(link => sortedNodes.indexOf(link.node.from)),
+                //         linkedNodesIndexes      = [...nodesLinkedToIndexes, ...nodesLinkedFromIndexes],
+                //         insertIndex             = Math.round(sortedNodes.length * 0.5)
+
+                //     if(nodesLinkedToIndexes.length === 0 && nodesLinkedFromIndexes.length === 0){
+                //         sortedNodes.splice(i, 1)
+                //         sortedNodes.splice(insertIndex, 0, node)
+                //     }
+                // })
+
                 // v. Re-sort nonRE non-pair nodes
                 const nonReIntermediateNodes = nodes.filter(d => !d.state.config.isResponsibleEntity && d.state.config.returnNodes.length === 0)
                 nonReIntermediateNodes.forEach(node => {
