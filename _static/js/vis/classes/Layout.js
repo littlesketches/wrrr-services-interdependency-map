@@ -219,16 +219,17 @@ class Layout{
          */ 
         // 3. By essential waste service (RE-only)
         const byEssentialWasteService = {}
-        for(const service of Object.keys(schema['essential-waste-services'])){
+        for(const service of Object.keys(schema['essential-wrrr-services'])){
             byEssentialWasteService[service] = {}
             for(const [category, flag] of Object.entries(nodeCategoryFlag)){
-                byEssentialWasteService[service][category] = Object.values(node).filter( d => d.state.config['essential-waste-services'].includes(service) && d.state.config[flag] )
+                byEssentialWasteService[service][category] = Object.values(node).filter( d => d.state.config['essential-wrrr-services'].includes(service) && d.state.config[flag] )
             }
         }
 
         // 4. By service and category: expected to be for non-Responsible entities, where reported 
         const byService = {}
-        for(const service of Object.keys(schema.services)){
+
+        for(const service of Object.keys(schema['rv-services'])){
             byService[service] = {}
             for(const [category, flag] of Object.entries(nodeCategoryFlag)){
                 byService[service][category] = Object.values(node).filter( d => d.state.config.service.assigned.includes(service) && d.state.config[flag])
@@ -239,8 +240,8 @@ class Layout{
         const byCategory_essentialWasteService = {} // => NOT USED: marked for removal
         for(const [category, flag] of Object.entries(nodeCategoryFlag)){
             byCategory_essentialWasteService[category] = {}
-            for(const service of Object.keys(schema['essential-waste-services'])){
-                byCategory_essentialWasteService[category][service] = Object.values(node).filter( d => d.state.config['essential-waste-services'].includes(service) && d.state.config[flag])
+            for(const service of Object.keys(schema['essential-wrrr-services'])){
+                byCategory_essentialWasteService[category][service] = Object.values(node).filter( d => d.state.config['essential-wrrr-services'].includes(service) && d.state.config[flag])
             }
         }
 

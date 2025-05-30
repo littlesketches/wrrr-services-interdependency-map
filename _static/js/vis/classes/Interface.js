@@ -114,7 +114,7 @@ class Interface{
 
     /** State option prop setup */
     #addESW() {
-        const eswSchema = this.layout._data.schema['essential-waste-services'] 
+        const eswSchema = this.layout._data.schema['essential-wrrr-services'] 
         // Init obj
         const obj = {}
 
@@ -601,9 +601,9 @@ class Interface{
                 d3.selectAll('.trace-selection-info.entity-type').html(entityType)
 
                 // iii. Get EWS information (for REs)
-                const ewsSchema = layout._data.schema['essential-waste-services'],
-                    ewsArray    = node.state.config['essential-waste-services'],
-                    ewsList     = !ewsArray ? null :  join.toOxfordList(node.state.config['essential-waste-services'].map(id => ewsSchema[id].name))
+                const ewsSchema = layout._data.schema['essential-wrrr-services'],
+                    ewsArray    = node.state.config['essential-wrrr-services'],
+                    ewsList     = !ewsArray ? null :  join.toOxfordList(node.state.config['essential-wrrr-services'].map(id => ewsSchema[id].name))
 
 
                 // iv. Update essential waste services (RE only)
@@ -1052,7 +1052,7 @@ class Interface{
                 // ii. Get nodes with selected EWSs
                 const selectedNodes = Object.values(ui.layout._data.node)
                     .filter(node => node.state.config.isResponsibleEntity)
-                    .filter(node => node.state.config['essential-waste-services'].filter(d => ewsSelected.includes(d)).length >0 )
+                    .filter(node => node.state.config['essential-wrrr-services'].filter(d => ewsSelected.includes(d)).length >0 )
 
                 // iii. Reset visual  and turn on blend mode
                 ui.handle.reset()
@@ -1352,12 +1352,12 @@ class Interface{
 
     // Setup Service UI input/selection options
     #addEwsUI(){
-        const eswSchema = this.layout._data.schema['essential-waste-services'], 
+        const eswSchema = this.layout._data.schema['essential-wrrr-services'], 
             container = d3.select('.esw-inputs-container')
 
         for( const [id, state] of Object.entries(this.state.mode.service.eswSelect)){
             const nodeCount = Object.values(this.layout._data.node)
-                .filter( node => node.state.config.isResponsibleEntity && node.state.config['essential-waste-services'].includes(id))
+                .filter( node => node.state.config.isResponsibleEntity && node.state.config['essential-wrrr-services'].includes(id))
                 .length
 
             const inputContainer = container.append('div').classed('esw-input checkbox-input', true)
@@ -1376,7 +1376,7 @@ class Interface{
     }
 
     #addServicesUI(){
-        const servicesSchema = this.layout._data.schema['services'],
+        const servicesSchema = this.layout._data.schema['rv-services'],
             containerByType = {
                 source:         d3.select('.service-source-inputs-container'),
                 intermediate:   d3.select('.service-intermediate-inputs-container'),

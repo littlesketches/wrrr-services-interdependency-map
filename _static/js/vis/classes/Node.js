@@ -21,7 +21,7 @@ class Node{
                 hasLoop:     undefined,
                 returnNodes: [],        // Array of nodes which have return links to this node
                 // Services categorisation
-                'essential-waste-services':     config['essential-waste-services'],     // Expect a array
+                'essential-wrrr-services':     config['essential-wrrr-services'],     // Expect a array
                 service: {
                     assigned:   undefined,        // Array of assigned services
                     reported:   {}                // Reported 'services' by input/output link data
@@ -47,13 +47,12 @@ class Node{
                 isHover:        false,
                 isVisible:      true
             }
-
         }
 
         // Data 
         this.data = {
             count: {
-                essentialWasteServices: config['essential-waste-services'].length,
+                essentialWasteServices: config['essential-wrrr-services'].length,
                 services:       undefined,  // Assigned from link data
                 link: {   //  All link counts are added when the summariseLinkData methods is called (following all Link instances being created)
                     in:          {},
@@ -71,7 +70,7 @@ class Node{
             }
         }
 
-        if(isResponsibleEntity) this.data['essential-waste-services'] = this.#getEwsData(schema, config)
+        if(isResponsibleEntity) this.data['essential-wrrr-services'] = this.#getEwsData(schema, config)
 
 
         // Init the links object to store references to links
@@ -97,8 +96,8 @@ class Node{
         const assignedEws = {}
         
         // Loop through each EWS and check if node is assigned to it
-        const ewsData = Object.values(schema['essential-waste-services']),
-            assigned = config['essential-waste-services']
+        const ewsData = Object.values(schema['essential-wrrr-services']),
+            assigned = config['essential-wrrr-services']
 
         for(const d of ewsData){
             assignedEws[d.id] = {

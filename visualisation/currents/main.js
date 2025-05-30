@@ -16,6 +16,7 @@ for( const reportYear of modelSchema.time.availableYears){
 }
 
 const reportYear = 2024
+
 // Debug
 console.log( visData[reportYear])
 
@@ -236,7 +237,7 @@ function renderVis(layout, ui){
             },
             ewsArc:   ([id, d], i)  => {
                 // Get arc inputs
-                const noEWS         = Object.values(schema['essential-waste-services']).length,
+                const noEWS         = Object.values(schema['essential-wrrr-services']).length,
                     nodeRadius      = d.node.state.node.size.radius.outer,
                     startAngle      = (2 * Math.PI / noEWS) * i,             
                     endAngle        = (2 * Math.PI / noEWS) * (i + 1),
@@ -724,7 +725,7 @@ function renderVis(layout, ui){
             .attr('class', 'ews-group detail')
 
         responsibleEntityEwsGroup.selectAll('path')
-            .data(d => Object.entries(d.data['essential-waste-services']))
+            .data(d => Object.entries(d.data['essential-wrrr-services']))
             .join('path')
             .attr('class', d => `ews-petal ${d[0]}`)
             .style('display', ([id, d]) =>   d.isAssigned ? 'auto' : 'none' )

@@ -153,6 +153,7 @@ function buildVisDataModel(inputData, reportYear){
     // For both tables  of 'link data'
     for(const sourceType of ['upstream', 'downstream']){
         for(const config of inputData[`link-${sourceType}`]){
+
             // Add link as a Link class
             link[linkIdNo] = new Link(linkIdNo, config, sourceType, node, schema, meta['link-question-map'])
 
