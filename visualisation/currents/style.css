@@ -80,10 +80,6 @@ input[type="radio"] {
   accent-color:         var(--color-frequency);
 }
 
-.responsible-entities-input-container input[type="radio"] {
-  accent-color:         var(--color-selection); 
-
-}
 .esw-input.checkbox-input,
 .re-input.checkbox-input{
     padding-bottom: 0.075rem;
@@ -293,6 +289,13 @@ ul.ui-sub-mode-menu li.selected{
 .responsible-entities-selection-header{
     text-transform: lowercase;
 }
+.responsible-entities-input-container{
+    columns:  2;
+}
+.responsible-entities-input-container input[type="radio"] {
+    accent-color:         var(--color-selection); 
+}
+
 /** Trace selection container depth indicator */
 .trace-selection-container,
 .blend-selection-container{
