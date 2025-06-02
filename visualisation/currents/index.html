@@ -51,7 +51,7 @@
                     <nav class = 'ui-mode-container'>
                         <ul class = 'ui-mode-menu'>
                             <li class = 'ui-mode-option overview-mode selected' onclick="ui.handle.setMode('overview')">Overview </li>
-                            <li class = 'ui-mode-option explore-mode' onclick="ui.handle.setMode('explore')">Explore </li>
+                            <li class = 'ui-mode-option explore-mode' onclick="ui.handle.setMode('explore')">Entities </li>
                             <li class = 'ui-mode-option service-mode' onclick="ui.handle.setMode('service')">Service</li>
                             <li class = 'ui-mode-option vulnerability-mode' onclick="ui.handle.setMode('vulnerability')">Vulnerability</li>
                             <li class = 'ui-mode-option detail-mode' onclick="ui.handle.setMode('detail')">Detail</li>
@@ -71,19 +71,42 @@
                             </div>
                         </div>
 
-                        <!-- ii. EXPLORE -->
-                        <div class = 'ui-info-wrapper explore-mode browse'>
+                        <!-- ii. ENTITIES -->
+                        <div class = 'ui-info-wrapper explore-mode'>
                             <nav>
                                 <ul class = 'ui-sub-mode-menu'>
-                                    <li class = 'ui-mode-option browse-mode selected' onclick="ui.handle.setExploreMode('browse')">Browse</li>
+                                    <li class = 'ui-mode-option responsible-mode' onclick="ui.handle.setExploreMode('responsible')">Responsible</li>
+                                    <li class = 'ui-mode-option browse-mode' onclick="ui.handle.setExploreMode('browse')">Browse</li>
                                     <li class = 'ui-mode-option trace-mode' onclick="ui.handle.setExploreMode('trace')">Trace</li>
                                     <li class = 'ui-mode-option blend-mode' onclick="ui.handle.setExploreMode('blend')">Blend</li>
                                 </ul>
                             </nav>
-                            <div class = 'mode-content explore-mode-content browse'>
-                                <p>Use this mode to visualise the network connections starting from a single entity (node). </p> 
 
-                               <p>Network connections (links and nodes) are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer) from that <span class = 'selected entity highlighted'>originating entity</span>. In a fully traced network, links can also be identified as <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the entity's network connection path. </p>
+                           <div class = 'mode-content explore-mode-content responsible'>
+                                <p>Use this mode to identity the connections from a selected <span class = 'selected entity highlighted'>responsible entity</span>. Network connections are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer), <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the responsible entity's network connection path. </p>
+
+                                <h2 class = 'responsible-entities-selection-header'>Select a responsible entity</h2>
+                                <div class = 'responsible-entities-input-container'></div>
+
+                                <p>Use the switch below to set the depth of connections in the network to see.</p>
+
+                                <div class = 'ui-option-content switch-selector-container'>
+                                    <label class ='switch-label responsible-depth-selector left'  for="responsible-depth-selector">Immediate</label>
+                                    <input type="checkbox" role="switch" id="responsible-depth-selector" onchange="ui.handle.toggleResponsibleDepth(this.checked)" />
+                                    <label class ='switch-label responsible-depth-selector right'  for="responsible-depth-selector">Edge of network</label>
+                                </div>
+
+                                <!-- 
+                                <div class = 'guidance-container guidance'>
+                                    <p>While in <span class = 'mode'>browse mode</span>, tapping on a node will select it and move you into  <span class = 'mode'>trace mode</span>. </p>
+                                </div> -->
+                            </div>
+
+
+                            <div class = 'mode-content explore-mode-content browse'>
+                                <p>Use this mode to visualise the network connections starting from a selected entity (node). </p> 
+
+                               <p>Network connections (links and nodes) are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer) from that <span class = 'selected entity highlighted'>selected entity</span>. In a fully traced network, links can also be identified as <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the entity's network connection path. </p>
 
                                 <p>Use the switch below to set the depth of connections in the network to see while browsing.</p>
 
@@ -101,6 +124,7 @@
 
                             <div class = 'mode-content explore-mode-content  trace'>
                                 <p>Use this mode to trace <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections from a <span class = 'selected entity highlighted'>selected entity</span>, <strong>one step at a time</strong>. Each step is triggered by repeatedly tapping on selected entity (node). 
+                                </p>
 
                                 <div class = 'trace-selection-container'>
                                     <hr>
@@ -126,7 +150,6 @@
                                     </div>
                                     <hr>
                                 </div>
-
 
                                 <div class = 'guidance-container guidance'>
                                     <p>Once an entity is selected, the available depth to trace upstream and will be displayed in an information box. </p>
@@ -268,14 +291,11 @@
                         </div>
                         <div class = 'ui-option-container'>
                             <div class = 'ui-option-content binary binary-selector-container'>
-
                                 <input class = 'binary' type="checkbox" role="switch" id="details-selector" onchange="ui.handle.toggleVisDetails(this.checked)" />
                                 <label class ='switch-label'  for="details-selector">Details</label>
                             </div>
                         </div>
-
                         <div class = 'ui-option-container'>
-    
                             <div class = 'ui-option-content binary binary-selector-container'>
                                 <input lass = 'binary' type="checkbox" role="switch" id="labels-selector" onchange="ui.handle.toggleLabels(this.checked)" />
                                 <label class ='switch-label' for="labels-selector">Labels</label>

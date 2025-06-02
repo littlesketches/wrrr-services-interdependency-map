@@ -20,9 +20,11 @@ class Interface{
                 app:                    'overview',      // 'overview', 'explore', 'service', 'vulnerability', 'detail'
                 // 'core' app modes 
                 explore: {
-                    mode:               'browse',       // intro browse, trace, blend
-                    hoverDepthFull:     undefined,        
-                    blendOn:            false
+                    mode:                 'responsible',       // intro responsible, browse, trace, blend
+                    hoverDepthFull:       undefined,        
+                    blendOn:              false,
+                    responsible:          undefined,
+                    responsibleDepthFull: undefined
                 },
                 service: {
                     mode:               'ews',       // 'ews', 'service', 'frequency'
@@ -96,6 +98,7 @@ class Interface{
         this.#addEwsUI()
         this.#addServicesUI()
         this.#addFrequencyUI()
+        this.#addResponsibleEntityUI()
         this.#addMetaData()
 
         // Set on load
@@ -198,9 +201,8 @@ class Interface{
                                         ui.handle.visualTrace(node)
                                 }
 
+                            case 'responsible':
                             case 'trace':
-                                break
-
                             case 'blend':
                                 break
                         }
@@ -834,6 +836,20 @@ class Interface{
                     d3.select('.switch-label.left').classed('selected', true)
                 }
             },
+
+            toggleResponsibleDepth(isFull){
+                ui.state.mode.explore.responsibleDepthFull = isFull ?? !ui.state.mode.explore.responsibleDepthFull 
+                document.getElementById('responsible-depth-selector').checked = ui.state.mode.explore.responsibleDepthFull 
+
+                d3.selectAll('.responsible-depth-selector.switch-label ').classed('selected', false)
+                if(ui.state.mode.explore.responsibleDepthFull){
+                    d3.select('.switch-label.right').classed('selected', true)
+                } else {
+                    d3.select('.switch-label.left').classed('selected', true)
+                }
+
+                ui.handle.setResponsibleEntity()
+            },
             toggleBlend(isOn){
                 ui.state.mode.explore.blendOn == isOn ?? !app.classed('mode_blend')
                 app.classed('mode_blend', isOn ?? ui.state.mode.explore.blendOn)
@@ -1041,7 +1057,34 @@ class Interface{
 
             },
 
-            /** UPDATE SERVICE OPTIONS */
+            /** UPDATE FILTERING OPTIONS */
+            setResponsibleEntity:  function(el, id) {
+                // i. Update state and get selected RE node 
+
+                ui.state.mode.explore.responsible = id ?? ui.state.mode.explore.responsible 
+                const selectedRE = node[ui.state.mode.explore.responsible]
+
+                // ii. Reset the visualisation 
+                ui.handle.reset()
+
+                // iii. Reset the visualisation 
+                switch(ui.state.mode.explore.responsibleDepthFull){
+                    case true:
+                        // Trace to end of network
+
+                        let end = false
+                        while(!end) end = ui.handle.visualTrace(selectedRE)
+                        break
+
+                    case false:
+                    default: 
+                        ui.handle.visualTrace(selectedRE)
+                }
+
+                ui.handle.updateTraceUI()
+                selectedNodes = [...new Set([...selectedNodes, selectedRE])]
+                ui.handle.resetLabelSelection()
+            },
             setEWS:  function(el, id) {
                 ui.state.mode.service.eswSelect[id] = el.checked
                 // i. Get selected EWSs
@@ -1060,8 +1103,9 @@ class Interface{
                 // iv. Highlight trace
                 ui.handle.visualTraceMulti(selectedNodes)
 
-                // v. Update data legend
+                // v. Update data legend and reset labels
                 ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
             }, 
             setService:  function(el, id, type) {
                 // i. Update checkbox state
@@ -1099,17 +1143,15 @@ class Interface{
 
                 // iii. Reset visual  and turn on blend mode
                 ui.handle.reset()
-                // ui.handle.toggleBlend(true)
 
                 // iv. a. Mute if no selection
                 if(allTypesSelected.length === 0){
                     ui.handle.muteNodes()
                     ui.handle.muteLinks()
 
-                // iv. a. Trace a visual each node to the end of the network
+                // v. a. Trace a visual each node to the end of the network
                 } else{
-                // iv. Highlight trace
-                ui.handle.visualTraceMulti(allTypesSelected)
+                  ui.handle.visualTraceMulti(allTypesSelected)
 
                 }
             },
@@ -1119,11 +1161,13 @@ class Interface{
                 const links = Object.values(ui.layout._data.link).filter( link => link.config.frequency === el.value)
                 const nodes = [...new Set(links.map(link => [link.node.from, link.node.to]).flat())]
 
-                // ui.state.selection.link.instances['downstream'] = []
                 ui.handle.muteLinks()
                 ui.handle.muteNodes()
                 ui.handle.highlightLinkSelection(links, 'upstream')
                 ui.handle.highlightNodeSelection(nodes, 'upstream')
+
+                // Reset labkes
+                ui.handle.resetLabelSelection()
             }
         }
     }
@@ -1350,7 +1394,27 @@ class Interface{
         document.addEventListener('keyup', handle.keyup)
     }
 
-    // Setup Service UI input/selection options
+    // Setup RE, Service UI input/selection options
+    #addResponsibleEntityUI(){
+        const reNodes = Object.values(this.layout._data.node).filter(node => node.state.config.isResponsibleEntity), 
+            container = d3.select('.responsible-entities-input-container')
+
+        for( const node of reNodes){
+            const inputContainer = container.append('div').classed('re-input checkbox-input', true)
+
+            inputContainer.append('input')
+                .attr('id', node.id)
+                .attr('name', 'frequency')
+                .attr('value', node.id)
+                .attr('type', 'radio')
+                .on('change', function(){ ui.handle.setResponsibleEntity(this, node.id)})
+
+            inputContainer.append('label')
+                .attr('for', node.id)
+                .html(`${node.meta.label}`)
+        }
+    }
+
     #addEwsUI(){
         const eswSchema = this.layout._data.schema['essential-wrrr-services'], 
             container = d3.select('.esw-inputs-container')
@@ -1371,7 +1435,7 @@ class Interface{
 
             inputContainer.append('label')
                 .attr('for', id)
-                .html(`${eswSchema[id].name} (${nodeCount})`)
+                .html(`${eswSchema[id].name}`)
         }
     }
 
@@ -1444,7 +1508,6 @@ class Interface{
             linkCount = Object.keys(this.layout._data.link).length,
             reCount = this.layout.node.cluster.byCategory.responsibleEntity.length,
             nonReCount = entityCount - reCount
-           
 
         d3.selectAll('.report-year').html(this.state.meta.reportYear)
         d3.selectAll('.responsible-entity-count').html(reCount)

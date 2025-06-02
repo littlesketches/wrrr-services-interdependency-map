@@ -80,6 +80,11 @@ input[type="radio"] {
   accent-color:         var(--color-frequency); 
 }
 
+.responsible-entities-input-container input[type="radio"] {
+  accent-color:         var(--color-selection); 
+}
+
+
 label.switch-label{
     font-size:          x-small;
     font-weight:        600;
@@ -108,20 +113,25 @@ label.switch-label{
 }
 
 .underline{
-    border-bottom:      0.15rem solid; /* 4px thick underline */
+    /* border-bottom:      0.15rem solid; 4px thick underline */
     padding-bottom:     0rem; /* optional spacing between text and underline */
+    font-weight:        700;
 }
 .selected.underline{
     border-color:       var(--color-selection);
+    color:       var(--color-selection);
 }
 .downstream.underline{
     border-color:       var(--color-downstream);
+    color:       var(--color-downstream);
 }
 .upstream.underline{
     border-color:       var(--color-upstream);
+    color:          var(--color-upstream);
 }
 .upstream.downstream.underline{
     border-color:       var(--color-updown);
+    color:       var(--color-updown);
 }
 
 .highlighted.entity{
@@ -253,6 +263,7 @@ ul.ui-sub-mode-menu li.selected{
 .overview-mode .ui-info-wrapper.overview-mode,
 
 .explore-mode .ui-info-wrapper.explore-mode, 
+.ui-info-wrapper.explore-mode.responsible .responsible,
 .ui-info-wrapper.explore-mode.browse .browse,
 .ui-info-wrapper.explore-mode.trace .trace,
 .ui-info-wrapper.explore-mode.blend .blend,
@@ -275,6 +286,9 @@ ul.ui-sub-mode-menu li.selected{
 /** 1C. i. OVERVIEW MODE **/
 
 /** 1C. ii. EXPLORE MODE **/
+.responsible-entities-selection-header{
+    text-transform: lowercase;
+}
 /** Trace selection container depth indicator */
 .trace-selection-container,
 .blend-selection-container{
@@ -550,11 +564,11 @@ section.legend{
 }
 
 .legend-source-section{
-    height:         var(--source-section);
+    height:             var(--source-section);
 }
 
 .legend-source-link-section{
-    height:         var(--source-link-section);
+    height:             var(--source-link-section);
 }
 
 .legend-intermediate-section{
@@ -585,7 +599,7 @@ section.legend{
 }
 
 .legend-stat-group.sink{
-    margin-top:          0rem;
+    margin-top:             0rem;
     margin-bottom:          0.5rem
 }
 
@@ -625,8 +639,7 @@ section.legend{
 
 @media print {
   /* All your print styles go here */
-   .ui-options-container{
-    display: none !important;
-  }
-   
+    .ui-options-container{
+        display: none !important;
+    }   
 }
