@@ -884,8 +884,11 @@ class Interface{
                     ui.state.mode.vulnerability.specialised = false
                     app.classed('mode_specialised', ui.state.mode.vulnerability.specialised)
                     document.getElementById('specialised-suppliers-selector').checked = ui.state.mode.vulnerability.specialised 
-
                 }
+
+                //  Update data legend and reset labels
+                ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
             },
             toggleSpecialisedSuppliers: (isVisible) => {
                 ui.handle.reset()
@@ -910,6 +913,10 @@ class Interface{
                     app.classed('mode_failure-point', ui.state.mode.vulnerability.failure)
                     document.getElementById('failure-point-selector').checked = ui.state.mode.vulnerability.failure 
                 }
+
+                //  Update data legend and reset labels
+                ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
             },
             toggleOffVulnerabilityOptions: () => {
                 ui.state.mode.vulnerability.specialised = false
@@ -947,6 +954,10 @@ class Interface{
                     ui.handle.highlightLinkSelection(links, 'upstream')
                     ui.handle.highlightNodeSelection(nodes, 'upstream')
                 }
+
+                //  Update data legend and reset labels
+                ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
             },
             toggleReturnLoops: (isVisible) => {
                 ui.handle.reset()
@@ -977,6 +988,10 @@ class Interface{
                     ui.handle.highlightLinkSelection(links, 'downstream')
                     ui.handle.highlightNodeSelection(nodes,  'downstream')
                 }
+
+                //  Update data legend and reset labels
+                ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
             },
             toggleFeedbackTrigger: (isVisible) => {
                 ui.handle.reset()
@@ -996,6 +1011,10 @@ class Interface{
                     ui.handle.highlightLinkSelection(links, 'downstream')
                     ui.handle.highlightNodeSelection(nodes,  'upstream')
                 }
+
+                //  Update data legend and reset labels
+                ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
             },
 
             // SET APP MODE
@@ -1064,12 +1083,8 @@ class Interface{
                 // iii. Reset the visualisation 
                 switch(ui.state.mode.explore.responsibleDepthFull){
                     case true:
-                        // Trace to end of network
-
-                        let end = false
-                        while(!end) end = ui.handle.visualTrace(selectedRE)
+                        ui.handle.visualTraceToEnd(selectedRE)
                         break
-
                     case false:
                     default: 
                         ui.handle.visualTrace(selectedRE)
@@ -1077,6 +1092,9 @@ class Interface{
 
                 ui.handle.updateTraceUI()
                 selectedNodes = [...new Set([...selectedNodes, selectedRE])]
+
+                // vi. Update data legend and reset labels
+                ui.handle.updateLegend()
                 ui.handle.resetLabelSelection()
             },
             setEWS:  function(el, id) {
@@ -1146,8 +1164,13 @@ class Interface{
                 // v. a. Trace a visual each node to the end of the network
                 } else{
                   ui.handle.visualTraceMulti(allTypesSelected)
-
                 }
+
+
+                // vi. Update data legend and reset labels
+                ui.handle.updateLegend()
+                ui.handle.resetLabelSelection()
+
             },
             setFrequency:  function(el, id) {
                 ui.state.mode.service.frequencySelect = el.value
@@ -1160,7 +1183,11 @@ class Interface{
                 ui.handle.highlightLinkSelection(links, 'upstream')
                 ui.handle.highlightNodeSelection(nodes, 'upstream')
 
-                // Reset labkes
+                // Reset labels
+                ui.handle.resetLabelSelection()
+
+                // vi. Update data legend and reset labels
+                ui.handle.updateLegend()
                 ui.handle.resetLabelSelection()
             }
         }
