@@ -1005,7 +1005,6 @@ class Interface{
                     case 'service':
                     case 'vulnerability':
                         ui.handle.reset()
-                        ui.state.mode.explore.mode = 'browse'      
                 }
 
                 // Update app state
@@ -1026,13 +1025,9 @@ class Interface{
             /** SUB MODE OPTIONS */
             setExploreMode: function(mode){
                 mode = ui.state.mode.explore.mode = mode ?? ui.state.mode.explore.mode 
-
                 d3.select('.ui-info-wrapper.explore-mode').attr('class', `ui-info-wrapper explore-mode ${mode}`)
-
                 d3.selectAll(`.explore-mode li`).classed('selected', false)
                 d3.select(`.explore-mode li.${mode}-mode`).classed('selected', true)
-                // console.log('Set explore mode: ', mode)
-
             },
             setServiceMode: function(mode){
                 mode = ui.state.mode.service.mode = mode ?? ui.state.mode.service.mode 
@@ -1060,7 +1055,6 @@ class Interface{
             /** UPDATE FILTERING OPTIONS */
             setResponsibleEntity:  function(el, id) {
                 // i. Update state and get selected RE node 
-
                 ui.state.mode.explore.responsible = id ?? ui.state.mode.explore.responsible 
                 const selectedRE = node[ui.state.mode.explore.responsible]
 
