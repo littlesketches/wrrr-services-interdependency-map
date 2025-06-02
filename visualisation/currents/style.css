@@ -24,7 +24,7 @@ main#app-container.centered{
 p{
     line-height:        1.5;
     font-weight:        100;
-    font-size:          small;
+    font-size:          0.8125rem;
 }
 a{
     text-decoration: underline dotted;
@@ -42,7 +42,7 @@ ul, .label{
 }
 
 h1.title{
-    font-size:          x-large;
+    font-size:          1.5rem;
     text-transform:     uppercase;
     line-height:        1.1;
     margin-block-start: 0.25rem;
@@ -53,21 +53,21 @@ h1.title{
 h1.title .minor,
 select{
     font-weight:        100;
-    font-size:          medium;
+    font-size:          1rem;
     letter-spacing:     0.25rem;   
 }
 
 h2.label{
     text-transform:     lowercase;
     opacity:            0.75;
-    font-size:          small;
+    font-size:          0.8125rem;
 }
 .mode-content h2{
-    font-size:          small;
+    font-size:          0.8125rem;
 }
 .mode-content h3{
     text-transform:     lowercase;
-    font-size:          x-small;
+    font-size:          0.625rem;
 }
 
 select{
@@ -77,16 +77,20 @@ input[type="checkbox"]{
   accent-color:         var(--color-selection); 
 }
 input[type="radio"] {
-  accent-color:         var(--color-frequency); 
+  accent-color:         var(--color-frequency);
 }
 
 .responsible-entities-input-container input[type="radio"] {
   accent-color:         var(--color-selection); 
+
+}
+.esw-input.checkbox-input,
+.re-input.checkbox-input{
+    padding-bottom: 0.075rem;
 }
 
-
 label.switch-label{
-    font-size:          x-small;
+    font-size:          0.625rem;
     font-weight:        600;
 }
 
@@ -109,7 +113,7 @@ label.switch-label{
     transition:         all 500ms;
 }
 .guidance-container p{
-    font-size:          x-small;
+    font-size:          0.625rem;
 }
 
 .underline{
@@ -203,7 +207,7 @@ ul.ui-sub-mode-menu{
 }
 ul.ui-mode-menu li,
 ul.ui-sub-mode-menu li{
-    font-size:          x-small;
+    font-size:          0.625rem;
     text-transform:     lowercase;
     cursor:             pointer;
 }
@@ -311,7 +315,7 @@ ul.ui-sub-mode-menu li.selected{
 }
 .trace-selection-info-container,
 .blend-selection-info-container{
-    font-size:              x-small;
+    font-size:              0.625rem;
     display:                grid;
     grid-template-columns:  1fr 3fr;
     column-gap:             1rem;
@@ -319,7 +323,7 @@ ul.ui-sub-mode-menu li.selected{
 }
 
 .trace-depth-container-header{
-    font-size:              x-small;    
+    font-size:              0.625rem;    
     font-weight:            600;
     text-transform: lowercase;
 }
@@ -336,7 +340,7 @@ ul.ui-sub-mode-menu li.selected{
 }
 
 .trace-depth-label{
-    font-size:              x-small;    
+    font-size:              0.625rem;    
     font-weight:            600;
 }
 
@@ -349,7 +353,7 @@ ul.ui-sub-mode-menu li.selected{
 }
 
 .trace-level-indicator{
-    font-size:          xx-small;
+    font-size:          x0.625rem;
     font-weight:        600;
     display:            flex;
     border:             1px solid;
@@ -379,7 +383,7 @@ ul.ui-sub-mode-menu li.selected{
 
 /** Blend selection **/
 .blend-selection-container{
-    font-size:          x-small;
+    font-size:          0.625rem;
 }
 
 .blend-selection-header{
@@ -428,7 +432,7 @@ ul.blend-selection-list li{
 }
 
 .service-options-label{
-    font-size:              x-small;
+    font-size:              0.625rem;
     font-weight:            600;
     margin-bottom:          0.5rem;
 }
@@ -452,6 +456,7 @@ ul.blend-selection-list li{
 }
 .vulnerability-option-container label{
     margin-left: 0;
+    justify-self: end;
 }
 
 .vulnerability-option-content{
@@ -604,7 +609,7 @@ section.legend{
 }
 
 .legend-stat-container{
-    font-size:              x-small;
+    font-size:              0.625rem;
     display:                grid;
     grid-template-columns:  1fr 4fr; 
     text-transform:         lowercase;
@@ -622,7 +627,7 @@ section.legend{
 }
 
 .legend-label{
-    font-size:              x-small;
+    font-size:              0.625rem;
 }
 
 
