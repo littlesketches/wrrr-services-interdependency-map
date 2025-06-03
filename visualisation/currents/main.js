@@ -4,21 +4,37 @@
 /// - Get data for all years                                ///
 ///////////////////////////////////////////////////////////////
 
-let useGSheet = false
 
-const data = useGSheet ? getGSheetData() : data2024
+// Enumerate list of reporting data (filtered by available)
+const reportingYearData = {
+    2024:   typeof data2024 !== 'undefined' ? data2024 : undefined,
+    2025:   typeof data2025 !== 'undefined' ? data2025 : undefined,
+    2026:   typeof data2026 !== 'undefined' ? data2026 : undefined,
+    2027:   typeof data2026 !== 'undefined' ? data2027 : undefined,
+    2028:   typeof data2026 !== 'undefined' ? data2028 : undefined,
+    2029:   typeof data2026 !== 'undefined' ? data2029 : undefined,
+    2030:   typeof data2026 !== 'undefined' ? data2030 : undefined,
+}
+
+// Get array of reporting years
+const reportingYears = Object.entries(reportingYearData)
+    .filter( ([reportYear, d]) => d)
+    .map( d => +d[0])
+
 
 
 // Init visData Object and add data for each reporting year
 const visData = {}
-for( const reportYear of modelSchema.time.availableYears){
-    visData[reportYear] = buildVisDataModel(data, 2024)
+
+for( const reportYear of reportingYears){
+    const data = reportingYearData[reportYear]
+    visData[reportYear] = buildVisDataModel(data, reportingYears)
 }
 
-const reportYear = 2024
 
 // Debug
-console.log( visData[reportYear])
+console.log(visData)
+
 
 
 ///////////////////////////////////////////////////////////////
@@ -42,16 +58,30 @@ console.log( visData[reportYear])
  *      - meta information used for classification, styling and interactivity of nodes and links
  */ 
 
+// Init with the lates year as defailt
+const latestReportYear = reportingYears[reportingYears.length -1]
+initApp(latestReportYear)
 
-// Get data for layout (i.e. from 'year')
-// => TBA: control /option for re-rendering for each year
-const {node, link, schema, meta} = visData[reportYear]         
 
-const layout = new Layout( node, link, schema )
 
-const ui = new Interface(layout, reportYear)
+function initApp(reportYear){
 
-renderVis(layout, ui)
+    const {node, link, schema, meta} = visData[reportYear]         
+    const layout = new Layout( node, link, schema )
+    const ui = new Interface(layout, reportingYears)
+
+    renderVis(layout, ui, node, link, schema)
+
+    // Make all app variables available on window (to support re-rendering)
+    window.node = node
+    window.link = link
+    window.layout = layout
+    window.ui = ui
+    window.schema = schema
+    window.meta = meta
+}
+
+
 
 ///////////////////////////////////////////////////////////////
 /// DATA VISUALISATION RENDERING SCRIPT                     ///
@@ -59,7 +89,7 @@ renderVis(layout, ui)
 /// - Uses vanilla D3.js for DOM manipulation               ///
 ///////////////////////////////////////////////////////////////
 
-function renderVis(layout, ui){
+function renderVis(layout, ui, node, link, schema){
 
     // Clear SVG for re-rendering
     d3.select('#vis').selectAll("*").remove()

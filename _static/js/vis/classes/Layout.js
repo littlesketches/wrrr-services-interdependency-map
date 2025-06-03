@@ -545,9 +545,12 @@ class Layout{
 
                 // vii. Re-sort "thruple" nodes
                 const pairs = nodes.filter(d => !d.state.config.isResponsibleEntity && d.state.config.returnNodes.length > 0)
-                pairs.forEach( node => {
-            
-                    const linkToNodes = Object.values(node.link.out).map( link => link.node.to).filter(d => !d.state.config.intermediate.isSink),
+                pairs.forEach( node => {      
+                    const linkToNodes = Object.values(node.link.out)
+                        .map( link => link.node.to)
+                        .filter(d => {
+                            return    !d.state.config?.intermediate?.isSink
+                        }),
                         pairedNodes =  node.state.config.returnNodes 
 
                     pairedNodes.forEach(pairedNode => {        
@@ -727,7 +730,9 @@ class Layout{
                 const pairs = nodes.filter(d => !d.state.config.isResponsibleEntity && d.state.config.returnNodes.length > 0)
                 pairs.forEach( node => {
             
-                    const linkToNodes = Object.values(node.link.out).map( link => link.node.to).filter(d => !d.state.config.intermediate.isSink)
+                    const linkToNodes = Object.values(node.link.out)
+                        .map( link => link.node.to)
+                        .filter(d => !d.state.config?.intermediate?.isSink)
                     const pairedNodes =  node.state.config.returnNodes 
 
                     pairedNodes.forEach(pairedNode => {

@@ -112,7 +112,7 @@ function buildVisDataModel(inputData, reportYear){
     // I. Responsible entity nodes: these are from the 'master node' input data (stored in schema.entity)
     for(const [id, obj] of Object.entries(schema.entity)){
         // Check that id/node is flagged as an RE in the report year
-        if(obj[`isRE_${reportYear}`]){
+        if(obj.isRE){
             // Create and add non-Responsible entities to node object 
             node[id] = new Node(obj,  true, schema)
         }

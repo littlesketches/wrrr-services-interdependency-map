@@ -8,6 +8,7 @@ main#app-container{
     grid-template-areas:    'ui vis legend';
     grid-template-columns:  2fr auto 1fr;
     justify-content:        center;
+    aspect-ratio:           16/10;
 
     /** CSS Variables to be programatically added **/
     --top-margin:           calc( 50 / 1100 * 100vh);
@@ -90,11 +91,9 @@ label.switch-label{
     font-weight:        600;
 }
 
-
 .hide{
     opacity:            0
 }
-
 
 .mode {
     font-weight:        600;
@@ -113,7 +112,6 @@ label.switch-label{
 }
 
 .underline{
-    /* border-bottom:      0.15rem solid; 4px thick underline */
     padding-bottom:     0rem; /* optional spacing between text and underline */
     font-weight:        700;
 }
@@ -530,7 +528,7 @@ ul.blend-selection-list li{
 section.visualisation-section{
     display:            flex;
     justify-content:    center;
-    align-items:        center;
+    align-items:        start;
     grid-area:          vis;
 }
 
