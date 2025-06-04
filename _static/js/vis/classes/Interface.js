@@ -18,9 +18,9 @@ class Interface{
             isShift:            false,          // Shift mode functions
 
             mode: {
-                app:                    'overview',      // 'overview', 'explore', 'service', 'vulnerability', 'detail'
+                app:                    'overview',      // 'overview', 'entities', 'service', 'vulnerability', 'detail'
                 // 'core' app modes 
-                explore: {
+                entities: {
                     mode:                 'responsible',       // intro responsible, browse, trace, blend
                     hoverDepthFull:       undefined,        
                     blendOn:              false,
@@ -41,6 +41,9 @@ class Interface{
                     returnLoops:        false,
                     feedbackLinks:      false,
                 },
+                key: {
+                    mode:               'node-link',
+                }
             },
             selection: {
                 node:  {
@@ -84,9 +87,6 @@ class Interface{
         this.#addKeyHandler()
 
         this.#init()
-
-        // Debug
-        console.log(this)
     }
 
 
@@ -110,7 +110,7 @@ class Interface{
         this.handle.toggleTips(true)
         this.handle.toggleBrowseDepth(true)
 
-        this.handle.setExploreMode()
+        this.handle.setEntitiesMode()
         this.handle.setServiceMode()
         this.handle.setVulnerabilityMode()
 
@@ -125,9 +125,12 @@ class Interface{
 
         // Add ESW ids as props set to false
         for(const id of Object.keys(eswSchema)){
-
             obj[id] = false
         }
+
+        // Add count to 
+        d3.selectAll('.no-ews').html(Object.keys(eswSchema).length)
+
         // => Return obj
         return obj
     }
@@ -185,12 +188,12 @@ class Interface{
 
                         break
 
-                    case 'overview':     // Fall into explore to browse
-                        ui.handle.setMode('explore')
-                    case 'explore':    
-                        switch(ui.state.mode.explore.mode){
+                    case 'overview':     // Fall into entities to browse
+                        ui.handle.setMode('entities')
+                    case 'entities':    
+                        switch(ui.state.mode.entities.mode){
                             case 'browse':
-                                switch(ui.state.mode.explore.hoverDepthFull){
+                                switch(ui.state.mode.entities.hoverDepthFull){
                                     case true:
                                         // Trace to end of network
                                         let end = false
@@ -231,10 +234,10 @@ class Interface{
                         break
 
                     case 'overview': 
-                    case 'explore': 
+                    case 'entities': 
          
 
-                        switch(ui.state.mode.explore.mode){
+                        switch(ui.state.mode.entities.mode){
                             case 'browse':
                                 ui.handle.reset()
                                 break
@@ -265,10 +268,10 @@ class Interface{
                         console.log('Add vulnerability function?')
                         break
 
-                    case 'overview':    // Will be in explore mode already
-                        ui.handle.setMode('explore')
-                    case 'explore': 
-                        switch(ui.state.mode.explore.mode){
+                    case 'overview':    // Will be in entities mode already
+                        ui.handle.setMode('entities')
+                    case 'entities': 
+                        switch(ui.state.mode.entities.mode){
                             case 'browse':
                                 ui.handle.reset()
                                 // Select/start trance  and enter trance mode
@@ -276,7 +279,7 @@ class Interface{
                                 ui.handle.updateTraceUI()
 
                                 selectedNodes = [...new Set([...selectedNodes, node])]
-                                ui.handle.setExploreMode('trace')
+                                ui.handle.setEntitiesMode('trace')
                                 break 
 
                             case 'trace':  
@@ -324,18 +327,6 @@ class Interface{
                 ui.handle.resetLabelSelection()
 
             },
-            // linkIn: (ev, link) => {
-            //     const parent = ev.srcElement.parentElement,
-            //         linkEl = d3.select(parent).selectAll('.link')
-
-            //     linkEl.style('fill', 'aquamarine')
-            // },
-            // linkOut: (ev, link) => {
-            //     const parent = ev.srcElement.parentElement,
-            //         linkEl = d3.select(parent).selectAll('.link')
-
-            //     linkEl.style('fill', null)
-            // },
 
             // Update data sidebar
             updateLegend: (ev) => {
@@ -629,25 +620,29 @@ class Interface{
                     upstreamTraceLevel = traceData.visibleDepth.upstream - 1,
                     downstreamTraceLevel  = traceData.visibleDepth.downstream - 1
 
+                let upstreamNodeCount = 0, downstreamNodeCount = 0
+
                 const upstreamIndicatorContainer = d3.select('.trace-depth-indicator-container.upstream')
 
                 for(let i = 0; i < traceData.maxDepth.upstream; i++){
                     if(i === 0) upstreamIndicatorContainer.selectAll("*").remove() 
 
+                    upstreamNodeCount += traceData.network[i+1].link.upstream.length
                     upstreamIndicatorContainer.append('div')
                         .attr('class', 'trace-level-indicator')
                         .classed('visible', i < upstreamTraceLevel)
-                        .html(`${i +1}`)
+                        .html(`${upstreamNodeCount}`)
                 }
 
                 const downstreamIndicatorContainer = d3.select('.trace-depth-indicator-container.downstream')
                 for(let i = 0; i < traceData.maxDepth.downstream; i++){
                     if(i === 0) downstreamIndicatorContainer.selectAll("*").remove()
 
+                    downstreamNodeCount += traceData.network[i+1].link.downstream.length
                     downstreamIndicatorContainer.append('div')
                         .attr('class', 'trace-level-indicator')
                         .classed('visible', i < downstreamTraceLevel)
-                        .html(`${i +1}`)
+                        .html(`${downstreamNodeCount}`)
                 }
 
                 // vi. Show indicagore container
@@ -828,23 +823,22 @@ class Interface{
                 ui.handle.resetLabelSelection()
             },
             toggleBrowseDepth(isFull){
-                ui.state.mode.explore.hoverDepthFull = isFull ?? !ui.state.mode.explore.hoverDepthFull 
-                document.getElementById('browse-depth-selector').checked = ui.state.mode.explore.hoverDepthFull 
+                ui.state.mode.entities.hoverDepthFull = isFull ?? !ui.state.mode.entities.hoverDepthFull 
+                document.getElementById('browse-depth-selector').checked = ui.state.mode.entities.hoverDepthFull 
 
                 d3.selectAll('.browse-depth-selector.switch-label ').classed('selected', false)
-                if(ui.state.mode.explore.hoverDepthFull){
+                if(ui.state.mode.entities.hoverDepthFull){
                     d3.select('.switch-label.right').classed('selected', true)
                 } else {
                     d3.select('.switch-label.left').classed('selected', true)
                 }
             },
-
             toggleResponsibleDepth(isFull){
-                ui.state.mode.explore.responsibleDepthFull = isFull ?? !ui.state.mode.explore.responsibleDepthFull 
-                document.getElementById('responsible-depth-selector').checked = ui.state.mode.explore.responsibleDepthFull 
+                ui.state.mode.entities.responsibleDepthFull = isFull ?? !ui.state.mode.entities.responsibleDepthFull 
+                document.getElementById('responsible-depth-selector').checked = ui.state.mode.entities.responsibleDepthFull 
 
                 d3.selectAll('.responsible-depth-selector.switch-label ').classed('selected', false)
-                if(ui.state.mode.explore.responsibleDepthFull){
+                if(ui.state.mode.entities.responsibleDepthFull){
                     d3.select('.switch-label.right').classed('selected', true)
                 } else {
                     d3.select('.switch-label.left').classed('selected', true)
@@ -853,8 +847,8 @@ class Interface{
                 ui.handle.setResponsibleEntity()
             },
             toggleBlend(isOn){
-                ui.state.mode.explore.blendOn == isOn ?? !app.classed('mode_blend')
-                app.classed('mode_blend', isOn ?? ui.state.mode.explore.blendOn)
+                ui.state.mode.entities.blendOn == isOn ?? !app.classed('mode_blend')
+                app.classed('mode_blend', isOn ?? ui.state.mode.entities.blendOn)
             },
             toggleBlendContent(isVisible){
                 ui.state.view.blendContent = isVisible ?? !ui.state.view.blendContent 
@@ -1039,16 +1033,16 @@ class Interface{
                 // Set sub-modes
                 ui.handle.setServiceMode()
                 ui.handle.setVulnerabilityMode()
-                ui.handle.setExploreMode()
-
+                ui.handle.setEntitiesMode()
+                ui.handle.setKeyMode()
             },
 
             /** SUB MODE OPTIONS */
-            setExploreMode: function(mode){
-                mode = ui.state.mode.explore.mode = mode ?? ui.state.mode.explore.mode 
-                d3.select('.ui-info-wrapper.explore-mode').attr('class', `ui-info-wrapper explore-mode ${mode}`)
-                d3.selectAll(`.explore-mode li`).classed('selected', false)
-                d3.select(`.explore-mode li.${mode}-mode`).classed('selected', true)
+            setEntitiesMode: function(mode){
+                mode = ui.state.mode.entities.mode = mode ?? ui.state.mode.entities.mode 
+                d3.select('.ui-info-wrapper.entities-mode').attr('class', `ui-info-wrapper entities-mode ${mode}`)
+                d3.selectAll(`.entities-mode li`).classed('selected', false)
+                d3.select(`.entities-mode li.${mode}-mode`).classed('selected', true)
             },
             setServiceMode: function(mode){
                 mode = ui.state.mode.service.mode = mode ?? ui.state.mode.service.mode 
@@ -1058,11 +1052,9 @@ class Interface{
 
                 // Reset selection
                 ui.handle.reset()
-
                 d3.selectAll('.esw-input.checkbox-input input').property('checked', false)
                 d3.selectAll('.service-input.checkbox-input input').property('checked', false)
                 d3.selectAll('.frequency-input.checkbox-input input').property('checked', false)
-
             },
             setVulnerabilityMode: function(mode){
                 mode = ui.state.mode.vulnerability.mode = mode ?? ui.state.mode.vulnerability.mode 
@@ -1070,20 +1062,26 @@ class Interface{
                 d3.select('.ui-info-wrapper.vulnerability-mode').attr('class', `ui-info-wrapper vulnerability-mode ${mode}`)
                 d3.selectAll(`.vulnerability-mode li`).classed('selected', false)
                 d3.select(`.vulnerability-mode li.${mode}-mode`).classed('selected', true)
+            },
+            setKeyMode: function(mode){
+                mode = ui.state.mode.key.mode = mode ?? ui.state.mode.key.mode 
 
+                d3.select('.ui-info-wrapper.key-mode').attr('class', `ui-info-wrapper key-mode ${mode}`)
+                d3.selectAll(`.key-mode li`).classed('selected', false)
+                d3.select(`.key-mode li.${mode}-mode`).classed('selected', true)
             },
 
             /** UPDATE FILTERING OPTIONS */
             setResponsibleEntity:  function(el, id) {
                 // i. Update state and get selected RE node 
-                ui.state.mode.explore.responsible = id ?? ui.state.mode.explore.responsible 
-                const selectedRE = node[ui.state.mode.explore.responsible]
+                ui.state.mode.entities.responsible = id ?? ui.state.mode.entities.responsible 
+                const selectedRE = node[ui.state.mode.entities.responsible]
 
                 // ii. Reset the visualisation 
                 ui.handle.reset()
 
                 // iii. Reset the visualisation 
-                switch(ui.state.mode.explore.responsibleDepthFull){
+                switch(ui.state.mode.entities.responsibleDepthFull){
                     case true:
                         ui.handle.visualTraceToEnd(selectedRE)
                         break
@@ -1224,7 +1222,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1232,7 +1230,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1257,7 +1255,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1265,7 +1263,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1278,7 +1276,7 @@ class Interface{
                                     break
                             }
                         } else {
-                            ui.handle.setMode('explore')
+                            ui.handle.setMode('entities')
                         } 
 
                         break
@@ -1290,7 +1288,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1298,7 +1296,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1322,7 +1320,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1330,7 +1328,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1355,7 +1353,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1363,7 +1361,7 @@ class Interface{
 
                                     break
 
-                                case 'explore':
+                                case 'entities':
 
                                     break
 
@@ -1472,7 +1470,7 @@ class Interface{
 
             inputContainer.append('label')
                 .attr('for', id)
-                .html(`${eswSchema[id].name}`)
+                .html(`${eswSchema[id].name} (${nodeCount})`)
         }
     }
 

@@ -8,7 +8,8 @@ main#app-container{
     grid-template-areas:    'ui vis legend';
     grid-template-columns:  2fr auto 1fr;
     justify-content:        center;
-    aspect-ratio:           16/10;
+    /* aspect-ratio:           16/10; */
+    height: 100vh;
 
     /** CSS Variables to be programatically added **/
     --top-margin:           calc( 50 / 1100 * 100vh);
@@ -260,11 +261,11 @@ ul.ui-sub-mode-menu li.selected{
 /** Reset display when parent classes are added by mode, to control view**/
 .overview-mode .ui-info-wrapper.overview-mode,
 
-.explore-mode .ui-info-wrapper.explore-mode, 
-.ui-info-wrapper.explore-mode.responsible .responsible,
-.ui-info-wrapper.explore-mode.browse .browse,
-.ui-info-wrapper.explore-mode.trace .trace,
-.ui-info-wrapper.explore-mode.blend .blend,
+.entities-mode .ui-info-wrapper.entities-mode, 
+.ui-info-wrapper.entities-mode.responsible .responsible,
+.ui-info-wrapper.entities-mode.browse .browse,
+.ui-info-wrapper.entities-mode.trace .trace,
+.ui-info-wrapper.entities-mode.blend .blend,
 
 .service-mode .ui-info-wrapper.service-mode,
 .ui-info-wrapper.service-mode.ews .ews,
@@ -276,14 +277,17 @@ ul.ui-sub-mode-menu li.selected{
 .ui-info-wrapper.vulnerability-mode.specialised .specialised,
 .ui-info-wrapper.vulnerability-mode.feedback .feedback,
 
-.detail-mode .ui-info-wrapper.detail-mode{
+.key-mode .ui-info-wrapper.key-mode,
+.ui-info-wrapper.key-mode.node-link .node-link,
+.ui-info-wrapper.key-mode.upstream-downstream .upstream-downstream,
+.ui-info-wrapper.key-mode.vis-detail .vis-detail{
     display:            revert;
 }
 
 
 /** 1C. i. OVERVIEW MODE **/
 
-/** 1C. ii. EXPLORE MODE **/
+/** 1C. ii. entities MODE **/
 .responsible-entities-selection-header{
     text-transform: lowercase;
 }
@@ -341,7 +345,7 @@ ul.ui-sub-mode-menu li.selected{
 }
 
 .trace-depth-label{
-    font-size:              0.625rem;    
+    font-size:              0.5rem;    
     font-weight:            600;
 }
 
@@ -354,13 +358,13 @@ ul.ui-sub-mode-menu li.selected{
 }
 
 .trace-level-indicator{
-    font-size:          x0.625rem;
+    font-size:          0.5rem;
     font-weight:        600;
     display:            flex;
     border:             1px solid;
     aspect-ratio:       1;
-    height:             100%;
-    padding:            0.5rem;
+    height:             0.8rem;
+    padding:            0.25rem;
     align-items:        center;
     justify-content:    center;
     margin-right:       0.5rem;
@@ -446,32 +450,195 @@ ul.blend-selection-list li{
 
 /** 1C. iv. VULNERABILITY MODE **/
 .vulnerability-mode-content{
-    /* margin-top:                 1rem; */
-    /* margin-bottom: 2rem; */
 }
 .vulnerability-option-container{
-    display: grid;
-    grid-template-columns: 1fr auto;
-    row-gap: 1rem;
-    margin-top: 1rem;;
+    display:                grid;
+    grid-template-columns:  1fr auto;
+    row-gap:                1rem;
+    margin-top:             1rem;
 }
 .vulnerability-option-container label{
-    margin-left: 0;
-    justify-self: end;
+    margin-left:            0;
+    justify-self:           end;
 }
 
 .vulnerability-option-content{
-    display: flex;
-    align-items: center;
+    display:                flex;
+    align-items:            center;
 }
 
 .vulnerability input:where([type="checkbox"][role="switch"]){
-    margin-left: 1rem;
-
+    margin-left:            1rem;
 }
 
-/** 1C. v. DETAILS MODE
+/** 1C. v. KEY MODE **/
+.key-header{
+    text-transform: lowercase;
+}
+.key-header.links{
+    margin-block-end:       0;
+}
+.key-header.feedback{
+    margin-block-start:         3rem;
+}
+.key-container{
+    display:                grid;
+    grid-template-columns:  auto 2fr 1fr;
+    column-gap:             1rem;
+    align-items:            center;
+}
+.key-container.link-container{
+    display:                flex;
+    justify-content:        center;
+    height:                 4rem
+}
+.key-container.details-container{
+    grid-template-columns:  3rem 2fr;
+}
 
+.key-mark-container{
+    height:                 2rem;
+    display:                flex;
+    justify-content:        center;
+}
+.key-mark-container.feedback-trigger,
+.key-mark-container.single-point{
+    height:                 4rem
+}
+.key-mark-label p,
+.key-mark-label, 
+.key-label{
+    font-size:              0.625rem;
+}
+.key-mark-label.feedback{
+    display:                flex;
+    align-items: center;
+}
+.key-label{
+    font-weight:            700;
+}
+.key-label p{
+    font-size:              0.5rem;
+    margin-block-start:  0;
+    margin-block-end:  0;
+}
+.key-label.upstream{
+    color:                  var(--color-upstream);
+}
+.key-label.downstream{
+    color:                  var(--color-downstream);
+}
+.key-label.upstream.downstream{
+    color:                  var(--color-updown);
+}
+.key-label.selected{
+    color:                  var(--color-selection);
+}
+
+.key-mark-label.left{
+    text-align:             right;
+    justify-content:        end;
+}
+.key-mark-label-note{
+    font-size:              0.5rem;
+    font-style:             italic;
+}
+.key-link-container.vertical{
+    display:                grid;
+    grid-template-columns:  1fr 0.25fr 0.25fr 1fr;
+    margin-bottom:          1rem;
+}
+.key-link-container.vertical .key-link-label{
+    grid-column:            2 /4;
+    font-size:              0.5rem;
+    font-style:             italic;
+    text-align:             center;
+    padding:                0.25rem
+}
+.key-link-container.vertical  .key-mark-label.left{
+    grid-column:  1 /2;
+} 
+.key-link-container.vertical .key-mark-label.right{
+    grid-column:  4 /5;
+} 
+.key-link-container{
+    display:                grid;
+    grid-template-columns:  1fr 1fr;
+}
+
+.key-upstream-downstream-container{
+    display:                grid;
+    grid-template-columns:  1fr 1fr;    
+}
+.key-upstream-downstream-vis-container{
+    height:                 8rem;
+    display:                flex;
+    justify-content:        center;
+}
+.key-upstream-downstream-label-container{
+    display:                grid;
+    grid-template-rows:     30% 40% 30%;
+    align-items:        center;
+}
+circle.key-selected{
+    fill:               var(--color-selection);
+    stroke:             rgb(var(--bg-color));
+}
+rect.node-legend{
+    stroke:             rgb(var(--bg-color));
+    stroke-width:       0.5px;
+}
+rect.node-legend.upstream,
+path.link-legend.tapered.upstream{
+    fill:               var(--color-upstream);
+}
+circle.node-legend.node-circle.upstream{
+    stroke:               var(--color-upstream);
+}
+.responsible-entity circle.node-legend{
+    fill:               rgb(var(--fg-color));
+}
+rect.node-legend.downstream,
+path.link-legend.tapered.downstream,
+circle.node-legend.node-circle.downstream{
+    fill:               var(--color-downstream);
+}
+circle.node-legend.node-circle.upstream.downstream{
+    stroke:              var(--color-updown);
+    fill:               none;
+}
+path.link-legend.tapered.downstream.upstream{
+    fill:              var(--color-updown);
+    stroke:              var(--color-updown);
+}
+circle.node-legend.node-circle.downstream.upstream{
+    stroke:               var(--color-updown);
+    fill:             rgb(var(--bg-color));
+}
+.responsible-entity circle.node-legend.node-circle.downstream.upstream{
+    fill:               var(--color-updown);
+    stroke:             rgb(var(--bg-color));
+    stroke-width:       1px;
+}
+
+path.link-legend.upstream{
+    stroke:               var(--color-upstream);
+}
+path.link-legend.downstream{
+    stroke:               var(--color-downstream);
+}
+line.service-stripe-legend{
+    stroke:    rgb(var(--bg-color));
+}
+path.single-failure-point-legend{
+    stroke: rgb(var(--bg-color));
+    stroke-width: 0.5px;
+    fill: none
+}
+path.link-legend.tapered.downstream.upstream.feedback{
+    fill:              var(--color-updown);
+    stroke:             rgb(var(--fg-color));
+}
 
 /**
  *  D. UI OPTIONS: Global UI options
@@ -614,7 +781,7 @@ section.legend{
     display:                grid;
     grid-template-columns:  1fr 4fr; 
     text-transform:         lowercase;
-    cursor:                 pointer;
+    /* cursor:                 pointer; */
     padding:                0.125rem 0
 }
 
@@ -623,8 +790,8 @@ section.legend{
 }
 
 .legend-stat-container:hover{
-    font-weight:            600;
-    text-decoration:        underline;
+    /* font-weight:            600;
+    text-decoration:        underline; */
 }
 
 .legend-label{

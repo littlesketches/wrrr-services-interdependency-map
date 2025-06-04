@@ -114,13 +114,16 @@ body{
 }
 
 /* LINK STYLES: CORE */
-.link{
+.link,
+.link-legend{
     fill:               none;
     stroke:             rgba(var(--fg-color), 0.3);
     stroke-width:       0.5px;
     pointer-events:     visible;
 }
-
+.link-legend{
+    stroke-width:       1px;
+}
 .link-loop{
     pointer-events:     none;
     stroke:             rgb(var(--bg-color));
@@ -128,13 +131,18 @@ body{
 
 /* LINK STYLES OPTION: TAPERED */
 .intermediate-network .link.tapered,
-.intermediate-network .link-return{
+.intermediate-network .link-return,
+.link-legend.tapered{
     stroke:             rgb(var(--bg-color));
     stroke-width:       0.5px;
     fill:               rgba(var(--fg-color), 1);
     mix-blend-mode:     luminosity;
 }
-
+.link-legend.tapered{
+    stroke-width:       1px;
+    fill:               rgba(var(--fg-color), 1);
+    mix-blend-mode:     initial;
+}
 
 /**
  *   VISUALISATION DETAILS 

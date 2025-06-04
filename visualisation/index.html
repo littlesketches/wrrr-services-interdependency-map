@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../_static/assets/vic-favicon.png">
+    <link rel="shortcut icon" href="../_static/assets/vic-favicon.png">
 
     <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="../../_static/css/global-style.css">
-    <link rel="stylesheet" href="../../visualisation/currents/style.css">
-    <link rel="stylesheet" href="../../visualisation/currents/vis.css">
+    <link rel="stylesheet" href="../_static/css/global-style.css">
+    <link rel="stylesheet" href="../visualisation/style.css">
+    <link rel="stylesheet" href="../visualisation/vis.css">
 
 </head>
 
@@ -47,10 +47,10 @@
                     <nav class = 'ui-mode-container'>
                         <ul class = 'ui-mode-menu'>
                             <li class = 'ui-mode-option overview-mode selected' onclick="ui.handle.setMode('overview')">Overview </li>
-                            <li class = 'ui-mode-option explore-mode' onclick="ui.handle.setMode('explore')">Entities </li>
+                            <li class = 'ui-mode-option entities-mode' onclick="ui.handle.setMode('entities')">Entities </li>
                             <li class = 'ui-mode-option service-mode' onclick="ui.handle.setMode('service')">Service</li>
                             <li class = 'ui-mode-option vulnerability-mode' onclick="ui.handle.setMode('vulnerability')">Vulnerability</li>
-                            <li class = 'ui-mode-option detail-mode' onclick="ui.handle.setMode('detail')">Detail</li>
+                            <li class = 'ui-mode-option key-mode' onclick="ui.handle.setMode('key')">Key</li>
                         </ul>
                     </nav>
         
@@ -63,23 +63,23 @@
                             <p>The design of the visual highlights the supplier-customer 'flow' of the sector along the vertical axis. It separates the more complex inner network of 'intermediate' nodes &mdash; including all responsible entities &mdash; from the outer (upstream and downstream) entities. A breakdown of data according to network components is shown opposite. </p>
 
                             <div class = 'guidance-container guidance'>
-                                <p>This visualisation is interactive and encourages exploration of the network through various modes that are accessible from the menu above. Further details about this visualisation can be found in the accompanying <a href=""> design documentation</a>.</p>
+                                <p>This visualisation is interactive and encourages exploration of the network through various modes that are accessible from the menu above. Further details about this visualisation can be found in the accompanying <a href="">guidance documentation</a>.</p>
                             </div>
                         </div>
 
                         <!-- ii. ENTITIES -->
-                        <div class = 'ui-info-wrapper explore-mode'>
+                        <div class = 'ui-info-wrapper entities-mode'>
                             <nav>
                                 <ul class = 'ui-sub-mode-menu'>
-                                    <li class = 'ui-mode-option responsible-mode' onclick="ui.handle.setExploreMode('responsible')">Responsible</li>
-                                    <li class = 'ui-mode-option browse-mode' onclick="ui.handle.setExploreMode('browse')">Browse</li>
-                                    <li class = 'ui-mode-option trace-mode' onclick="ui.handle.setExploreMode('trace')">Trace</li>
-                                    <li class = 'ui-mode-option blend-mode' onclick="ui.handle.setExploreMode('blend')">Blend</li>
+                                    <li class = 'ui-mode-option responsible-mode' onclick="ui.handle.setEntitiesMode('responsible')">Responsible</li>
+                                    <li class = 'ui-mode-option browse-mode' onclick="ui.handle.setEntitiesMode('browse')">Browse</li>
+                                    <li class = 'ui-mode-option trace-mode' onclick="ui.handle.setEntitiesMode('trace')">Trace</li>
+                                    <li class = 'ui-mode-option blend-mode' onclick="ui.handle.setEntitiesMode('blend')">Blend</li>
                                 </ul>
                             </nav>
 
-                           <div class = 'mode-content explore-mode-content responsible'>
-                                <p>Use this mode to identity the connections from a selected <span class = 'selected entity highlighted'>responsible entity</span>. Network connections are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer), <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the responsible entity's network connection path. </p>
+                            <div class = 'mode-content entities-mode-content responsible'>
+                                <p>Use this mode to identity the connections from a selected <span class = 'selected entity highlighted'>responsible entity</span>.</p>
 
                                 <h2 class = 'responsible-entities-selection-header'>Select a responsible entity</h2>
                                 <div class = 'responsible-entities-input-container'></div>
@@ -92,17 +92,16 @@
                                     <label class ='switch-label responsible-depth-selector right'  for="responsible-depth-selector">Edge of network</label>
                                 </div>
 
-                                <!-- 
                                 <div class = 'guidance-container guidance'>
-                                    <p>While in <span class = 'mode'>browse mode</span>, tapping on a node will select it and move you into  <span class = 'mode'>trace mode</span>. </p>
-                                </div> -->
+                                    <p>Network connections are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer), <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the responsible entity's network connection path.
+                                    </p>
+                                </div>
                             </div>
 
-
-                            <div class = 'mode-content explore-mode-content browse'>
+                            <div class = 'mode-content entities-mode-content browse'>
                                 <p>Use this mode to visualise the network connections starting from a selected entity (node). </p> 
 
-                               <p>Network connections (links and nodes) are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer) from that <span class = 'selected entity highlighted'>selected entity</span>. In a fully traced network, links can also be identified as <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the entity's network connection path. </p>
+                                <p>Network connections (links and nodes) are identified as being <span class = 'upstream underline'>upstream</span> (supplier) or <span class = 'downstream underline'>downstream</span> (customer) from that <span class = 'selected entity highlighted'>selected entity</span>. In a fully traced network, links can also be identified as <span class = 'upstream downstream underline'>both upstream and downstream</span> if there are feedback loops in the entity's network connection path. </p>
 
                                 <p>Use the switch below to set the depth of connections in the network to see while browsing.</p>
 
@@ -118,8 +117,8 @@
                                 </div>
                             </div>
 
-                            <div class = 'mode-content explore-mode-content  trace'>
-                                <p>Use this mode to trace <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections from a <span class = 'selected entity highlighted'>selected entity</span>, <strong>one step at a time</strong>. Each step is triggered by repeatedly tapping on selected entity (node). 
+                            <div class = 'mode-content entities-mode-content  trace'>
+                                <p>Use this mode to trace <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections from a <span class = 'selected entity highlighted'>selected entity</span>, <strong>one step at a time</strong>. Each step increase the depth of the trace and is triggered by repeatedly tapping on selected entity (node). 
                                 </p>
 
                                 <div class = 'trace-selection-container'>
@@ -134,7 +133,7 @@
                                     <div class = 'trace-selection-info-container ews'></div> 
 
                                     <div class = 'trace-depth-container'>
-                                        <div class = 'trace-depth-container-header'>Network trace levels</div>
+                                        <div class = 'trace-depth-container-header'>Network node count by trace depth</div>
                                         <div class = 'trace-depth-container-upstream'>
                                             <div class = 'trace-depth-label upstream'>Upstream</div>
                                             <div class = 'trace-depth-indicator-container upstream'></div> 
@@ -148,18 +147,16 @@
                                 </div>
 
                                 <div class = 'guidance-container guidance'>
-                                    <p>Once an entity is selected, the available depth to trace upstream and will be displayed in an information box. </p>
-                                    <p>Tapping on a another node will make it the newly selected entity. To de-select a node (and reset the visualisation), tap anywhere else on the visualisation (i.e. not on a node).</p>
+                                    <p>Tapping on a node will make that node the newly selected entity. To de-select a node (and reset the visualisation), tap anywhere else on the visualisation (i.e. not on a node).</p>
                                     </p>
                                 </div>
                             </div>
 
-
-                            <div class = 'mode-content explore-mode-content  blend'>
+                            <div class = 'mode-content entities-mode-content  blend'>
                                 <p>Use this mode allows to combine the connected networks of <span class = 'selected entity highlighted'>multiple entities</span>. This view lets you visualise mutual connections and areas (nodes) in the network.</p>
 
-                                <p>The types of network connections shown are relative to the combined selection of nodes. This means that  &mdash; <span class = 'upstream underline'> upstream</span>, <span class = 'downstream underline'>downstream</span> connection are <strong>shared</strong> by the selected entities. Naturally, connections that are  <span class = 'upstream downstream underline'>both upstream and downstream</span> are the selection grows.</p>
-
+                                <p>The types of network connections shown are relative to the combined selection of nodes. This means that  &mdash; <span class = 'upstream underline'> upstream</span>, <span class = 'downstream underline'>downstream</span> connection are <strong>shared</strong> by the selected entities. Naturally, connections that are  <span class = 'upstream downstream underline'>both upstream and downstream</span> are the selection grows.
+                                </p>
 
                                 <div class = 'guidance-container guidance'>
                                     <p>Tap on a node to select it. All of that entities connected nodes will be highlighted. Then tap on another node to blend it and its connections into the visualised network. </p>
@@ -243,6 +240,11 @@
                                     <label class ='switch-label'  for="specialised-suppliers-selector">Show specialised suppliers</label>
                                     <input  type="checkbox" role="switch" id="specialised-suppliers-selector" onchange="ui.handle.toggleSpecialisedSuppliers(this.checked)" />
                                 </div>
+
+                                <div class = 'guidance-container guidance'>
+                                    <p>The visualisation of single points of failure and specialised suppliers are mutually exclusive. 
+                                    </p>
+                                </div>
                             </div>
 
                             <div class = 'mode-content vulnerability-mode-content feedback'>
@@ -265,15 +267,227 @@
                                     <label class ='switch-label'  for="feedback-links-selector">Show feedback trigger links</label>
                                     <input  type="checkbox" role="switch" id="feedback-links-selector" onchange="ui.handle.toggleFeedbackTrigger(this.checked)" />
                                 </div>
+
+                                <div class = 'guidance-container guidance'>
+                                    <p>The automated detection and visualisation of feedback loops is not provided in this version of the WRRR Services Map.</p>
+                                </div>
                             </div>
                         </div>
 
-                       <!-- v. DETAILS -->
-                        <div class = 'ui-info-wrapper detail-mode'>
-                            <p>Meta information about entities are encoded into intricate marks in the visualisation. As the name implies, details are added for the curious who want to zoom in and use these marks to look for differences and patterns. They are not intended to distract from the high level view of overall system structure.</p>
-                            <p><strong>Essential waste services:</strong> are assigned only to responsible entities as 'petals'.</p>
-                            <p><strong>Services:</strong> are assigned for reported customer and suppliers. Multiple services can be assigned to entities which are represented by horizontal stripes across these nodes.</p>
-                            <p><strong>Single points of failure:</strong> reported by responsible entities are encoded in triangular marks either on the inside of responsible entity nodes or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) are.</p>
+                       <!-- v. KEY -->
+                        <div class = 'ui-info-wrapper key-mode'>
+                            <nav>
+                                <ul class = 'ui-sub-mode-menu'>
+                                    <li class = 'ui-mode-option node-link-mode' onclick="ui.handle.setKeyMode('node-link')">Nodes and links</li>
+                                    <li class = 'ui-mode-option upstream-downstream-mode' onclick="ui.handle.setKeyMode('upstream-downstream')">Upstream and downstream</li>
+                                    <li class = 'ui-mode-option vis-detail-mode' onclick="ui.handle.setKeyMode('vis-detail')">Visual details</li>
+                                </ul>
+                            </nav>
+
+                            <div class = 'mode-content key-mode-content node-link'>
+                                <p>In this network visualisation, all entities in the Victorian waste sector are represented nodes whose supplier and customer relationships and represented links.</p>
+
+                                <h2 class = 'key-header entities'>Entities</h2>
+                                <div class = 'key-mark-label'>
+                                    <p>The size of each type of entity is scaled to the total number customer and supplier links that are connected to the entity.</p>
+                                </div>
+                                <div class = 'key-group-container'>
+                                    <div class = 'key-container'>
+                                        <div class = 'key-mark-container'>
+                                            <svg  height ="100%" viewBox = '0 0 30 30'> 
+                                                <rect class = 'node-legend'  x = 12 width = 6 height = 30></rect>
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label'>Supplier or customer only<br><span class = 'key-mark-label-note'>located at edge of the network</span></div>
+                                    </div>
+                                    <div class = 'key-container'>
+                                        <div class = 'key-mark-container'>
+                                            <svg class = 'responsible-entity' height ="100%" viewBox = '0 0 30 30'> 
+                                                <circle  class = 'node node-circle ' cx = 15 cy = 15 r = "10"/>
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label'>Responsible entity</div>
+                                    </div>
+                                    <div class = 'key-container'>
+                                        <div class = 'key-mark-container'>
+                                            <svg  height ="100%" viewBox = '0 0 30 30'> 
+                                                <circle class = 'node node-circle' cx = 15 cy = 15 r = "8"/>
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label'>Intermediate entity<br><span class = 'key-mark-label-note'>non-responsible entity with supplier and customer links</span></div>
+                                    </div>
+                                </div>
+
+                                <h2 class = 'key-header links'>Links</h2>
+                                <div class = 'key-link-container vertical'>
+                                    <div class = 'key-link-label'>Supplier</div>    
+                                    <div class = 'key-mark-label left'>
+                                        Edge link<br><span class = 'key-mark-label-note'>connection with supplier/customer only entity</span>
+                                    </div>
+                                    <div class = 'key-container link-container'>
+                                        <svg  height ="100%" viewBox = '0 0 10 50'> 
+                                            <path class = 'link-legend' d="M5 0 V50" />
+                                        </svg>
+                                    </div>
+                                    <div class = 'key-container link-container'>
+                                        <svg  height ="100%" viewBox = '0 0 10 50'> 
+                                            <path class = 'link-legend tapered' d="M2 0 L5 70 L8 0z" />
+                                        </svg>
+                                    </div>
+                                    <div class = 'key-mark-label right'>
+                                        Intermediate link<br><span class = 'key-mark-label-note'>connection between intermediate entities where the width is scaled to the volume of connections.</span>
+                                    </div>
+                                    <div class = 'key-link-label'>Customer</div>
+                                </div>
+                                <div class = 'key-container'>
+                                    <div class = 'key-mark-container'>
+                                        <svg class = 'responsible-entity' height ="100%" viewBox = '0 0 30 30'> 
+                                            <circle  class = 'node node-circle ' cx = 15 cy = 15 r = "10"/>
+                                            <circle  class = 'link-loop' cx = 15 cy = 15 r = "7"/>
+                                            <circle  class = 'link-loop' cx = 15 cy = 15 r = "5"/>
+                                            <circle  class = 'link-loop' cx = 15 cy = 15 r = "3"/>
+                                        </svg>
+                                    </div>
+                                    <div class = 'key-mark-label'>Internal links <br><span class = 'key-mark-label-note'>where the number of rings inside nodes represents an internal link (i.e. vertical integration)</span></div>
+                                </div>
+                            </div>
+
+                            <div class = 'mode-content key-mode-content upstream-downstream'>
+                                <h2 class = 'key-header'>Relationship to a selection</h2>
+                                
+
+                                <div class = 'key-upstream-downstream-container'>
+                                    <div class = 'key-upstream-downstream-vis-container'>
+                                        <svg height = '100%' viewBox = '-10 0 40 100'>
+                                            <g class = 'key-link-group'>
+                                                <path class = 'link-legend upstream' d="M0 0 v50" />
+                                                <path class = 'link-legend downstream' d="M0 50 v50" />
+                                                <path class = 'link-legend tapered upstream' d="M20 25 m-4 0 L0 50 L24 25z" />
+                                                <path class = 'link-legend tapered downstream' d="M0 50 m-4 0 L20 75 L4 50z" />
+                                            </g>
+                                            <g class = 'key-node-group'>
+                                                <circle class = 'node-legend node node-circle upstream' cx = 20 cy = 25 r = "4"/>
+                                                <g class = 'responsible-entity selected'>
+                                                    <circle class = 'node key-selected' cx = 0 cy = 50 r = "10"/>
+                                                </g>
+                                                <g class = 'responsible-entity'>
+                                                    <circle class = 'node-legend node node-circle downstream' cx = 20 cy = 75 r = "6"/>
+                                                </g>
+                                                <rect class = 'node-legend upstream' x = -1.5 y = 0 width = 3 height = 10></rect>       
+                                                <rect class = 'node-legend downstream'x = -1.5 y = 90 width = 3 height = 10></rect>       
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class = 'key-upstream-downstream-label-container'>
+                                        <div class = 'key-label upstream'>Upstream nodes and links</div>
+                                        <div class = 'key-label'><span class = 'selected entity highlighted'>selected entity</span>
+                                            <p>Nodes and links are colour-coded, depending on their relationship with any selected entity.</p>
+                                        </div>
+                                        <div class = 'key-label downstream'>Downstream nodes and links</div>
+                                    </div>
+                                </div>
+
+                                <h2 class = 'key-header feedback'>Feedback behaviour</h2>
+                                <div class = 'key-upstream-downstream-container'>
+                                    <div class = 'key-upstream-downstream-vis-container'>
+                                        <svg height = '100%' viewBox = '-10 0 60 100'>
+                                            <g class = 'key-link-group'>
+                                                <path class = 'link-legend tapered upstream downstream' d="M40 10 m-4 0 L0 50 L40 12z" />
+                                                <path class = 'link-legend tapered upstream downstream' d="M0 50 m-4 0 L40 90 L8 50z" />
+                                                <path class = 'link-legend tapered upstream downstream' d="M40 90 m-3 0 L40 10 L43 90z" />
+                                            </g>
+
+                                            <g class = 'key-node-group'>
+                                                <circle class = 'node-legend node node-circle upstream downstream' cx = 40 cy = 10 r = "4"/>
+                                                <g class = 'responsible-entity selected'>   
+                                                    <circle class = 'node key-selected' cx = 0 cy = 45 r = "10"/>
+                                                </g>
+                                                <g class = 'responsible-entity'>
+                                                    <circle class = 'node-legend node node-circle downstream upstream' cx = 40 cy = 90 r = "6"/>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class = 'key-mark-label feedback'>
+                                        <p>Nodes and links can be both  <span class = 'upstream downstream underline'>both upstream and downstream</span> from a selected entity if there are feedback loops in its connected network</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class = 'mode-content key-mode-content vis-detail'>
+                                <p>Information about entities and their relationships are encoded into intricate marks in the visualisation. As the name implies, details are added for the curious who want to zoom in and use these marks to look for differences and patterns. They are not intended to distract from the high level view of overall system structure.
+                                </p>
+
+                                <div class = 'key-details-group-container'>
+                                    <div class = 'key-container details-container'>
+                                        <div class = 'key-mark-container'>
+                                            <svg  height ="100%" viewBox = '-17.5 -17.5 35 35'> 
+                                                <path class="ews-petal landfill-services" d="M0,-16.728A16.728,16.728,0,0,1,6.804,-15.281L4.536,-10.188A11.152,11.152,0,0,0,0,-11.152Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal hazardous-waste-services" d="M6.804,-15.281A16.728,16.728,0,0,1,12.431,-11.193L8.287,-7.462A11.152,11.152,0,0,0,4.536,-10.188Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal residual-waste-services" d="M12.431,-11.193A16.728,16.728,0,0,1,15.909,-5.169L10.606,-3.446A11.152,11.152,0,0,0,8.287,-7.462Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal thermal-waste-to-energy-services" d="M15.909,-5.169A16.728,16.728,0,0,1,16.636,1.749L11.091,1.166A11.152,11.152,0,0,0,10.606,-3.446Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal e-waste-services" d="M16.636,1.749A16.728,16.728,0,0,1,14.487,8.364L9.658,5.576A11.152,11.152,0,0,0,11.091,1.166Z" style="stroke-width: 0.531036;"></path><path class="ews-petal long-term-waste-containment-services" d="M14.487,8.364A16.728,16.728,0,0,1,9.832,13.533L6.555,9.022A11.152,11.152,0,0,0,9.658,5.576Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal construction-and-demolition-services" d="M9.832,13.533A16.728,16.728,0,0,1,3.478,16.362L2.319,10.908A11.152,11.152,0,0,0,6.555,9.022Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal metal-recycling-services" d="M3.478,16.362A16.728,16.728,0,0,1,-3.478,16.362L-2.319,10.908A11.152,11.152,0,0,0,2.319,10.908Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal municipal-resource-recovery-centre-and-transfer-station-services" d="M-3.478,16.362A16.728,16.728,0,0,1,-9.832,13.533L-6.555,9.022A11.152,11.152,0,0,0,-2.319,10.908Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal recycling-services-comingled" d="M-9.832,13.533A16.728,16.728,0,0,1,-14.487,8.364L-9.658,5.576A11.152,11.152,0,0,0,-6.555,9.022Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal organics-services" d="M-14.487,8.364A16.728,16.728,0,0,1,-16.636,1.749L-11.091,1.166A11.152,11.152,0,0,0,-9.658,5.576Z" style="stroke-width: 0.531036;"></path><path class="ews-petal public-waste-services" d="M-16.636,1.749A16.728,16.728,0,0,1,-15.909,-5.169L-10.606,-3.446A11.152,11.152,0,0,0,-11.091,1.166Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal secure-waste-destruction-services" d="M-15.909,-5.169A16.728,16.728,0,0,1,-12.431,-11.193L-8.287,-7.462A11.152,11.152,0,0,0,-10.606,-3.446Z" style=" stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal recycling-services-glass" d="M-12.431,-11.193A16.728,16.728,0,0,1,-6.804,-15.281L-4.536,-10.188A11.152,11.152,0,0,0,-8.287,-7.462Z" style="stroke-width: 0.531036;"></path>
+                                                <path class="ews-petal container-deposit-scheme-services-cds" d="M-6.804,-15.281A16.728,16.728,0,0,1,0,-16.728L0,-11.152A11.152,11.152,0,0,0,-4.536,-10.188Z" style="stroke-width: 0.531036;"></path>
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label'>
+                                            <p><strong>Essential waste services:</strong> assigned to each responsible entity are represented by 'petal' mark. The position of each petal corresponds to one of the <span class = 'no-ews'></span> essential waste services.</p>
+                                        </div>
+                                    </div>
+                                    <div class = 'key-container details-container'>
+                                        <div class = 'key-mark-container'>
+                                            <svg  height ="100%" viewBox = '0 0 30 30'> 
+                                                <rect class = 'node-legend'  x = 12 width = 6 height = 30></rect>
+                                                <line class = 'service-stripe-legend' x1 = 12 x2 = 18 y1 = 10 y2 = 10></line>
+                                                <line class = 'service-stripe-legend' x1 = 12 x2 = 18 y1 = 20 y2 = 20></line>
+                                                <line class = 'service-stripe-legend' x1 = 12 x2 = 18 y1 = 25 y2 = 25></line>
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label'>
+                                            <p><strong>Services:</strong> are assigned for reported customer and suppliers. Multiple services can be assigned to entities which are represented by horizontal stripes across these nodes.</p>
+                                        </div>
+                                    </div>
+                                    <div class = 'key-container details-container'>
+                                        <div class = 'key-mark-container single-point'>
+                                            <svg  height ="100%" viewBox = '-20 -50 40 100'> 
+                                                <path class = 'link-legend' d="M0 -17 L0 350" />
+                                                <g transform="translate(0, -50)">
+                                                    <rect class = 'node-legend'  x = -3  width = 6 height = 30></rect>
+                                                    <path class = 'node-legend'  d = "M-3 32 l3 5 l3 -5 z ">
+                                                </g>
+                                                <g transform="translate(0, 35)">
+                                                    <g class = 'responsible-entity'>
+                                                        <circle class = 'node-legend node node-circle' cx = 0 cy = 0 r = "15"/>
+                                                    </g>
+                                                    <path class="single-failure-point-legend" d="  M4.805193498607076e-16,-7.847476516417042L6.796114018818969,3.9237382582085196L-6.796114018818967,3.9237382582085236Z  M3.203462332404718e-16,-5.231651010944695L4.530742679212647,2.6158255054723467L-4.530742679212645,2.6158255054723494Z" style="stroke-width: 0.523165;"></path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label key-details'>
+                                            <p><strong>Single points of failure:</strong> reported by responsible entities are encoded in triangular marks either on the inside of responsible entity nodes or at the inside-end of upstream suppliers and downstream customers. The direction of the triangular marks indicate who is the supplier (down) and customer (up) are.</p>
+                                        </div>
+                                    </div>
+                                    <div class = 'key-container details-container'>
+                                        <div class = 'key-mark-container feedback-trigger'>
+                                            <svg  height ="100%" viewBox = '-10 0 20 100'> 
+                                                <path class = 'link-legend tapered upstream downstream feedback' d="M0 0 L5 98 L-5 98 z" />
+                                            </svg>
+                                        </div>
+                                        <div class = 'key-mark-label'>
+                                            <p><strong>Feedback trigger links:</strong> the visualisation is designed to have as many intermediate links flow from 'top to bottom' as possible (i.e. from upstream to downstream). Intermediate links that flow in the opposing directions are indicators of feedback behaviour and are given a (subtle) dark outline.</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -309,7 +523,7 @@
             </div>
         </section>
 
-        <!-- 3. DATA / LEGEND SECTION -->
+        <!-- 3. DATA LEGEND SECTION -->
         <section class = 'legend outer-section'>
             <div class = 'legend-wrapper outer-wrapper'>
                 <div class = 'outer-content node-groups'>
@@ -432,22 +646,22 @@
 
     <!-- JAVASCRIPT  -->
     <!-- Libraries/dependencies (D3) -->
-    <script src="../../_static/js/lib/d3.js"></script> 
+    <script src="../_static/js/lib/d3.js"></script> 
     <!-- Visualisation Config and utilities-->
-    <script src="../../_static/js/config/model-schema.js"></script>    
-    <script src="../../_static/js/vis/utils.js"></script>   
+    <script src="../_static/js/config/model-schema.js"></script>    
+    <script src="../_static/js/vis/utils.js"></script>   
     <!-- Input data -->
-    <script src="../../_static/js/data/by-reporting-year/data-2024.js"></script>    
-    <script src="../../_static/js/data/by-reporting-year/data-2025.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2024.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2025.js"></script>    
     <!-- Visualisation data model-->
-    <script src="../../_static/js/data/data-model.js"></script>    
+    <script src="../_static/js/data/data-model.js"></script>    
     <!-- Visualisation components -->
-    <script src="../../_static/js/vis/classes/Node.js"></script>    
-    <script src="../../_static/js/vis/classes/Link.js"></script>    
-    <script src="../../_static/js/vis/classes/Layout.js"></script>    
+    <script src="../_static/js/vis/classes/Node.js"></script>    
+    <script src="../_static/js/vis/classes/Link.js"></script>    
+    <script src="../_static/js/vis/classes/Layout.js"></script>    
     <!-- Page and visualisation interface  -->
-    <script src="../../_static/js/vis/classes/Interface.js"></script>    
+    <script src="../_static/js/vis/classes/Interface.js"></script>    
     <!-- Visualisation rendering -->
-    <script src="../../visualisation/currents/main.js"></script>    
+    <script src="../visualisation/main.js"></script>    
 
 </body>

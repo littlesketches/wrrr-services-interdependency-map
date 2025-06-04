@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////
 
 
-// Enumerate list of reporting data (filtered by available)
+// 1. Enumerate list of reporting data (filtered by available)
 const reportingYearData = {
     2024:   typeof data2024 !== 'undefined' ? data2024 : undefined,
     2025:   typeof data2025 !== 'undefined' ? data2025 : undefined,
@@ -16,14 +16,12 @@ const reportingYearData = {
     2030:   typeof data2026 !== 'undefined' ? data2030 : undefined,
 }
 
-// Get array of reporting years
+// 2. Get array of reporting years
 const reportingYears = Object.entries(reportingYearData)
     .filter( ([reportYear, d]) => d)
     .map( d => +d[0])
 
-
-
-// Init visData Object and add data for each reporting year
+// 3. Init visData Object and add data for each reporting year
 const visData = {}
 
 for( const reportYear of reportingYears){
@@ -32,13 +30,16 @@ for( const reportYear of reportingYears){
 }
 
 
-// Debug
-console.log(visData)
+// 4. Init app  with the latest year as default
+const latestReportYear = reportingYears[reportingYears.length -1]
 
+initApp(latestReportYear)
 
+// Debug: log to console
+console.log({data: visData, layout, ui, node, link, schema})
 
 ///////////////////////////////////////////////////////////////
-/// INSTANTIATE "LAYOUT"                                    ///
+/// I. INSTANTIATE "APP"                                    ///
 /// ------------------------------------------------------  ///
 /// -  "node, link and schema" data are used                ///
 ///    to create "Layout" instance                          ///
@@ -49,27 +50,18 @@ console.log(visData)
 ///     links between nodes (added to the link data)        ///
 ///   - meta information used for classification, styling   ///
 ///     and interactivity of nodes and links                ///
+/// - 'ui' adds all custom UI elements and handler methods  ///  
+/// - 'renderVis' contains all rendering (d3) methods       ///
 ///////////////////////////////////////////////////////////////
-
-/**    
- *  - The 'layout' works out custom node placements and adds  
- *      - coordinates to the node instances (i.e. to the node data) that can be thou of as groupings/clustering
- *      - 'path' information to the link instances to render links between nodes (added to the link data)
- *      - meta information used for classification, styling and interactivity of nodes and links
- */ 
-
-// Init with the lates year as defailt
-const latestReportYear = reportingYears[reportingYears.length -1]
-initApp(latestReportYear)
-
 
 
 function initApp(reportYear){
 
-    const {node, link, schema, meta} = visData[reportYear]         
+    const { node, link, schema, meta } = visData[reportYear] 
     const layout = new Layout( node, link, schema )
     const ui = new Interface(layout, reportingYears)
 
+    // Call renderVis
     renderVis(layout, ui, node, link, schema)
 
     // Make all app variables available on window (to support re-rendering)
@@ -82,9 +74,8 @@ function initApp(reportYear){
 }
 
 
-
 ///////////////////////////////////////////////////////////////
-/// DATA VISUALISATION RENDERING SCRIPT                     ///
+/// II. DATA VISUALISATION RENDERING SCRIPT                 ///
 /// ------------------------------------------------------  ///
 /// - Uses vanilla D3.js for DOM manipulation               ///
 ///////////////////////////////////////////////////////////////

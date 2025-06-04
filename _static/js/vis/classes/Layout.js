@@ -156,9 +156,6 @@ class Layout{
 
         // Add render 'summary' node and link data (references for rendering)
         this.render = this.#assembleRenderData()
-
-        // Debug
-        console.log(this)
     }
 
 
