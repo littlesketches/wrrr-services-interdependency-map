@@ -8,8 +8,7 @@ main#app-container{
     grid-template-areas:    'ui vis legend';
     grid-template-columns:  2fr auto 1fr;
     justify-content:        center;
-    /* aspect-ratio:           16/10; */
-    height: 100vh;
+    height:                 100vh;
 
     /** CSS Variables to be programatically added **/
     --top-margin:           calc( 50 / 1100 * 100vh);
@@ -118,19 +117,19 @@ label.switch-label{
 }
 .selected.underline{
     border-color:       var(--color-selection);
-    color:       var(--color-selection);
+    color:              var(--color-selection);
 }
 .downstream.underline{
     border-color:       var(--color-downstream);
-    color:       var(--color-downstream);
+    color:              var(--color-downstream);
 }
 .upstream.underline{
     border-color:       var(--color-upstream);
-    color:          var(--color-upstream);
+    color:              var(--color-upstream);
 }
 .upstream.downstream.underline{
     border-color:       var(--color-updown);
-    color:       var(--color-updown);
+    color:              var(--color-updown);
 }
 
 .highlighted.entity{
@@ -274,7 +273,6 @@ ul.ui-sub-mode-menu li.selected{
 
 .vulnerability-mode .ui-info-wrapper.vulnerability-mode,
 .ui-info-wrapper.vulnerability-mode.failure-specialised .failure-specialised,
-.ui-info-wrapper.vulnerability-mode.specialised .specialised,
 .ui-info-wrapper.vulnerability-mode.feedback .feedback,
 
 .key-mode .ui-info-wrapper.key-mode,
@@ -811,8 +809,19 @@ section.legend{
  ****************************/
 
 @media print {
-  /* All your print styles go here */
+
     .ui-options-container{
         display: none !important;
     }   
+    /* These overrides are 'hacky' and coudl do with proper optimsation as an enhancement */
+    main#app-container{
+        aspect-ratio:  16/10 ;
+        grid-template-columns:  1fr 3fr 2fr;
+    }
+    section.visualisation-section {
+        align-items: center;
+    }
+    .visualisation-wrapper{
+        width: 100%
+    }
 }

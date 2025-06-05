@@ -2,26 +2,390 @@
 <html lang="en">
 
 <head>
-    <title>Guidance</title>
+    <title>Interdependency Map - User guide</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Favicons -->
-    <link rel="shortcut icon" href="https://www.vic.gov.au/favicon-32x32.png">
-    <link rel="apple-touch-icon" href="https://www.delwp.vic.gov.au/__data/assets/image/0005/3002/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/_static/assets/vic-favicon.png">
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="/_static/css/global-style.css">
 </head>
 
 <body>
-    <main>
-        <section>
-            <h1>Guidance page
-            </h1>
+    <main class = 'user-guide-content'>
+        <div>
+            <section class = 'header-block'>
+                <h1 class = 'sub'>Victorian Waste, Recycling and Resource Recovery Services Interdependency Map</h1>
+                <h1 class = 'menu-page-title'>User guide</h1>
+                <div class = 'chevron-underline'></div>
+            </section>
+
+            <section class = 'guide-user-interface'>
+                <h2>About this guide</h2>
+                <p>The WRRR Services interdependency map (the <i>Map</i>) is designed as an interactive experience that contains much of it's core 'guidance' accessible within the interface. This guide provides as extra context and detail that is designed <strong>to be used alongside the <i>Map</i> as more comprehensive training materials</strong>.
+                </p>
+
+
+            </section>  
+
+            <section class = 'guide-user-interface'>
+                <h2>I. The user interface</h2>
+                <p>The <i>Map</i> interface is made up of three panes:</p>
+                <ul class = 'guide-ui-container'>
+                    <li>Control and info</li>
+                    <li>Visualisation</li>
+                    <li>Data</li>
+                </ul>
+
+                <p><strong>Control and info</strong>: is where user selections and contextual information is displayed. This pane contains fixed sections for a title and navigation bar (top) and global option switches (bottom). The middle section is dynamic and will display information and selection options, depending on the <i>mode</i> and any user selections.</p>
+                <p><strong>Visualisation</strong>: is where the network visualisation is rendered. The visualisation is interactive, where users can browse and select nodes (entities) using their mouse. The mousewheel can be used to zoom in/out and panning can be accessed with traditional 'click and grab' within the visualisation.</p>
+                <p><strong>Data</strong>: provides summary data statistics that dynamically update with the selected / displayed network. Critically, the <i>Data</i> pane describes and labels the three groupings of of entity (node) types: upstream, intermediate and downstream.
+                </p>
+
+            </section>  
+
+            <section class = 'guide-year selection'>
+                <h2>II. Global options</h2>
+                <ul class = 'guide-mode-option-list'>
+                    <li>
+                        <p><strong>Reporting year</strong>: a selector for rendering the <i>Map</i> for different available RERCC Plan reporting years is located at the top of the <i>Control and info</i> pane.
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Interface options</strong>: a series of toggle switches are located at the bottom of the <i>Control and info</i> pane. to customise the interface:
+                        </p>
+                        <ul>
+                            <li>
+                                <p><strong>Tips</strong>: is used to show extra information and guidance boxes in the <<i>Control and info</i> for each mode/option. Experienced users may choose to turn these off to reduce the visual clutter, or for print/extracting views.
+                                </p>
+                            </li>
+                            <li>
+                                <p><strong>Details</strong>: is used to show the detailed marks of the visualisation design (see the <i>Map's</i> <i>key</i> mode > <i>visual details</i> option for more information about these marks). This option allows users to turn of details in situations where they are unnecessary and/or distracting.
+                                </p>
+                            </li>
+                            <li>
+                                <p><strong>Labels</strong>: is used to show the labels on all intermediate nodes in the visualisaiton. As labelling is necessary for identification but introduces considerable visual clutter, this option is available to suit individual user needs.
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section class = 'guide-navigation'>
+                <h2>III. Navigating modes and options</h2>
+                <p>The navigation menu bar is located under the title in the <strong>Control and info</strong> pane. There are five <i>modes</i> (that can be thought of as sections) that can be selected in any order. Most modes contain <i>options</i> that are designed for different purposes. </p>
+
+                <h3>1. Overview</h3>
+                <p>This is serves as a landing page and introduction to the <i>Map</i>. The <i>overview</i> is brief but ends by pointing users to the breakdown/grouping of nodes shown in the <i>Data</i> pane. While subtle (and constrained by space), this should be called out in a training situation (and for anyone reading this guide as training). Moreover, it is an important  to understanding that entities &mdash; which include all Responsible Entities and their identified suppliers and cusomters &mdash; are grouped into:
+                <ul>
+                    <li>
+                        <p><strong>upstream</strong>: where they only have connections 'out' to customers. These are referred to in network terms as 'source' nodes</p>
+                    </li>
+                    <li>
+                        <p><strong>downstream</strong>: where they only have connections 'in' from suppliers. These are referred to in network terms as 'sink' nodes</p>
+                    </li>
+                    <li>
+                        <p><strong>intermediate</strong>: where they only have connections 'in' from suppliers. These are referred to in network terms as 'sink' nodes</p>
+                    </li>
+                </ul>
+
+                <p><strong>The more precise (but potentially vague) network terms are used in the interface as they are more concise and preferred to optimise information density.</strong></p>
+ 
+                <h3>2. Entities</h3>
+                <p>This mode focuses on exploring the supplier-customer connections from a selected or selection of entities. The entities mode contains the following options:</p>
+                <ul class = 'guide-mode-option-list'>
+                    <li>
+                        <p><strong>Responsible</strong>: This option is designed to help users locate and select a specific Responsible Entity to interrogate.
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Browse</strong>: This option allows users to view the network connections for any entity, by hovering their mouse over them in the visualisation. It is designed as a visual exploration tool where the connected networks of entities can be very quickly viewed and compared, without the need to select and deselect with mouse clicks.
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Trace</strong>: This option allows users to more deeply examine the network connections emanating from any entity. Users are instructed to select a single entity from the visualisation (with a mouse click), which will initially only show the entities immediate upstream and downstream connections. The user can then drill deeper into the network by repeatedly clicking on that node. This interface is designed to provide users with a way to control and view how an entities connections are propagated through the network (i.e. the spread of its 'influence').
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Blend</strong>: This option allows users to combine the connected networks of multiple entities. Any mutual upstream or downstream connections are identified and shown. This option is useful for looking at the network coverage or the shared and exclusive connections of multiple entities.   
+                        </p>
+                    </li>
+                </ul>
+
+
+                <h3>3. Service</h3>
+                <p>This mode focuses on using meta information about "services' available to filter the view of the network. The services mode contains the following options:</p>
+                <ul class = 'guide-mode-option-list'>
+                    <li>
+                        <p><strong>Essential waste services</strong>: Allows users to filter the network by connections to Responsible Entities that have been assigned (by DEECA/RV) to the selected essential waste services.
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Customer and supplier services</strong>: Allows users to filter the network by connections to entities that have been assigned (by Responsible Entities and reviewed by DEECA/RV) to the selected services. Services selections are broken into sections for upstream, intermediate and downstream entities (with only relevant/available services shown).
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Service frequency</strong>: Allows uses to filter the network by connections of the same identified frequency. </p>
+                    </li>
+                </ul>
+
+                <h3>4. Vulnerability</h3>
+                <p>This mode focuses on using meta information about the vulnerability of supplier-customer relationships to filter the view of the network. The vulnerability mode contains the following options:</p>
+
+                <ul class = 'guide-mode-option-list'>
+                    <li>
+                        <p><strong>Failure points and specialised</strong>: Allows the user to filter the network by connections that have been identified by Responsible Entities are belonging to either of these criteria. These views can each be turned on from their respective switches, but only one is shown at a time.
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Feedback</strong>: Allows the user to filter the network by connections that correspond to three feedback types. These views can each be turned on from their respective switches, but only one is shown at a time.
+                        </p>
+                    </li>
+                </ul>
+
+                <h3>5. Key</h3>
+                <p>This mode provides guidance on how the visual marks in the <i>Map's</i> visualisation represent the RERCC Plan data. The <i>Key</i> mode contains the following options ('sections') that are self-documented:</p>
+
+                <ul class = 'guide-mode-option-list'>
+                    <li>
+                        <p><strong>Node and links</strong>: explains how entities and their connections are rendered.</p>
+                    </li>
+                    <li>
+                        <p><strong>Upstream and downstream</strong>: explains how colours are used to encode information about the selected entity, and which connections (links and nodes) are upstream, downstream or both from the selection.
+                        </p>
+                    </li>
+                    <li>
+                        <p><strong>Visual details</strong>: explains how entity and link meta-data is encoded as detailed visual marks in the <i>Map's</i> visualisation.
+                        </p>
+                    </li>
+
+                </ul>
+
+
+            </section>  
+
+            <section class = 'guide-user-interface'>
+                <h2>IV. Keyboard shortcuts</h2>
+                <p>A set of keyboard shortcuts are provided to assist with quick navigation and add custom functionality to the <i>Map</i>. These are provide for advanced users. 
+                </p>
+                <h4>Navigation and global options</h4>
+                <ul class = 'keyboard-shortcut-container'>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>1</div>
+                            <div class = 'keyboard-key-to-label'>to</div>
+                            <div class = 'keyboard-key'>5</div>
+                        </div>
+                        <div class = 'keyboard-key-description'>Used to switch between the five <i>modes</i></div>
+                    </li>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>q</div> 
+                            <div class = 'keyboard-key-to-label'>to</div>
+                            <div class = 'keyboard-key'>r</div>
+                        </div>
+                        <div class = 'keyboard-key-description'>Used to switch between the <i>options</i> within the selected <i>mode</i></div>
+                    </li>
+
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>t</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Toggles the <i>tips</i> switch</div>
+                    </li>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>d</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Toggles the <i>details</i> switch</div>
+                    </li>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>l</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Toggles the <i>labels</i> switch</div>
+                    </li>
+
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>esc</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Resets any entity selection (i.e. deselects).</div>
+                    </li>
+                </ul>
+
+
+                <h4>Pane view</h4>
+                <ul class = 'keyboard-shortcut-container'>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>[</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Used to hide/unhide the <i>Control and info</i> pane</div>
+                    </li>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>]</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Used to hide/unhide the <i>Data</i> pane</div>
+                    </li>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>\</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Used to hide/unhide the content of the <i>Control and info</i> pane, leaving the title (useful as an option for print/extract)</div>
+                    </li>
+                    <li>
+                        <div class = 'keyboard-keys-container'>
+                            <div class = 'keyboard-key'>p</div> 
+                        </div>
+                        <div class = 'keyboard-key-description'>Used to hide/unhide both the <i>Control and info</i> and <i>Data</i> panes at the same time (useful as an option for print/extract) </div>
+                    </li>
+                </ul>
+
+            </section>  
+
+
+            <section class = 'guide-user-interface'>
+                <h2>V. Use in other mediums</h2>
+                <h3>PDF / image extraction and printing</h3>
+                <p>The <i>Map</i> visualisation is rendered as an SVG (Scalable Vector Graphic) that is resolution-less (aka a vector graphic), meaning that it can be scaled to any size (on screen) without losing clarity. Vector graphics are best preserved in extraction transfer to other documents as a PDF (i.e. which supports vector graphics).
+                </p>
+                <p><strong>Accordingly, the recommended way to extract the <i>Map</i> is through your web browsers print/save to PDF feature.</strong>
+                </p>
+
+                <p>A set of view modes, accessible via keyboard shortcuts (see above) can also help to setup a suitable view for extraction. These can be combined with global options for showing visualisation <i>details</i> and <i>labels</i> for more customised views to extract.
+                </p>
+
+            </section>  
+        </div>
+
+
+        <section class = 'version-section'>
+            <div>Version 1.0</div>
         </section>
     </main>
+
 </body>
 
 
+<!-- STYLES -->
 <style>
+    body{
+        display:                flex;
+        flex-direction:         column;
+        align-items:            center;
+    }
+    main.user-guide-content{
+        max-width:              40rem;
+        padding:                0 2rem;
+        display:                flex;
+        flex-direction:         column;
+        justify-content:        space-between;
+        height:                 100vh;
+    }
+    section.header-block{
+        margin-top:             5vh;
+    }
+    .header-block h1.menu-page-title{
+        font-size:              3.5rem;
+        margin-block-start:     0;
+        text-transform:         lowercase;
+        margin-block-end:       1rem;
+    }
+    h1.sub{
+        font-size:              100%;
+    }
+    h2, h3, h4{
+        text-transform:         lowercase;
+    }
+    h2{
+        margin-top:             5vh;
+    }
+    h3{
+        margin-top:             3.5vh;
+    }
+    p{
+        line-height:            1.5;
+    }
+    li{
+        padding-bottom:         0.5rem;
+    }
+    li p{
+        margin-block-start:     0;
+        margin-block-end:       0.5rem;
+    }
+    a, 
+    a:visited{
+        color:                  initial
+    }
 
+    section.version-section{
+        border-top:              #000 solid 3px;
+        margin-top:             10vh;
+
+        justify-self:           end;
+    }
+
+    .version-section div{
+        margin-block-start:     0.5rem;
+        margin-bottom:          5vh;
+        text-align:             end;
+        font-size:              0.65rem;
+    }
+
+
+    ul.guide-ui-container{
+        display:                grid;
+        grid-template-columns:  1fr 2fr 0.75fr;
+        column-gap:             1rem;
+        row-gap:                1rem;
+        padding:                0;
+        width:                  100%;
+    }
+
+     ul.guide-ui-container li{
+        list-style-type:        none;
+        line-height:            1.5;
+        display:                grid ;
+        align-items:            center;
+        justify-content:        center;
+        border:                 1px solid;
+        padding:                5vh 1rem;
+        text-align:             center;
+    }
+
+    ul.keyboard-shortcut-container{
+        padding:                0;
+    }
+    ul.keyboard-shortcut-container li{
+        display:                flex;
+        align-items:            center;
+        font-size:              0.8rem;
+    }
+
+    .keyboard-keys-container{
+        display:                flex;
+        align-items:            center;
+    }
+    .keyboard-key{
+        border:                 1px solid;
+        border-right-width:     2px;
+        border-bottom-width:    2px;
+        border-radius:          0.25rem;
+        min-width:              2rem;
+        aspect-ratio:           1;
+        display:                flex;
+        justify-content:        center;
+        align-items:            center;
+    }
+    .keyboard-key-to-label{
+        padding:                0 1rem;
+    }
+    .keyboard-key-description{
+        padding-left:           1rem;
+    }
 </style>

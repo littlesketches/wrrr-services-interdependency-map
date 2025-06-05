@@ -2,26 +2,186 @@
 <html lang="en">
 
 <head>
-    <title>Data</title>
+    <title>Interdependency Map - Data preparation checklist</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Favicons -->
-    <link rel="shortcut icon" href="https://www.vic.gov.au/favicon-32x32.png">
-    <link rel="apple-touch-icon" href="https://www.delwp.vic.gov.au/__data/assets/image/0005/3002/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/_static/assets/vic-favicon.png">
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="/_static/css/global-style.css">
 </head>
 
 <body>
-    <main>
-        <section>
-            <h1>Data prep page
-            </h1>
+    <main class = 'user-guide-content'>
+        <div>
+            <section class = 'header-block'>
+                <h1 class = 'sub'>Victorian Waste, Recycling and Resource Recovery Services Interdependency Map</h1>
+                <h1 class = 'menu-page-title'>Data preparation checklist</h1>
+                <div class = 'chevron-underline'></div>
+            </section>
+
+            <section class = 'guide-user-interface'>
+                <h2>About this checklist</h2>
+                <p>The WRRR Services interdependency map (the <i>Map</i>) is designed to load in new data for each RERCC Plan reporting year. The latest years data is the 'default' view for the <i>Map</i>, however historical data is available and can be rendered using the <i>Map's</i> reporting year selector. </strong>.
+                </p>
+                <p>DEECA is responsible for adding new reporting year data to the tool, with detailed guidance provided in separate documents (delivered in June 2025).</p>
+                <p>This checklist provides a summary of the steps DEECA need to undertake to prepared and load data each year. They are written for data administrators and use terminology that is explained in the aforementioned (separate) documentation, which should be consulted for further details.</p>
+
+            </section>  
+
+            <section >
+                <ol class = 'guide-ui-container'>
+                    <li>
+                        <p><strong>Use the Data Input Model</strong>: as a template for preparing the ten data input tables. The Data Input Model (documented) is managed by DEECA. The original template with documentation is available as a <a href = 'https://docs.google.com/spreadsheets/d/1BDJZ6_SKcLaO44NB6Mvp11FH6PYAuEdybDAaiZN-hIQ/edit?gid=1870974267#gid=1870974267' target = "_blank">Google Sheet here</a> (with anonymised data)</p>
+                    </li>
+                    <li>
+                        <p><strong>Date cleansing</strong>: Ensure all link data (the source data) is cleaned and structured in accordance with the data input tables. All options/entries reported in structured fields must appear in the appropriate schema tables.</p>
+                    </li>
+                    <li>
+                        <p><strong>Create node table</strong>: Ensure entities included in link data are in the node-master table. Each Responsible Entity must be flagged and assignment to essential waster services made.</p>
+                    </li>
+                    <li>
+                        <p><strong>Copy Excel Data Input Model into the package for data extraction </strong>: A copy of the Excel spreadsheet with all prepared data input tables should be copied into the _data-preparation/spreadsheet folder of ths application package.</p>
+                    </li>
+                    <li>
+                        <p><strong>Use the Python script to convert/package data to a javascript </strong>: The script must be edited to with the appropriate reporting year, and the path and filename to the source Excel spreadsheet checked. Once executed, the script produces the data input file (data-xxxx.js).</p>
+                    </li>
+                    <li>
+                        <p><strong>Move the data-xxxx.js file into the application folder </strong>: Data files for the application are located in the _static/js/data/by-reporting-year/ folder. New data files can be added to overwrite the placeholder files for each year. These files (to 2030) are already linked to the visualisation.</p>
+                    </li>
+                    <li>
+                        <p><strong>Open the visualisation to check that new data is available</strong>: Successfully loaded data will appear as the default (if as expected, it is for the 'latest year').</p>
+                    </li>
+
+                </ol>
+
+        </div>
+
+
+        <section class = 'version-section'>
+            <div>Version 1.0</div>
         </section>
     </main>
+
 </body>
 
 
+<!-- STYLES -->
 <style>
+    body{
+        display:                flex;
+        flex-direction:         column;
+        align-items:            center;
+    }
+    main.user-guide-content{
+        max-width:              40rem;
+        padding:                0 2rem;
+        display:                flex;
+        flex-direction:         column;
+        justify-content:        space-between;
+        height:                 100vh;
+    }
+    section.header-block{
+        margin-top:             5vh;
+    }
+    .header-block h1.menu-page-title{
+        font-size:              3.5rem;
+        margin-block-start:     0;
+        text-transform:         lowercase;
+        margin-block-end:       1rem;
+    }
+    h1.sub{
+        font-size:              100%;
+    }
+    h2, h3, h4{
+        text-transform:         lowercase;
+    }
+    h2{
+        margin-top:             5vh;
+    }
+    h3{
+        margin-top:             3.5vh;
+    }
+    p{
+        line-height:            1.5;
+    }
+    li{
+        padding-bottom:         0.5rem;
+    }
+    li p{
+        margin-block-start:     0;
+        margin-block-end:       0.5rem;
+    }
+    a, 
+    a:visited{
+        color:                  initial
+    }
 
+    section.version-section{
+        border-top:              #000 solid 3px;
+        margin-top:             10vh;
+
+        justify-self:           end;
+    }
+
+    .version-section div{
+        margin-block-start:     0.5rem;
+        margin-bottom:          5vh;
+        text-align:             end;
+        font-size:              0.65rem;
+    }
+
+
+    ul.guide-ui-container{
+        display:                grid;
+        grid-template-columns:  1fr 2fr 0.75fr;
+        column-gap:             1rem;
+        row-gap:                1rem;
+        padding:                0;
+        width:                  100%;
+    }
+
+     ul.guide-ui-container li{
+        list-style-type:        none;
+        line-height:            1.5;
+        display:                grid ;
+        align-items:            center;
+        justify-content:        center;
+        border:                 1px solid;
+        padding:                5vh 1rem;
+        text-align:             center;
+    }
+
+    ul.keyboard-shortcut-container{
+        padding:                0;
+    }
+    ul.keyboard-shortcut-container li{
+        display:                flex;
+        align-items:            center;
+        font-size:              0.8rem;
+    }
+
+    .keyboard-keys-container{
+        display:                flex;
+        align-items:            center;
+    }
+    .keyboard-key{
+        border:                 1px solid;
+        border-right-width:     2px;
+        border-bottom-width:    2px;
+        border-radius:          0.25rem;
+        min-width:              2rem;
+        aspect-ratio:           1;
+        display:                flex;
+        justify-content:        center;
+        align-items:            center;
+    }
+    .keyboard-key-to-label{
+        padding:                0 1rem;
+    }
+    .keyboard-key-description{
+        padding-left:           1rem;
+    }
 </style>

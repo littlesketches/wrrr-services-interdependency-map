@@ -1207,182 +1207,109 @@ class Interface{
                     // App reset
                     case "Escape":
                         ui.handle.reset()
-                        ui.handle.toggleInfoPane(true)
-                        ui.handle.toggleInfoContent(true)
-                        ui.handle.toggleLegendPane(true)
-                        ui.handle.setMode('overview')
+                        // ui.handle.toggleInfoPane(true)
+                        // ui.handle.toggleInfoContent(true)
+                        // ui.handle.toggleLegendPane(true)
+                        // ui.handle.setMode('overview')
                         break 
-
 
                     // APP MODES AND SUB MODES
                     case "1":
-                        if(ui.state.isShift){
-                            switch(this.state.mode.app){
-                                case 'overview':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'service':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'vulnerability':
-
-                                    break
-
-                                case 'detail':
-
-                                    break
-                            }
-                        } else {
-                            ui.handle.setMode('overview')
-                        } 
-
+                        ui.handle.setMode('overview')
                         break
-
                     case "2":
-                        if(ui.state.isShift){
-                            switch(this.state.mode.app){
-                                case 'overview':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'service':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'vulnerability':
-
-                                    break
-
-                                case 'detail':
-
-                                    break
-                            }
-                        } else {
-                            ui.handle.setMode('entities')
-                        } 
-
+                        ui.handle.setMode('entities')
                         break
-
                     case "3":
-                        if(ui.state.isShift){
-                            switch(this.state.mode.app){
-                                case 'overview':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'service':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'vulnerability':
-
-                                    break
-
-                                case 'detail':
-
-                                    break
-                            }
-                        } else {
-                            ui.handle.setMode('service')
-                        } 
+                         ui.handle.setMode('service')
                         break
-
                     case "4":
-                        if(ui.state.isShift){
-                            switch(this.state.mode.app){
-                                case 'overview':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'service':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'vulnerability':
-
-                                    break
-
-                                case 'detail':
-
-                                    break
-                            }
-                        } else {
-                            ui.handle.setMode('vulnerability')
-                        } 
-
+                        ui.handle.setMode('vulnerability')
                         break
-
                     case "5":
-                        if(ui.state.isShift){
-                            switch(this.state.mode.app){
-                                case 'overview':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'service':
-
-                                    break
-
-                                case 'entities':
-
-                                    break
-
-                                case 'vulnerability':
-
-                                    break
-
-                                case 'detail':
-
-                                    break
-                            }
-                        } else {
-                         ui.handle.setMode('detail')
-                        } 
-
+                         ui.handle.setMode('key')
                         break
+
+                    case "q":
+                        switch(ui.state.mode.app){
+                            case 'overview':
+                                break
+                            case 'entities':
+                                ui.handle.setEntitiesMode('responsible')
+                                break
+                            case 'service':
+                                ui.handle.setServiceMode('esw')
+                                break
+                            case 'vulnerability':
+                                ui.handle.setVulnerabilityMode('failure-specialised')
+                                break
+                            case 'key':
+                                ui.handle.setKeyMode('node-link')
+                                break
+                        }
+                        break
+
+                    case "w":
+                        switch(ui.state.mode.app){
+                            case 'overview':
+                                break
+                            case 'entities':
+                                ui.handle.setEntitiesMode('browse')
+                                break
+                            case 'service':
+                                ui.handle.setServiceMode('service')
+                                break
+                            case 'vulnerability':
+                                ui.handle.setVulnerabilityMode('feedback')                   
+                                break
+                            case 'key':
+                                ui.handle.setKeyMode('upstream-downstream')                   
+                                break
+                        }
+                        break
+
+                    case "e":
+                        switch(ui.state.mode.app){
+                            case 'overview':
+                                break
+                            case 'entities':
+                                ui.handle.setEntitiesMode('trace')
+                                break
+                            case 'service':
+                                ui.handle.setServiceMode('frequency')
+                                break
+                            case 'vulnerability':                   
+                                break
+                            case 'key':
+                                ui.handle.setKeyMode('vis-detail')                         
+                                break
+                        }
+                        break
+
+                    case "r":
+                        switch(ui.state.mode.app){
+                            case 'overview':
+                                break
+                            case 'entities':
+                                ui.handle.setEntitiesMode('blend')
+                                break
+                            case 'service':
+                                break
+                            case 'vulnerability':
+                                break
+                            case 'key':
+                                break
+                        }
+                        break
+
 
                     // TOGGLE SWITCH
                     case "d":
                         ui.handle.toggleVisDetails()
                         break 
+                    case "t":
+                        ui.handle.toggleTips()
+                        break    
                     case "l":
                         ui.handle.toggleLabels()
                         break    
@@ -1394,10 +1321,13 @@ class Interface{
                     case "]":
                         ui.handle.toggleLegendPane()
                         break 
+                    case "p":
+                        ui.handle.toggleInfoPane()
+                        ui.handle.toggleLegendPane()
+                        break 
                     case "\\":
                         ui.handle.toggleInfoContent()
                         break 
-
                 }
             },
 
