@@ -29,7 +29,7 @@ p{
 }
 a{
     text-decoration: underline dotted;
-
+    color:          rgb(var(--fg-color));
 }
 a:visited{
     color:          rgb(var(--fg-color));
