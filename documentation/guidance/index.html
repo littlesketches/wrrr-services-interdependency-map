@@ -35,7 +35,7 @@
                 <p>The <i>Map</i> interface is made up of three panes:</p>
                 <ul class = 'guide-ui-container'>
                     <li>Control and info</li>
-                    <li>Visualisation</li>
+                    <li class = 'vis-pane'>Visualisation</li>
                     <li>Data</li>
                 </ul>
 
@@ -296,8 +296,7 @@
         text-transform:         lowercase;
         margin-block-end:       1rem;
     }
-lor: initial;
-    }
+
     h1.sub{
         font-size:              100%;
     }
@@ -347,6 +346,8 @@ lor: initial;
         row-gap:                1rem;
         padding:                0;
         width:                  100%;
+        border:             3px solid;
+        padding:                1rem
     }
 
      ul.guide-ui-container li{
@@ -355,11 +356,14 @@ lor: initial;
         display:                grid ;
         align-items:            center;
         justify-content:        center;
-        border:                 1px solid;
+        border:                 3px dotted;
         padding:                5vh 1rem;
         text-align:             center;
+        font-weight:            700;
     }
-
+    ul.guide-ui-container li.vis-pane{
+        aspect-ratio: 1;
+    }
     ul.keyboard-shortcut-container{
         padding:                0;
     }

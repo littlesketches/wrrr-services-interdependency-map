@@ -181,7 +181,6 @@ class Interface{
                 d3.selectAll('.node-label-group-all').classed('visible', false)
 
                 switch(ui.state.mode.app){
-
                     case 'service': 
                     case 'vulnerability': 
                     case 'detail': 
@@ -190,6 +189,7 @@ class Interface{
 
                     case 'overview':     // Fall into entities to browse
                         ui.handle.setMode('entities')
+                        ui.handle.setEntitiesMode('browse')
                     case 'entities':    
                         switch(ui.state.mode.entities.mode){
                             case 'browse':
