@@ -89,7 +89,8 @@ input[type="radio"] {
 label.switch-label{
     font-size:          0.625rem;
     font-weight:        600;
-    padding-left: 0.5rem;
+    padding-left:       0.5rem;
+    text-transform:     lowercase;
 }
 
 label.switch-label.minor{
