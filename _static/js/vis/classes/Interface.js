@@ -1050,6 +1050,9 @@ class Interface{
                     case 'service':
                     case 'vulnerability':
                         ui.handle.reset()
+                        break
+                    case 'entities':
+                        ui.handle.toggleReIncognito(false)
                 }
 
                 // Update app state
@@ -1069,6 +1072,10 @@ class Interface{
 
             /** SUB MODE OPTIONS */
             setEntitiesMode: function(mode){
+                if(typeof node !== 'undefined' && ui.state.mode.entities.mode === 'responsible'){
+                     ui.handle.toggleReIncognito(false)
+                } 
+
                 mode = ui.state.mode.entities.mode = mode ?? ui.state.mode.entities.mode 
                 d3.select('.ui-info-wrapper.entities-mode').attr('class', `ui-info-wrapper entities-mode ${mode}`)
                 d3.selectAll(`.entities-mode li`).classed('selected', false)
@@ -1105,6 +1112,7 @@ class Interface{
             setResponsibleEntity:  function(el, id) {
                 // i. Update state and get selected RE node 
                 ui.state.mode.entities.responsible = id ?? ui.state.mode.entities.responsible 
+
                 const selectedRE = node[ui.state.mode.entities.responsible]
                 if(!selectedRE) return
 
