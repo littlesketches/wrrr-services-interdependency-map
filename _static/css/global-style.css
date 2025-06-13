@@ -41,7 +41,7 @@ input[type="checkbox"][role="switch"]:not(:checked) + label {
     opacity:            0.25;
 }
 label{
-    margin-left: 0.5rem;
+    /* margin-left: 0.5rem; */
 }   
 input:where([type="checkbox"][role="switch"]) {
     -webkit-appearance: none;

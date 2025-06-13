@@ -682,10 +682,18 @@ path.link-legend.tapered.downstream.upstream.feedback{
     display:            flex;
     align-items:        center;
     opacity:            0.25;
-    margin:             0;
 }
 
-
+.switch-selector-container .left{ 
+    padding-right:      0.5rem;
+}
+.switch-selector-container .right{ 
+    padding-left:           0.5rem;
+}
+.responsible-switch-wrapper  .left,
+.responsible-switch-wrapper  .right{ 
+    padding:                0
+}
 
 .switch-label.selected{
     opacity:            1;
