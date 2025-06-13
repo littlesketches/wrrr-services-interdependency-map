@@ -6,10 +6,11 @@ class Node{
 
         // Copy all meta info across (comes from master node table)
         this.meta = {
-            name:           config['entity-name'],
-            label:          config.label,
-            'label-short':  config['label-short'],
-            description:    config['description'],
+            name:               config['entity-name'],
+            label:              config.label,
+            'label-short':      config['label-short'],
+            'label-incognito':  config['label-incognito'],
+            description:        config['description'],
         }
 
         // Init a state object for UI

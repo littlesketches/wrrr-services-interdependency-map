@@ -35,10 +35,10 @@ label{
 }
 
 .binary input[type="checkbox"]:not(:checked){
-    color: rgb(214, 213, 213);  
+    opacity:            0.25;
 }
- input[type="checkbox"][role="switch"]:not(:checked) + label {
-    color: rgb(214, 213, 213);  
+input[type="checkbox"][role="switch"]:not(:checked) + label {
+    opacity:            0.25;
 }
 label{
     margin-left: 0.5rem;

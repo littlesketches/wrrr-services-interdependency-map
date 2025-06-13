@@ -25,7 +25,8 @@ class Interface{
                     hoverDepthFull:       undefined,        
                     blendOn:              false,
                     responsible:          undefined,
-                    responsibleDepthFull: undefined
+                    responsibleDepthFull: undefined,
+                    reIncognito:            undefined,
                 },
                 service: {
                     mode:               'ews',       // 'ews', 'service', 'frequency'
@@ -176,8 +177,10 @@ class Interface{
                     nodeEl = d3.select(parent),
                     label = d3.select(`#node-label_${node.id}`)
 
-                nodeEl.classed('focus', true)  
-                label.classed('visible', true)
+                nodeEl.classed('focus', true) 
+
+                // Show labels
+                if(!ui.state.mode.entities.reIncognito) label.classed('visible', true)
                 d3.selectAll('.node-label-group-all').classed('visible', false)
 
                 switch(ui.state.mode.app){
@@ -478,11 +481,10 @@ class Interface{
 
             // Visual network trace and blend
             visualTrace: (node) => {
-
                 // i.Init object for node selection
                 const initObj = {
-                    network:        node.data.network.tree,
-                    maxDepth:       node.data.network.depth,
+                    network:        node ? node.data.network.tree : null,
+                    maxDepth:       node ? node.data.network.depth : null,
                     visibleDepth: {     // Init to 0
                         upstream:   1,
                         downstream: 1
@@ -756,11 +758,25 @@ class Interface{
             },
             resetLabelSelection(){
                 if(ui.state.view.networkLabels){
-                    const nodesSelected = Object.values(ui.state.selection.node.instances).flat()
+
+                    let nodesSelected = Object.values(ui.state.selection.node.instances).flat()
+
                     if(nodesSelected.length > 0){
                         d3.selectAll('.node-label-group-all').classed('visible', false )
-                        d3.selectAll('.node-label-group-all').filter(d =>nodesSelected.includes(d))
-                            .classed('visible', ui.state.view.networkLabels )
+
+                        if(ui.state.mode.entities.reIncognito){
+                            // Filter for direct connections 
+                            const  primaryNode = ui.state.selection.node.instances.primary[0]
+                            nodesSelected = [
+                                primaryNode, 
+                                ...Object.values(primaryNode.link.out).map( link => link.node.to),
+                                ...Object.values(primaryNode.link.in).map( link => link.node.from)
+                            ]
+                        } 
+
+                        d3.selectAll('.node-label-group-all').filter(d => nodesSelected.includes(d))
+                             .classed('visible', ui.state.view.networkLabels )
+                    
                     } else {
                         d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
                     } 
@@ -839,13 +855,27 @@ class Interface{
 
                 d3.selectAll('.responsible-depth-selector.switch-label ').classed('selected', false)
                 if(ui.state.mode.entities.responsibleDepthFull){
-                    d3.select('.switch-label.right').classed('selected', true)
+                    d3.select('.switch-label.responsible-depth-selector.right').classed('selected', true)
                 } else {
-                    d3.select('.switch-label.left').classed('selected', true)
+                    d3.select('.switch-label.responsible-depth-selector.left').classed('selected', true)
                 }
 
                 ui.handle.setResponsibleEntity()
             },
+            toggleReIncognito(isOn){
+                ui.state.mode.entities.reIncognito = isOn ?? !ui.state.mode.entities.reIncognito 
+                document.getElementById('re-incognito-selector').checked = ui.state.mode.entities.reIncognito 
+
+                d3.selectAll('.re-incognito-selector.switch-label ').classed('selected', false)
+                if(ui.state.mode.entities.reIncognito){
+                    d3.select('.switch-label.re-incognito-selector.right').classed('selected', true)
+                } else {
+                    d3.select('.switch-label.re-incognito-selector.left').classed('selected', true)
+                }
+
+                ui.handle.setResponsibleEntity()
+            },
+
             toggleBlend(isOn){
                 ui.state.mode.entities.blendOn == isOn ?? !app.classed('mode_blend')
                 app.classed('mode_blend', isOn ?? ui.state.mode.entities.blendOn)
@@ -1076,6 +1106,7 @@ class Interface{
                 // i. Update state and get selected RE node 
                 ui.state.mode.entities.responsible = id ?? ui.state.mode.entities.responsible 
                 const selectedRE = node[ui.state.mode.entities.responsible]
+                if(!selectedRE) return
 
                 // ii. Reset the visualisation 
                 ui.handle.reset()

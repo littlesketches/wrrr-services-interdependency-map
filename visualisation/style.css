@@ -91,6 +91,10 @@ label.switch-label{
     font-weight:        600;
 }
 
+label.switch-label.minor{
+    font-size:          0.5rem;
+}
+
 .hide{
     opacity:            0
 }
@@ -677,15 +681,30 @@ path.link-legend.tapered.downstream.upstream.feedback{
 .switch-selector-container .right{
     display:            flex;
     align-items:        center;
-    opacity:            0.5;
+    opacity:            0.25;
+    margin:             0;
 }
-.switch-selector-container .left{
-    padding-right:       0.5rem;
-}
+
+
 
 .switch-label.selected{
     opacity:            1;
 }
+
+.responsible-switch-wrapper{
+    display:                grid;
+    grid-template-columns:  3fr 1fr 1fr 1fr;
+    align-items:            center;
+    margin-bottom:          0.5rem;
+}
+
+.responsible-switch-label{
+    font-size:          0.625rem;
+    font-weight:        700;
+    text-transform:     lowercase;
+    width:              100%
+}
+
 
 /************************* 
  ***  2. VIS SECTION   ***  
@@ -794,6 +813,10 @@ section.legend{
 
 .legend-label{
     font-size:              0.625rem;
+}
+
+.legend-label.intermediate{
+    font-style:             italic;
 }
 
 

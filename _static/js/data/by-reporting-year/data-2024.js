@@ -4,42 +4,45 @@ const data2024 = {
       "id": "blue-lyrebird",
       "entity-name": "Blue Lyrebird",
       "label": "Blue Lyrebird",
+      "label-incognito": "RE-01",
       "label-short": "BL",
-      "description": "",
       "essential-wrrr-services": [
         "construction-and-demolition-services",
         "recycling-services-glass"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "clever-frilled-neck-lizard",
       "entity-name": "Clever Frilled Neck Lizard",
       "label": "Clever Frilled Neck Lizard",
+      "label-incognito": "RE-02",
       "label-short": "CFNL",
-      "description": "",
       "essential-wrrr-services": [
         "organics-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "fuzzy-perentie",
       "entity-name": "Fuzzy Perentie",
       "label": "Fuzzy Perentie",
+      "label-incognito": "RE-03",
       "label-short": "FP",
-      "description": "",
       "essential-wrrr-services": [
         "construction-and-demolition-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "fuzzy-sugar-glider",
       "entity-name": "Fuzzy Sugar Glider",
       "label": "Fuzzy Sugar Glider",
+      "label-incognito": "RE-04",
       "label-short": "FSG",
-      "description": "",
       "essential-wrrr-services": [
         "construction-and-demolition-services",
         "container-deposit-scheme-services-cds",
@@ -51,119 +54,129 @@ const data2024 = {
         "recycling-services-glass",
         "residual-waste-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "golden-possum",
       "entity-name": "Golden Possum",
       "label": "Golden Possum",
+      "label-incognito": "RE-05",
       "label-short": "GP",
-      "description": "",
       "essential-wrrr-services": [
         "e-waste-services",
         "hazardous-waste-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "lazy-lyrebird",
       "entity-name": "Lazy Lyrebird",
       "label": "Lazy Lyrebird",
+      "label-incognito": "RE-06",
       "label-short": "LL",
-      "description": "",
       "essential-wrrr-services": [
         "landfill-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "lazy-sugar-glider",
       "entity-name": "Lazy Sugar Glider",
       "label": "Lazy Sugar Glider",
+      "label-incognito": "RE-07",
       "label-short": "LSG",
-      "description": "",
       "essential-wrrr-services": [
         "hazardous-waste-services",
         "landfill-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "noisy-dingo",
       "entity-name": "Noisy Dingo",
       "label": "Noisy Dingo",
+      "label-incognito": "RE-08",
       "label-short": "ND",
-      "description": "",
       "essential-wrrr-services": [
         "metal-recycling-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "noisy-quokka",
       "entity-name": "Noisy Quokka",
       "label": "Noisy Quokka",
+      "label-incognito": "RE-09",
       "label-short": "NQ",
-      "description": "",
       "essential-wrrr-services": [
         "hazardous-waste-services",
         "organics-services",
         "recycling-services-comingled"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "red-lyrebird",
       "entity-name": "Red Lyrebird",
       "label": "Red Lyrebird",
+      "label-incognito": "RE-10",
       "label-short": "RL",
-      "description": "",
       "essential-wrrr-services": [
         "landfill-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "red-possum",
       "entity-name": "Red Possum",
       "label": "Red Possum",
+      "label-incognito": "RE-11",
       "label-short": "RP",
-      "description": "",
       "essential-wrrr-services": [
         "hazardous-waste-services",
         "landfill-services",
         "organics-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "silent-rosella",
       "entity-name": "Silent Rosella",
       "label": "Silent Rosella",
+      "label-incognito": "RE-12",
       "label-short": "SR",
-      "description": "",
       "essential-wrrr-services": [
         "metal-recycling-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "spotted-cockatoo",
       "entity-name": "Spotted Cockatoo",
       "label": "Spotted Cockatoo",
+      "label-incognito": "RE-13",
       "label-short": "SC",
-      "description": "",
       "essential-wrrr-services": [
         "container-deposit-scheme-services-cds"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "spotted-koala",
       "entity-name": "Spotted Koala",
       "label": "Spotted Koala",
+      "label-incognito": "RE-14",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": [
         "e-waste-services",
         "hazardous-waste-services",
@@ -172,2081 +185,2310 @@ const data2024 = {
         "recycling-services-comingled",
         "residual-waste-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "striped-frilled-neck-lizard",
       "entity-name": "Striped Frilled Neck Lizard",
       "label": "Striped Frilled Neck Lizard",
+      "label-incognito": "RE-15",
       "label-short": "SFNL",
-      "description": "",
       "essential-wrrr-services": [
         "metal-recycling-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "striped-koala",
       "entity-name": "Striped Koala",
       "label": "Striped Koala",
+      "label-incognito": "RE-16",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": [
         "e-waste-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "swift-blue-tongue-skink",
       "entity-name": "Swift Blue-tongue Skink",
       "label": "Swift Blue-tongue Skink",
+      "label-incognito": "RE-17",
       "label-short": "SBS",
-      "description": "",
       "essential-wrrr-services": [
         "organics-services",
         "recycling-services-comingled",
         "residual-waste-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "tiny-platypus",
       "entity-name": "Tiny Platypus",
       "label": "Tiny Platypus",
+      "label-incognito": "RE-18",
       "label-short": "TP",
-      "description": "",
       "essential-wrrr-services": [
         "container-deposit-scheme-services-cds"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "wild-cassowary",
       "entity-name": "Wild Cassowary",
       "label": "Wild Cassowary",
+      "label-incognito": "RE-19",
       "label-short": "WC",
-      "description": "",
       "essential-wrrr-services": [
         "hazardous-waste-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "wild-kangaroo",
       "entity-name": "Wild Kangaroo",
       "label": "Wild Kangaroo",
+      "label-incognito": "RE-20",
       "label-short": "WK",
-      "description": "",
       "essential-wrrr-services": [
         "organics-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "wild-numbat",
       "entity-name": "Wild Numbat",
       "label": "Wild Numbat",
+      "label-incognito": "RE-21",
       "label-short": "WN",
-      "description": "",
       "essential-wrrr-services": [
         "organics-services"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "wild-possum",
       "entity-name": "Wild Possum",
       "label": "Wild Possum",
+      "label-incognito": "RE-22",
       "label-short": "WP",
-      "description": "",
       "essential-wrrr-services": [],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "wild-tasmanian-devil",
       "entity-name": "Wild Tasmanian Devil",
       "label": "Wild Tasmanian Devil",
+      "label-incognito": "RE-23",
       "label-short": "WTD",
-      "description": "",
       "essential-wrrr-services": [
         "container-deposit-scheme-services-cds"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "yellow-australian-magpie",
       "entity-name": "Yellow Australian Magpie",
       "label": "Yellow Australian Magpie",
+      "label-incognito": "RE-24",
       "label-short": "YAM",
-      "description": "",
       "essential-wrrr-services": [
         "municipal-resource-recovery-centre-and-transfer-station-services",
         "recycling-services-comingled",
         "recycling-services-glass"
       ],
-      "isRE": "yes"
+      "isRE": "yes",
+      "description": ""
     },
     {
       "id": "blue-bandicoot",
       "entity-name": "Blue Bandicoot",
       "label": "Clever Blue-tongue Skink",
+      "label-incognito": "E-001",
       "label-short": "CBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-bush-stone-curlew",
       "entity-name": "Blue Bush Stone-curlew",
       "label": "Blue Bush Stone-curlew",
+      "label-incognito": "E-002",
       "label-short": "BBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-dingo",
       "entity-name": "Blue Dingo",
       "label": "Blue Dingo",
+      "label-incognito": "E-003",
       "label-short": "BD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-echidna",
       "entity-name": "Blue Echidna",
       "label": "Blue Echidna",
+      "label-incognito": "E-004",
       "label-short": "BE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-fairy-penguin",
       "entity-name": "Blue Fairy Penguin",
       "label": "Blue Fairy Penguin",
+      "label-incognito": "E-005",
       "label-short": "BFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-frilled-neck-lizard",
       "entity-name": "Blue Frilled Neck Lizard",
       "label": "Blue Frilled Neck Lizard",
+      "label-incognito": "E-006",
       "label-short": "BFNL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-goanna",
       "entity-name": "Blue Goanna",
       "label": "Blue Goanna",
+      "label-incognito": "E-007",
       "label-short": "BG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-koala",
       "entity-name": "Blue Koala",
       "label": "Blue Koala",
+      "label-incognito": "E-008",
       "label-short": "BK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-numbat",
       "entity-name": "Blue Numbat",
       "label": "Blue Numbat",
+      "label-incognito": "E-009",
       "label-short": "BN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-perentie",
       "entity-name": "Blue Perentie",
       "label": "Blue Perentie",
+      "label-incognito": "E-010",
       "label-short": "BP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-sugar-glider",
       "entity-name": "Blue Sugar Glider",
       "label": "Blue Sugar Glider",
+      "label-incognito": "E-011",
       "label-short": "BSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-tasmanian-devil",
       "entity-name": "Blue Tasmanian Devil",
       "label": "Blue Tasmanian Devil",
+      "label-incognito": "E-012",
       "label-short": "BTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-thorny-devil",
       "entity-name": "Blue Thorny Devil",
       "label": "Blue Thorny Devil",
+      "label-incognito": "E-013",
       "label-short": "BTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "blue-wallaby",
       "entity-name": "Blue Wallaby",
       "label": "Blue Wallaby",
+      "label-incognito": "E-014",
       "label-short": "BW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-bandicoot",
       "entity-name": "Brave Bandicoot",
       "label": "Brave Bandicoot",
+      "label-incognito": "E-015",
       "label-short": "BB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-bilby",
       "entity-name": "Brave Bilby",
       "label": "Brave Bilby",
+      "label-incognito": "E-016",
       "label-short": "BB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-bush-stone-curlew",
       "entity-name": "Brave Bush Stone-curlew",
       "label": "Brave Bush Stone-curlew",
+      "label-incognito": "E-017",
       "label-short": "BBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-cockatoo",
       "entity-name": "Brave Cockatoo",
       "label": "Brave Cockatoo",
+      "label-incognito": "E-018",
       "label-short": "BC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-kookaburra",
       "entity-name": "Brave Kookaburra",
       "label": "Brave Kookaburra",
+      "label-incognito": "E-019",
       "label-short": "BK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-perentie",
       "entity-name": "Brave Perentie",
       "label": "Brave Perentie",
+      "label-incognito": "E-020",
       "label-short": "BP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-platypus",
       "entity-name": "Brave Platypus",
       "label": "Brave Platypus",
+      "label-incognito": "E-021",
       "label-short": "BP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-quokka",
       "entity-name": "Brave Quokka",
       "label": "Brave Quokka",
+      "label-incognito": "E-022",
       "label-short": "BQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-sugar-glider",
       "entity-name": "Brave Sugar Glider",
       "label": "Brave Sugar Glider",
+      "label-incognito": "E-023",
       "label-short": "BSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "brave-tasmanian-devil",
       "entity-name": "Brave Tasmanian Devil",
       "label": "Brave Tasmanian Devil",
+      "label-incognito": "E-024",
       "label-short": "BTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-blue-tongue-skink",
       "entity-name": "Clever Blue-tongue Skink",
       "label": "Clever Blue-tongue Skink",
+      "label-incognito": "E-025",
       "label-short": "CBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-bush-stone-curlew",
       "entity-name": "Clever Bush Stone-curlew",
       "label": "Clever Bush Stone-curlew",
+      "label-incognito": "E-026",
       "label-short": "CBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-emu",
       "entity-name": "Clever Emu",
       "label": "Clever Emu",
+      "label-incognito": "E-027",
       "label-short": "CE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-goanna",
       "entity-name": "Clever Goanna",
       "label": "Clever Goanna",
+      "label-incognito": "E-028",
       "label-short": "CG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-kangaroo",
       "entity-name": "Clever Kangaroo",
       "label": "Clever Kangaroo",
+      "label-incognito": "E-029",
       "label-short": "CK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-koala",
       "entity-name": "Clever Koala",
       "label": "Clever Koala",
+      "label-incognito": "E-030",
       "label-short": "CK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-perentie",
       "entity-name": "Clever Perentie",
       "label": "Clever Perentie",
+      "label-incognito": "E-031",
       "label-short": "CP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-quokka",
       "entity-name": "Clever Quokka",
       "label": "Clever Quokka",
+      "label-incognito": "E-032",
       "label-short": "CQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-sugar-glider",
       "entity-name": "Clever Sugar Glider",
       "label": "Clever Sugar Glider",
+      "label-incognito": "E-033",
       "label-short": "CSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "clever-tree-kangaroo",
       "entity-name": "Clever Tree Kangaroo",
       "label": "Clever Tree Kangaroo",
+      "label-incognito": "E-034",
       "label-short": "CTK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-cassowary",
       "entity-name": "Fuzzy Cassowary",
       "label": "Fuzzy Cassowary",
+      "label-incognito": "E-035",
       "label-short": "FC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-echidna",
       "entity-name": "Fuzzy Echidna",
       "label": "Fuzzy Echidna",
+      "label-incognito": "E-036",
       "label-short": "FE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-fairy-penguin",
       "entity-name": "Fuzzy Fairy Penguin",
       "label": "Fuzzy Fairy Penguin",
+      "label-incognito": "E-037",
       "label-short": "FFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-goanna",
       "entity-name": "Fuzzy Goanna",
       "label": "Fuzzy Goanna",
+      "label-incognito": "E-038",
       "label-short": "FG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-kangaroo",
       "entity-name": "Fuzzy Kangaroo",
       "label": "Fuzzy Kangaroo",
+      "label-incognito": "E-039",
       "label-short": "FK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-koala",
       "entity-name": "Fuzzy Koala",
       "label": "Fuzzy Koala",
+      "label-incognito": "E-040",
       "label-short": "FK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-lyrebird",
       "entity-name": "Fuzzy Lyrebird",
       "label": "Fuzzy Lyrebird",
+      "label-incognito": "E-041",
       "label-short": "FL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-platypus",
       "entity-name": "Fuzzy Platypus",
       "label": "Fuzzy Platypus",
+      "label-incognito": "E-042",
       "label-short": "FP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-quokka",
       "entity-name": "Fuzzy Quokka",
       "label": "Fuzzy Quokka",
+      "label-incognito": "E-043",
       "label-short": "FQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-redback-spider",
       "entity-name": "Fuzzy Redback Spider",
       "label": "Fuzzy Redback Spider",
+      "label-incognito": "E-044",
       "label-short": "FRS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-wallaby",
       "entity-name": "Fuzzy Wallaby",
       "label": "Fuzzy Wallaby",
+      "label-incognito": "E-045",
       "label-short": "FW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "fuzzy-wombat",
       "entity-name": "Fuzzy Wombat",
       "label": "Fuzzy Wombat",
+      "label-incognito": "E-046",
       "label-short": "FW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-blue-tongue-skink",
       "entity-name": "Giant Blue-tongue Skink",
       "label": "Giant Blue-tongue Skink",
+      "label-incognito": "E-047",
       "label-short": "GBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-bush-stone-curlew",
       "entity-name": "Giant Bush Stone-curlew",
       "label": "Giant Bush Stone-curlew",
+      "label-incognito": "E-048",
       "label-short": "GBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-cockatoo",
       "entity-name": "Giant Cockatoo",
       "label": "Giant Cockatoo",
+      "label-incognito": "E-049",
       "label-short": "GC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-dingo",
       "entity-name": "Giant Dingo",
       "label": "Giant Dingo",
+      "label-incognito": "E-050",
       "label-short": "GD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-emu",
       "entity-name": "Giant Emu",
       "label": "Giant Emu",
+      "label-incognito": "E-051",
       "label-short": "GE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-platypus",
       "entity-name": "Giant Platypus",
       "label": "Giant Platypus",
+      "label-incognito": "E-052",
       "label-short": "GP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-quokka",
       "entity-name": "Giant Quokka",
       "label": "Giant Quokka",
+      "label-incognito": "E-053",
       "label-short": "GQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-redback-spider",
       "entity-name": "Giant Redback Spider",
       "label": "Giant Redback Spider",
+      "label-incognito": "E-054",
       "label-short": "GRS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-rosella",
       "entity-name": "Giant Rosella",
       "label": "Giant Rosella",
+      "label-incognito": "E-055",
       "label-short": "GR",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-tasmanian-devil",
       "entity-name": "Giant Tasmanian Devil",
       "label": "Giant Tasmanian Devil",
+      "label-incognito": "E-056",
       "label-short": "GTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "giant-thorny-devil",
       "entity-name": "Giant Thorny Devil",
       "label": "Giant Thorny Devil",
+      "label-incognito": "E-057",
       "label-short": "GTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-australian-magpie",
       "entity-name": "Golden Australian Magpie",
       "label": "Golden Australian Magpie",
+      "label-incognito": "E-058",
       "label-short": "GAM",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-bush-stone-curlew",
       "entity-name": "Golden Bush Stone-curlew",
       "label": "Golden Bush Stone-curlew",
+      "label-incognito": "E-059",
       "label-short": "GBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-echidna",
       "entity-name": "Golden Echidna",
       "label": "Golden Echidna",
+      "label-incognito": "E-060",
       "label-short": "GE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-emu",
       "entity-name": "Golden Emu",
       "label": "Golden Emu",
+      "label-incognito": "E-061",
       "label-short": "GE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-fairy-penguin",
       "entity-name": "Golden Fairy Penguin",
       "label": "Golden Fairy Penguin",
+      "label-incognito": "E-062",
       "label-short": "GFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-frilled-neck-lizard",
       "entity-name": "Golden Frilled Neck Lizard",
       "label": "Golden Frilled Neck Lizard",
+      "label-incognito": "E-063",
       "label-short": "GFNL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-goanna",
       "entity-name": "Golden Goanna",
       "label": "Golden Goanna",
+      "label-incognito": "E-064",
       "label-short": "GG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-kangaroo",
       "entity-name": "Golden Kangaroo",
       "label": "Golden Kangaroo",
+      "label-incognito": "E-065",
       "label-short": "GK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-koala",
       "entity-name": "Golden Koala",
       "label": "Golden Koala",
+      "label-incognito": "E-066",
       "label-short": "GK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-kookaburra",
       "entity-name": "Golden Kookaburra",
       "label": "Golden Kookaburra",
+      "label-incognito": "E-067",
       "label-short": "GK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-lyrebird",
       "entity-name": "Golden Lyrebird",
       "label": "Golden Lyrebird",
+      "label-incognito": "E-068",
       "label-short": "GL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-perentie",
       "entity-name": "Golden Perentie",
       "label": "Golden Perentie",
+      "label-incognito": "E-069",
       "label-short": "GP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-tasmanian-devil",
       "entity-name": "Golden Tasmanian Devil",
       "label": "Golden Tasmanian Devil",
+      "label-incognito": "E-070",
       "label-short": "GTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "golden-wallaby",
       "entity-name": "Golden Wallaby",
       "label": "Golden Wallaby",
+      "label-incognito": "E-071",
       "label-short": "GW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-bandicoot",
       "entity-name": "Green Bandicoot",
       "label": "Green Bandicoot",
+      "label-incognito": "E-072",
       "label-short": "GB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-bush-stone-curlew",
       "entity-name": "Green Bush Stone-curlew",
       "label": "Green Bush Stone-curlew",
+      "label-incognito": "E-073",
       "label-short": "GBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-dingo",
       "entity-name": "Green Dingo",
       "label": "Green Dingo",
+      "label-incognito": "E-074",
       "label-short": "GD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-emu",
       "entity-name": "Green Emu",
       "label": "Green Emu",
+      "label-incognito": "E-075",
       "label-short": "GE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-kangaroo",
       "entity-name": "Green Kangaroo",
       "label": "Green Kangaroo",
+      "label-incognito": "E-076",
       "label-short": "GK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-koala",
       "entity-name": "Green Koala",
       "label": "Green Koala",
+      "label-incognito": "E-077",
       "label-short": "GK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-platypus",
       "entity-name": "Green Platypus",
       "label": "Green Platypus",
+      "label-incognito": "E-078",
       "label-short": "GP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-redback-spider",
       "entity-name": "Green Redback Spider",
       "label": "Green Redback Spider",
+      "label-incognito": "E-079",
       "label-short": "GRS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-rosella",
       "entity-name": "Green Rosella",
       "label": "Green Rosella",
+      "label-incognito": "E-080",
       "label-short": "GR",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-tasmanian-devil",
       "entity-name": "Green Tasmanian Devil",
       "label": "Green Tasmanian Devil",
+      "label-incognito": "E-081",
       "label-short": "GTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "green-wombat",
       "entity-name": "Green Wombat",
       "label": "Green Wombat",
+      "label-incognito": "E-082",
       "label-short": "GW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-blue-tongue-skink",
       "entity-name": "Happy Blue-tongue Skink",
       "label": "Happy Blue-tongue Skink",
+      "label-incognito": "E-083",
       "label-short": "HBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-echidna",
       "entity-name": "Happy Echidna",
       "label": "Happy Echidna",
+      "label-incognito": "E-084",
       "label-short": "HE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-fairy-penguin",
       "entity-name": "Happy Fairy Penguin",
       "label": "Happy Fairy Penguin",
+      "label-incognito": "E-085",
       "label-short": "HFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-frilled-neck-lizard",
       "entity-name": "Happy Frilled Neck Lizard",
       "label": "Happy Frilled Neck Lizard",
+      "label-incognito": "E-086",
       "label-short": "HFNL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-goanna",
       "entity-name": "Happy Goanna",
       "label": "Happy Goanna",
+      "label-incognito": "E-087",
       "label-short": "HG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-perentie",
       "entity-name": "Happy Perentie",
       "label": "Happy Perentie",
+      "label-incognito": "E-088",
       "label-short": "HP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-platypus",
       "entity-name": "Happy Platypus",
       "label": "Happy Platypus",
+      "label-incognito": "E-089",
       "label-short": "HP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-quokka",
       "entity-name": "Happy Quokka",
       "label": "Happy Quokka",
+      "label-incognito": "E-090",
       "label-short": "HQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "happy-rosella",
       "entity-name": "Happy Rosella",
       "label": "Happy Rosella",
+      "label-incognito": "E-091",
       "label-short": "HR",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-bilby",
       "entity-name": "Lazy Bilby",
       "label": "Lazy Bilby",
+      "label-incognito": "E-092",
       "label-short": "LB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-blue-tongue-skink",
       "entity-name": "Lazy Blue-tongue Skink",
       "label": "Lazy Blue-tongue Skink",
+      "label-incognito": "E-093",
       "label-short": "LBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-cockatoo",
       "entity-name": "Lazy Cockatoo",
       "label": "Lazy Cockatoo",
+      "label-incognito": "E-094",
       "label-short": "LC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-fairy-penguin",
       "entity-name": "Lazy Fairy Penguin",
       "label": "Lazy Fairy Penguin",
+      "label-incognito": "E-095",
       "label-short": "LFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-goanna",
       "entity-name": "Lazy Goanna",
       "label": "Lazy Goanna",
+      "label-incognito": "E-096",
       "label-short": "LG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-kangaroo",
       "entity-name": "Lazy Kangaroo",
       "label": "Lazy Kangaroo",
+      "label-incognito": "E-097",
       "label-short": "LK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-perentie",
       "entity-name": "Lazy Perentie",
       "label": "Lazy Perentie",
+      "label-incognito": "E-098",
       "label-short": "LP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-quokka",
       "entity-name": "Lazy Quokka",
       "label": "Lazy Quokka",
+      "label-incognito": "E-099",
       "label-short": "LQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-tree-kangaroo",
       "entity-name": "Lazy Tree Kangaroo",
       "label": "Lazy Tree Kangaroo",
+      "label-incognito": "E-100",
       "label-short": "LTK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "lazy-wombat",
       "entity-name": "Lazy Wombat",
       "label": "Lazy Wombat",
+      "label-incognito": "E-101",
       "label-short": "LW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-australian-magpie",
       "entity-name": "Noisy Australian Magpie",
       "label": "Noisy Australian Magpie",
+      "label-incognito": "E-102",
       "label-short": "NAM",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-bilby",
       "entity-name": "Noisy Bilby",
       "label": "Noisy Bilby",
+      "label-incognito": "E-103",
       "label-short": "NB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-cockatoo",
       "entity-name": "Noisy Cockatoo",
       "label": "Noisy Cockatoo",
+      "label-incognito": "E-104",
       "label-short": "NC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-echidna",
       "entity-name": "Noisy Echidna",
       "label": "Noisy Echidna",
+      "label-incognito": "E-105",
       "label-short": "NE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-kangaroo",
       "entity-name": "Noisy Kangaroo",
       "label": "Noisy Kangaroo",
+      "label-incognito": "E-106",
       "label-short": "NK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-kookaburra",
       "entity-name": "Noisy Kookaburra",
       "label": "Noisy Kookaburra",
+      "label-incognito": "E-107",
       "label-short": "NK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-numbat",
       "entity-name": "Noisy Numbat",
       "label": "Noisy Numbat",
+      "label-incognito": "E-108",
       "label-short": "NN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-perentie",
       "entity-name": "Noisy Perentie",
       "label": "Noisy Perentie",
+      "label-incognito": "E-109",
       "label-short": "NP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-possum",
       "entity-name": "Noisy Possum",
       "label": "Noisy Possum",
+      "label-incognito": "E-110",
       "label-short": "NP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-redback-spider",
       "entity-name": "Noisy Redback Spider",
       "label": "Noisy Redback Spider",
+      "label-incognito": "E-111",
       "label-short": "NRS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-rosella",
       "entity-name": "Noisy Rosella",
       "label": "Noisy Rosella",
+      "label-incognito": "E-112",
       "label-short": "NR",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-sugar-glider",
       "entity-name": "Noisy Sugar Glider",
       "label": "Noisy Sugar Glider",
+      "label-incognito": "E-113",
       "label-short": "NSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-tree-kangaroo",
       "entity-name": "Noisy Tree Kangaroo",
       "label": "Noisy Tree Kangaroo",
+      "label-incognito": "E-114",
       "label-short": "NTK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "noisy-wombat",
       "entity-name": "Noisy Wombat",
       "label": "Noisy Wombat",
+      "label-incognito": "E-115",
       "label-short": "NW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-australian-magpie",
       "entity-name": "Red Australian Magpie",
       "label": "Red Australian Magpie",
+      "label-incognito": "E-116",
       "label-short": "RAM",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-bush-stone-curlew",
       "entity-name": "Red Bush Stone-curlew",
       "label": "Red Bush Stone-curlew",
+      "label-incognito": "E-117",
       "label-short": "RBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-dingo",
       "entity-name": "Red Dingo",
       "label": "Red Dingo",
+      "label-incognito": "E-118",
       "label-short": "RD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-fairy-penguin",
       "entity-name": "Red Fairy Penguin",
       "label": "Red Fairy Penguin",
+      "label-incognito": "E-119",
       "label-short": "RFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-frilled-neck-lizard",
       "entity-name": "Red Frilled Neck Lizard",
       "label": "Red Frilled Neck Lizard",
+      "label-incognito": "E-120",
       "label-short": "RFNL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-koala",
       "entity-name": "Red Koala",
       "label": "Red Koala",
+      "label-incognito": "E-121",
       "label-short": "RK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-numbat",
       "entity-name": "Red Numbat",
       "label": "Red Numbat",
+      "label-incognito": "E-122",
       "label-short": "RN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-tasmanian-devil",
       "entity-name": "Red Tasmanian Devil",
       "label": "Red Tasmanian Devil",
+      "label-incognito": "E-123",
       "label-short": "RTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-thorny-devil",
       "entity-name": "Red Thorny Devil",
       "label": "Red Thorny Devil",
+      "label-incognito": "E-124",
       "label-short": "RTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-tree-kangaroo",
       "entity-name": "Red Tree Kangaroo",
       "label": "Red Tree Kangaroo",
+      "label-incognito": "E-125",
       "label-short": "RTK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "red-wombat",
       "entity-name": "Red Wombat",
       "label": "Red Wombat",
+      "label-incognito": "E-126",
       "label-short": "RW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-australian-magpie",
       "entity-name": "Shy Australian Magpie",
       "label": "Shy Australian Magpie",
+      "label-incognito": "E-127",
       "label-short": "SAM",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-bilby",
       "entity-name": "Shy Bilby",
       "label": "Shy Bilby",
+      "label-incognito": "E-128",
       "label-short": "SB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-blue-tongue-skink",
       "entity-name": "Shy Blue-tongue Skink",
       "label": "Shy Blue-tongue Skink",
+      "label-incognito": "E-129",
       "label-short": "SBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-cockatoo",
       "entity-name": "Shy Cockatoo",
       "label": "Shy Cockatoo",
+      "label-incognito": "E-130",
       "label-short": "SC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-dingo",
       "entity-name": "Shy Dingo",
       "label": "Shy Dingo",
+      "label-incognito": "E-131",
       "label-short": "SD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-echidna",
       "entity-name": "Shy Echidna",
       "label": "Shy Echidna",
+      "label-incognito": "E-132",
       "label-short": "SE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-frilled-neck-lizard",
       "entity-name": "Shy Frilled Neck Lizard",
       "label": "Shy Frilled Neck Lizard",
+      "label-incognito": "E-133",
       "label-short": "SFNL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-koala",
       "entity-name": "Shy Koala",
       "label": "Shy Koala",
+      "label-incognito": "E-134",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-kookaburra",
       "entity-name": "Shy Kookaburra",
       "label": "Shy Kookaburra",
+      "label-incognito": "E-135",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-lyrebird",
       "entity-name": "Shy Lyrebird",
       "label": "Shy Lyrebird",
+      "label-incognito": "E-136",
       "label-short": "SL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-numbat",
       "entity-name": "Shy Numbat",
       "label": "Shy Numbat",
+      "label-incognito": "E-137",
       "label-short": "SN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-platypus",
       "entity-name": "Shy Platypus",
       "label": "Shy Platypus",
+      "label-incognito": "E-138",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-possum",
       "entity-name": "Shy Possum",
       "label": "Shy Possum",
+      "label-incognito": "E-139",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-quokka",
       "entity-name": "Shy Quokka",
       "label": "Shy Quokka",
+      "label-incognito": "E-140",
       "label-short": "SQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-tasmanian-devil",
       "entity-name": "Shy Tasmanian Devil",
       "label": "Shy Tasmanian Devil",
+      "label-incognito": "E-141",
       "label-short": "STD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "shy-wallaby",
       "entity-name": "Shy Wallaby",
       "label": "Shy Wallaby",
+      "label-incognito": "E-142",
       "label-short": "SW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-bandicoot",
       "entity-name": "Silent Bandicoot",
       "label": "Silent Bandicoot",
+      "label-incognito": "E-143",
       "label-short": "SB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-cassowary",
       "entity-name": "Silent Cassowary",
       "label": "Silent Cassowary",
+      "label-incognito": "E-144",
       "label-short": "SC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-fairy-penguin",
       "entity-name": "Silent Fairy Penguin",
       "label": "Silent Fairy Penguin",
+      "label-incognito": "E-145",
       "label-short": "SFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-goanna",
       "entity-name": "Silent Goanna",
       "label": "Silent Goanna",
+      "label-incognito": "E-146",
       "label-short": "SG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-kangaroo",
       "entity-name": "Silent Kangaroo",
       "label": "Silent Kangaroo",
+      "label-incognito": "E-147",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-numbat",
       "entity-name": "Silent Numbat",
       "label": "Silent Numbat",
+      "label-incognito": "E-148",
       "label-short": "SN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-possum",
       "entity-name": "Silent Possum",
       "label": "Silent Possum",
+      "label-incognito": "E-149",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-quokka",
       "entity-name": "Silent Quokka",
       "label": "Silent Quokka",
+      "label-incognito": "E-150",
       "label-short": "SQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-sugar-glider",
       "entity-name": "Silent Sugar Glider",
       "label": "Silent Sugar Glider",
+      "label-incognito": "E-151",
       "label-short": "SSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "silent-wallaby",
       "entity-name": "Silent Wallaby",
       "label": "Silent Wallaby",
+      "label-incognito": "E-152",
       "label-short": "SW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-bandicoot",
       "entity-name": "Sleepy Bandicoot",
       "label": "Sleepy Bandicoot",
+      "label-incognito": "E-153",
       "label-short": "SB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-cassowary",
       "entity-name": "Sleepy Cassowary",
       "label": "Sleepy Cassowary",
+      "label-incognito": "E-154",
       "label-short": "SC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-fairy-penguin",
       "entity-name": "Sleepy Fairy Penguin",
       "label": "Sleepy Fairy Penguin",
+      "label-incognito": "E-155",
       "label-short": "SFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-koala",
       "entity-name": "Sleepy Koala",
       "label": "Sleepy Koala",
+      "label-incognito": "E-156",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-kookaburra",
       "entity-name": "Sleepy Kookaburra",
       "label": "Sleepy Kookaburra",
+      "label-incognito": "E-157",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-lyrebird",
       "entity-name": "Sleepy Lyrebird",
       "label": "Sleepy Lyrebird",
+      "label-incognito": "E-158",
       "label-short": "SL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-numbat",
       "entity-name": "Sleepy Numbat",
       "label": "Sleepy Numbat",
+      "label-incognito": "E-159",
       "label-short": "SN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-perentie",
       "entity-name": "Sleepy Perentie",
       "label": "Sleepy Perentie",
+      "label-incognito": "E-160",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-platypus",
       "entity-name": "Sleepy Platypus",
       "label": "Sleepy Platypus",
+      "label-incognito": "E-161",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-possum",
       "entity-name": "Sleepy Possum",
       "label": "Sleepy Possum",
+      "label-incognito": "E-162",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-sugar-glider",
       "entity-name": "Sleepy Sugar Glider",
       "label": "Sleepy Sugar Glider",
+      "label-incognito": "E-163",
       "label-short": "SSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-thorny-devil",
       "entity-name": "Sleepy Thorny Devil",
       "label": "Sleepy Thorny Devil",
+      "label-incognito": "E-164",
       "label-short": "STD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-tree-kangaroo",
       "entity-name": "Sleepy Tree Kangaroo",
       "label": "Sleepy Tree Kangaroo",
+      "label-incognito": "E-165",
       "label-short": "STK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "sleepy-wombat",
       "entity-name": "Sleepy Wombat",
       "label": "Sleepy Wombat",
+      "label-incognito": "E-166",
       "label-short": "SW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-australian-magpie",
       "entity-name": "Spotted Australian Magpie",
       "label": "Spotted Australian Magpie",
+      "label-incognito": "E-167",
       "label-short": "SAM",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-bandicoot",
       "entity-name": "Spotted Bandicoot",
       "label": "Spotted Bandicoot",
+      "label-incognito": "E-168",
       "label-short": "SB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-bush-stone-curlew",
       "entity-name": "Spotted Bush Stone-curlew",
       "label": "Spotted Bush Stone-curlew",
+      "label-incognito": "E-169",
       "label-short": "SBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-echidna",
       "entity-name": "Spotted Echidna",
       "label": "Spotted Echidna",
+      "label-incognito": "E-170",
       "label-short": "SE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-fairy-penguin",
       "entity-name": "Spotted Fairy Penguin",
       "label": "Spotted Fairy Penguin",
+      "label-incognito": "E-171",
       "label-short": "SFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-kangaroo",
       "entity-name": "Spotted Kangaroo",
       "label": "Spotted Kangaroo",
+      "label-incognito": "E-172",
       "label-short": "SK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-platypus",
       "entity-name": "Spotted Platypus",
       "label": "Spotted Platypus",
+      "label-incognito": "E-173",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-possum",
       "entity-name": "Spotted Possum",
       "label": "Spotted Possum",
+      "label-incognito": "E-174",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-sugar-glider",
       "entity-name": "Spotted Sugar Glider",
       "label": "Spotted Sugar Glider",
+      "label-incognito": "E-175",
       "label-short": "SSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-tasmanian-devil",
       "entity-name": "Spotted Tasmanian Devil",
       "label": "Spotted Tasmanian Devil",
+      "label-incognito": "E-176",
       "label-short": "STD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "spotted-thorny-devil",
       "entity-name": "Spotted Thorny Devil",
       "label": "Spotted Thorny Devil",
+      "label-incognito": "E-177",
       "label-short": "STD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-australian-magpie",
       "entity-name": "Striped Australian Magpie",
       "label": "Striped Australian Magpie",
+      "label-incognito": "E-178",
       "label-short": "SAM",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-bandicoot",
       "entity-name": "Striped Bandicoot",
       "label": "Striped Bandicoot",
+      "label-incognito": "E-179",
       "label-short": "SB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-bilby",
       "entity-name": "Striped Bilby",
       "label": "Striped Bilby",
+      "label-incognito": "E-180",
       "label-short": "SB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-bush-stone-curlew",
       "entity-name": "Striped Bush Stone-curlew",
       "label": "Striped Bush Stone-curlew",
+      "label-incognito": "E-181",
       "label-short": "SBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-echidna",
       "entity-name": "Striped Echidna",
       "label": "Striped Echidna",
+      "label-incognito": "E-182",
       "label-short": "SE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-quokka",
       "entity-name": "Striped Quokka",
       "label": "Striped Quokka",
+      "label-incognito": "E-183",
       "label-short": "SQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-tasmanian-devil",
       "entity-name": "Striped Tasmanian Devil",
       "label": "Striped Tasmanian Devil",
+      "label-incognito": "E-184",
       "label-short": "STD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "striped-tree-kangaroo",
       "entity-name": "Striped Tree Kangaroo",
       "label": "Striped Tree Kangaroo",
+      "label-incognito": "E-185",
       "label-short": "STK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-bush-stone-curlew",
       "entity-name": "Swift Bush Stone-curlew",
       "label": "Swift Bush Stone-curlew",
+      "label-incognito": "E-186",
       "label-short": "SBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-emu",
       "entity-name": "Swift Emu",
       "label": "Swift Emu",
+      "label-incognito": "E-187",
       "label-short": "SE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-fairy-penguin",
       "entity-name": "Swift Fairy Penguin",
       "label": "Swift Fairy Penguin",
+      "label-incognito": "E-188",
       "label-short": "SFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-lyrebird",
       "entity-name": "Swift Lyrebird",
       "label": "Swift Lyrebird",
+      "label-incognito": "E-189",
       "label-short": "SL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-platypus",
       "entity-name": "Swift Platypus",
       "label": "Swift Platypus",
+      "label-incognito": "E-190",
       "label-short": "SP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-redback-spider",
       "entity-name": "Swift Redback Spider",
       "label": "Swift Redback Spider",
+      "label-incognito": "E-191",
       "label-short": "SRS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "swift-sugar-glider",
       "entity-name": "Swift Sugar Glider",
       "label": "Swift Sugar Glider",
+      "label-incognito": "E-192",
       "label-short": "SSG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-bandicoot",
       "entity-name": "Tiny Bandicoot",
       "label": "Tiny Bandicoot",
+      "label-incognito": "E-193",
       "label-short": "TB",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-cockatoo",
       "entity-name": "Tiny Cockatoo",
       "label": "Tiny Cockatoo",
+      "label-incognito": "E-194",
       "label-short": "TC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-dingo",
       "entity-name": "Tiny Dingo",
       "label": "Tiny Dingo",
+      "label-incognito": "E-195",
       "label-short": "TD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-echidna",
       "entity-name": "Tiny Echidna",
       "label": "Tiny Echidna",
+      "label-incognito": "E-196",
       "label-short": "TE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-fairy-penguin",
       "entity-name": "Tiny Fairy Penguin",
       "label": "Tiny Fairy Penguin",
+      "label-incognito": "E-197",
       "label-short": "TFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-goanna",
       "entity-name": "Tiny Goanna",
       "label": "Tiny Goanna",
+      "label-incognito": "E-198",
       "label-short": "TG",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-numbat",
       "entity-name": "Tiny Numbat",
       "label": "Tiny Numbat",
+      "label-incognito": "E-199",
       "label-short": "TN",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "tiny-possum",
       "entity-name": "Tiny Possum",
       "label": "Tiny Possum",
+      "label-incognito": "E-200",
       "label-short": "TP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-blue-tongue-skink",
       "entity-name": "Wild Blue-tongue Skink",
       "label": "Wild Blue-tongue Skink",
+      "label-incognito": "E-201",
       "label-short": "WBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-dingo",
       "entity-name": "Wild Dingo",
       "label": "Wild Dingo",
+      "label-incognito": "E-202",
       "label-short": "WD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-fairy-penguin",
       "entity-name": "Wild Fairy Penguin",
       "label": "Wild Fairy Penguin",
+      "label-incognito": "E-203",
       "label-short": "WFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-koala",
       "entity-name": "Wild Koala",
       "label": "Wild Koala",
+      "label-incognito": "E-204",
       "label-short": "WK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-quokka",
       "entity-name": "Wild Quokka",
       "label": "Wild Quokka",
+      "label-incognito": "E-205",
       "label-short": "WQ",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-rosella",
       "entity-name": "Wild Rosella",
       "label": "Wild Rosella",
+      "label-incognito": "E-206",
       "label-short": "WR",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-thorny-devil",
       "entity-name": "Wild Thorny Devil",
       "label": "Wild Thorny Devil",
+      "label-incognito": "E-207",
       "label-short": "WTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "wild-wombat",
       "entity-name": "Wild Wombat",
       "label": "Wild Wombat",
+      "label-incognito": "E-208",
       "label-short": "WW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-blue-tongue-skink",
       "entity-name": "Yellow Blue-tongue Skink",
       "label": "Yellow Blue-tongue Skink",
+      "label-incognito": "E-209",
       "label-short": "YBS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-cockatoo",
       "entity-name": "Yellow Cockatoo",
       "label": "Yellow Cockatoo",
+      "label-incognito": "E-210",
       "label-short": "YC",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-echidna",
       "entity-name": "Yellow Echidna",
       "label": "Yellow Echidna",
+      "label-incognito": "E-211",
       "label-short": "YE",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-fairy-penguin",
       "entity-name": "Yellow Fairy Penguin",
       "label": "Yellow Fairy Penguin",
+      "label-incognito": "E-212",
       "label-short": "YFP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-frilled-neck-lizard",
       "entity-name": "Yellow Frilled Neck Lizard",
       "label": "Yellow Frilled Neck Lizard",
+      "label-incognito": "E-213",
       "label-short": "YFNL",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-platypus",
       "entity-name": "Yellow Platypus",
       "label": "Yellow Platypus",
+      "label-incognito": "E-214",
       "label-short": "YP",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-redback-spider",
       "entity-name": "Yellow Redback Spider",
       "label": "Yellow Redback Spider",
+      "label-incognito": "E-215",
       "label-short": "YRS",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-thorny-devil",
       "entity-name": "Yellow Thorny Devil",
       "label": "Yellow Thorny Devil",
+      "label-incognito": "E-216",
       "label-short": "YTD",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-tree-kangaroo",
       "entity-name": "Yellow Tree Kangaroo",
       "label": "Yellow Tree Kangaroo",
+      "label-incognito": "E-217",
       "label-short": "YTK",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     },
     {
       "id": "yellow-wombat",
       "entity-name": "Yellow Wombat",
       "label": "Yellow Wombat",
+      "label-incognito": "E-218",
       "label-short": "YW",
-      "description": "",
       "essential-wrrr-services": "",
-      "isRE": "no"
+      "isRE": "no",
+      "description": ""
     }
   ],
   "link-upstream": [

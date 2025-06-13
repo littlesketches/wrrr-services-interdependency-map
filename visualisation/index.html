@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>WRRR Services Map: Currents</title>
+    <title>WRRR Services Map</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,12 @@
     <link rel="stylesheet" href="../_static/css/global-style.css">
     <link rel="stylesheet" href="../visualisation/style.css">
     <link rel="stylesheet" href="../visualisation/vis.css">
-
+    <!-- Script -->
+    <script>
+        // Use queryParams to check for incognito mode
+        const urlParams = new URLSearchParams(window.location.search);
+        const incognitoMode = urlParams.get('incognito') !== null ? true : false
+    </script> 
 </head>
 
 <!-- HTML MARKUP-->
@@ -78,18 +83,31 @@
                                 </ul>
                             </nav>
 
+                            <!-- RESPONSIBLE ENTITIES OPTION -->
                             <div class = 'mode-content entities-mode-content responsible'>
                                 <p>Use this mode to identity the connections from a selected <span class = 'selected entity highlighted'>responsible entity</span>.</p>
 
                                 <h2 class = 'responsible-entities-selection-header'>Select a responsible entity</h2>
                                 <div class = 'responsible-entities-input-container'></div>
 
-                                <p>Use the switch below to set the depth of connections in the network to visualise.</p>
+                                <!-- <p>Use the switch below to set the depth of connections in the network to visualise.</p> -->
+                                <h2 class = 'responsible-entities-selection-header'>Options</h2>
+                                <div class = 'responsible-switch-wrapper switch-selector-container'>
+                                    <div class = 'responsible-switch-label'>Network depth</div>
 
-                                <div class = 'ui-option-content switch-selector-container'>
-                                    <label class ='switch-label responsible-depth-selector left'  for="responsible-depth-selector">Immediate</label>
-                                    <input type="checkbox" role="switch" id="responsible-depth-selector" onchange="ui.handle.toggleResponsibleDepth(this.checked)" />
-                                    <label class ='switch-label responsible-depth-selector right'  for="responsible-depth-selector">Edge of network</label>
+                                        <label class ='switch-label minor responsible-depth-selector left'  for="responsible-depth-selector">Immediate</label>
+                                        <input type="checkbox" role="switch" id="responsible-depth-selector" onchange="ui.handle.toggleResponsibleDepth(this.checked)" />
+                                        <label class ='switch-label minor responsible-depth-selector right'  for="responsible-depth-selector">Edge of network</label>
+             
+                                </div>
+
+                                <div class = 'responsible-switch-wrapper switch-selector-container'>
+                                    <div class = 'responsible-switch-label'>Incognito mode</div>
+
+                                        <label class ='switch-label minor re-incognito-selector left'  for="re-incognito-selector">Off</label>
+                                        <input type="checkbox" role="switch" id="re-incognito-selector" onchange="ui.handle.toggleReIncognito(this.checked)" />
+                                        <label class ='switch-label minor re-incognito-selector right'  for="re-incognito-selector">On</label>
+    
                                 </div>
 
                                 <div class = 'guidance-container guidance'>
@@ -98,6 +116,7 @@
                                 </div>
                             </div>
 
+                            <!-- BROWSE ENTITIES OPTION -->
                             <div class = 'mode-content entities-mode-content browse'>
                                 <p>Use this mode to visualise the network connections starting from a selected entity (node). </p> 
 
@@ -111,12 +130,12 @@
                                     <label class ='switch-label browse-depth-selector right'  for="browse-depth-selector">Edge of network</label>
                                 </div>
 
-
                                 <div class = 'guidance-container guidance'>
                                     <p>While in <span class = 'mode'>browse mode</span>, tapping on a node will select it and move you into  <span class = 'mode'>trace mode</span>. </p>
                                 </div>
                             </div>
 
+                            <!-- TRACE ENTITIES OPTION -->
                             <div class = 'mode-content entities-mode-content  trace'>
                                 <p>Use this mode to trace <span class = 'upstream underline'>upstream</span> and <span class = 'downstream underline'>downstream</span> connections from a <span class = 'selected entity highlighted'>selected entity</span>, <strong>one step at a time</strong>. Each step increase the depth of the trace and is triggered by repeatedly tapping on selected entity (node). 
                                 </p>
@@ -152,6 +171,7 @@
                                 </div>
                             </div>
 
+                            <!-- BLEND ENTITIES OPTION -->
                             <div class = 'mode-content entities-mode-content  blend'>
                                 <p>Use this mode allows to combine the connected networks of <span class = 'selected entity highlighted'>multiple entities</span>. This view lets you visualise mutual connections and areas (nodes) in the network.</p>
 
@@ -569,7 +589,7 @@
                         </div>
 
                         <div class = 'legend-stat-group'>
-                            <div class = 'legend-label'>Intermediate network structure</div>
+                            <div class = 'legend-label intermediate'>Intermediate network structure</div>
                             <div class = 'legend-stat-container'>
                                 <div id = "data-node-intermediate-unconnected" class = 'legend-stat-data'></div>
                                 <div class = 'legend-stat-label'><span id = "data-node-intermediate-unconnected_unit">entities are</span> not connected</div>
@@ -589,7 +609,7 @@
                         </div>
 
                         <div class = 'legend-stat-group'>
-                            <div class = 'legend-label'>Network links</div>
+                            <!-- <div class = 'legend-label'>Network links</div> -->
                             <div class = 'legend-stat-container'>
                                 <div id = "data-link-intermediate" class = 'legend-stat-data'></div>
                                 <div class = 'legend-stat-label'> <span id = "data-link-intermediate_unit">links</span> between intermediates</div>
@@ -653,6 +673,11 @@
     <!-- Input data -->
     <script src="../_static/js/data/by-reporting-year/data-2024.js"></script>    
     <script src="../_static/js/data/by-reporting-year/data-2025.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2026.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2027.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2028.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2029.js"></script>    
+    <script src="../_static/js/data/by-reporting-year/data-2030.js"></script>    
     <!-- Visualisation data model-->
     <script src="../_static/js/data/data-model.js"></script>    
     <!-- Visualisation components -->

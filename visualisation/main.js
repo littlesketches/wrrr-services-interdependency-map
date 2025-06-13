@@ -327,7 +327,7 @@ function renderVis(layout, ui, node, link, schema){
                     .classed('node-label-text source', true)
                     .attr('id', d => `node-label_${d.id}`)                   
                     .attr('y', d =>   d.state.node.size.height)  
-                    .text(d =>  d.meta.label)
+                    .text(d =>  incognitoMode ? d.meta['label-incognito'] : d.meta.label)
             },
 
             addSinkLabel: (selection) => {
@@ -347,7 +347,7 @@ function renderVis(layout, ui, node, link, schema){
                     .classed('node-label-text sink', true)
                     .attr('id', d => `node-label_${d.id}`)                   
                     .attr('y', d =>  - labelHeight * 0 - d.state.node.size.height)  
-                    .text(d =>  d.meta.label)
+                    .text(d =>  incognitoMode ? d.meta['label-incognito'] : d.meta.label)
             },
 
             addIntermediateLabel: (selection) => {
@@ -365,7 +365,7 @@ function renderVis(layout, ui, node, link, schema){
                     .attr('id', d => `node-label_${d.id}`)                   
                     .style('font-size', d => d.state.node.size.radius.outer * 1.25)                 
                     .style('stroke-width', d => d.state.node.size.radius.outer * 0.01)                 
-                    .text(d =>  d.meta.label)
+                    .text(d =>  incognitoMode ? d.meta['label-incognito'] : d.meta.label)
             },
 
             addIntermediateLabelAll: (selection) => {
@@ -383,7 +383,7 @@ function renderVis(layout, ui, node, link, schema){
                     .attr('id', d => `node-label-all_${d.id}`)                   
                     .style('font-size', d => d.state.node.size.radius.outer * 0.75)                 
                     .style('stroke-width', d => d.state.node.size.radius.outer * 0.01)                 
-                    .text(d =>  d.meta.label)
+                    .text(d =>  incognitoMode ? d.meta['label-incognito'] : d.meta.label)
             }
 
         }
