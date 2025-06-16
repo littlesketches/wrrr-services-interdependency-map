@@ -179,10 +179,6 @@ class Interface{
 
                 nodeEl.classed('focus', true) 
 
-                // Show labels
-                if(!ui.state.mode.entities.reIncognito) label.classed('visible', true)
-                d3.selectAll('.node-label-group-all').classed('visible', false)
-
                 switch(ui.state.mode.app){
                     case 'service': 
                     case 'vulnerability': 
@@ -193,6 +189,7 @@ class Interface{
                     case 'overview':     // Fall into entities to browse
                         ui.handle.setMode('entities')
                         ui.handle.setEntitiesMode('browse')
+
                     case 'entities':    
                         switch(ui.state.mode.entities.mode){
                             case 'browse':
@@ -201,7 +198,6 @@ class Interface{
                                         // Trace to end of network
                                         let end = false
                                         while(!end) end = ui.handle.visualTrace(node)
-
                                         break
 
                                     case false:
@@ -210,12 +206,18 @@ class Interface{
                                 }
 
                             case 'responsible':
+                                if(ui.state.mode.entities.reIncognito) return
+                                break
                             case 'trace':
                             case 'blend':
                                 break
                         }
                         break
                 }
+
+                // Show labels
+                label.classed('visible', true)
+                d3.selectAll('.node-label-group-all').classed('visible', false)
 
                 // Update legend data
                 ui.handle.updateLegend()
@@ -229,7 +231,7 @@ class Interface{
 
                 nodeEl.classed('focus', false) 
                 label.classed('visible', false)
-                d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels)
+                if(!ui.state.mode.entities.reIncognito) ui.handle.resetLabelSelection()
 
                 switch(ui.state.mode.app){
                     case 'service': 
@@ -239,8 +241,10 @@ class Interface{
                     case 'overview': 
                     case 'entities': 
          
-
                         switch(ui.state.mode.entities.mode){
+                            case 'responsible':
+                                if(ui.state.mode.entities.reIncognito) return
+                                break
                             case 'browse':
                                 ui.handle.reset()
                                 break
@@ -264,17 +268,19 @@ class Interface{
                 // Action by mode / submode
                 switch(ui.state.mode.app){
                     case 'service': 
-                        console.log('Add service function?')
                         break
 
                     case 'vulnerability': 
-                        console.log('Add vulnerability function?')
                         break
 
                     case 'overview':    // Will be in entities mode already
                         ui.handle.setMode('entities')
                     case 'entities': 
                         switch(ui.state.mode.entities.mode){
+                            case 'responsible':
+                                if(ui.state.mode.entities.reIncognito) return
+                                break
+
                             case 'browse':
                                 ui.handle.reset()
                                 // Select/start trance  and enter trance mode
@@ -307,7 +313,7 @@ class Interface{
 
                                 break
 
-                          case 'blend':  
+                            case 'blend':  
                                 // Return (no update)if node is reselected
                                 if(selectedNodes.includes(node)) return
                                 
@@ -322,12 +328,31 @@ class Interface{
                         }
 
                         break
-
                 }
 
                 // Update legend data
                 ui.handle.updateLegend()
                 ui.handle.resetLabelSelection()
+            },
+            svgClick: (ev, node) => {
+
+                // Action by mode / submode
+                switch(ui.state.mode.app){
+                    case 'service': 
+                        break
+                    case 'vulnerability': 
+                        break
+                    case 'overview':   
+                        break
+                    case 'entities': 
+                        switch(ui.state.mode.entities.mode){
+                            case 'responsible':
+                                if(ui.state.mode.entities.reIncognito) return
+                                break
+                        }
+                        break
+                }
+                ui.handle.reset()
 
             },
 
@@ -753,8 +778,10 @@ class Interface{
 
                 //  Update data legend
                 ui.handle.updateLegend()
-                // REset labels
-                ui.handle.resetLabelSelection()
+
+                // Update labels
+                d3.selectAll('.node-label-group-all').classed('visible', false )
+            
             },
             resetLabelSelection(){
                 if(ui.state.view.networkLabels){
@@ -781,7 +808,9 @@ class Interface{
                         d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
                     } 
                 } else {
-                    d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+                    if(!ui.state.mode.entities.reIncognito){
+                        d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+                    }
                 }
             },
             // Interaction handler
@@ -869,8 +898,12 @@ class Interface{
                 d3.selectAll('.re-incognito-selector.switch-label ').classed('selected', false)
                 if(ui.state.mode.entities.reIncognito){
                     d3.select('.switch-label.re-incognito-selector.right').classed('selected', true)
+                    d3.selectAll('.responsible-entity-selector-label')
+                        .html( d => `${d.meta['label-incognito']}`)
                 } else {
                     d3.select('.switch-label.re-incognito-selector.left').classed('selected', true)
+                    d3.selectAll('.responsible-entity-selector-label')
+                        .html(d => `${d.meta.label}`)
                 }
 
                 ui.handle.setResponsibleEntity()
@@ -1119,7 +1152,7 @@ class Interface{
                 // ii. Reset the visualisation 
                 ui.handle.reset()
 
-                // iii. Reset the visualisation 
+                // iii. Perform visual trace
                 switch(ui.state.mode.entities.responsibleDepthFull){
                     case true:
                         ui.handle.visualTraceToEnd(selectedRE)
@@ -1135,6 +1168,17 @@ class Interface{
                 // vi. Update data legend and reset labels
                 ui.handle.updateLegend()
                 ui.handle.resetLabelSelection()
+
+                // vii. Set RE selector labels
+                if(ui.state.mode.entities.reIncognito){
+                    d3.selectAll('.responsible-entity-selector-label')
+                        .html( d => `${d.meta['label-incognito']}`)
+                    d3.selectAll(`#re-label-${selectedRE.id}`)
+                        .html(d => `${d.meta.label}`)
+                } else {
+                    d3.selectAll('.responsible-entity-selector-label')
+                        .html(d => `${d.meta.label}`)
+                }
             },
             setEWS:  function(el, id) {
                 ui.state.mode.service.eswSelect[id] = el.checked
@@ -1246,10 +1290,6 @@ class Interface{
                     // App reset
                     case "Escape":
                         ui.handle.reset()
-                        // ui.handle.toggleInfoPane(true)
-                        // ui.handle.toggleInfoContent(true)
-                        // ui.handle.toggleLegendPane(true)
-                        // ui.handle.setMode('overview')
                         break 
 
                     // APP MODES AND SUB MODES
@@ -1408,14 +1448,18 @@ class Interface{
 
             inputContainer.append('input')
                 .attr('id', node.id)
-                .attr('name', 'frequency')
+                .attr('name', 'responsible-entity-selector')
                 .attr('value', node.id)
                 .attr('type', 'radio')
                 .on('change', function(){ ui.handle.setResponsibleEntity(this, node.id)})
 
-            inputContainer.append('label')
-                .attr('for', node.id)
-                .html(`${node.meta.label}`)
+            const label = inputContainer.append('label')
+                .datum(node)
+                .attr('id', `re-label-${node.id}`)
+                .classed('responsible-entity-selector-label', true)
+                .attr('for',  node.id)
+                .html( d =>  `${d.meta.label}`)
+
         }
     }
 

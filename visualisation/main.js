@@ -93,7 +93,7 @@ function renderVis(layout, ui, node, link, schema){
     // 1. Select the SVG element and add viewbox prop
     const svg = d3.select('#vis')
         .attr('viewBox', `0, 0, ${dims.width}, ${dims.height}`)
-        .on('click', ui.handle.reset)
+        .on('click', ui.handle.svgClick)
 
     const defs = svg.append('defs')
 
