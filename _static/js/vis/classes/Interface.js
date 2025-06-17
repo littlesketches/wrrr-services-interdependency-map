@@ -805,7 +805,9 @@ class Interface{
                              .classed('visible', ui.state.view.networkLabels )
                     
                     } else {
-                        d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+                        if((ui.state.mode.app !== 'entities' && ui.state.mode.entities !== 'responsible') || !ui.state.mode.entities.reIncognito){
+                            d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+                        }
                     } 
                 } else {
                     if(!ui.state.mode.entities.reIncognito){
@@ -907,6 +909,7 @@ class Interface{
                 }
 
                 ui.handle.setResponsibleEntity()
+                ui.handle.resetLabelSelection()
             },
 
             toggleBlend(isOn){
@@ -1113,6 +1116,13 @@ class Interface{
                 d3.select('.ui-info-wrapper.entities-mode').attr('class', `ui-info-wrapper entities-mode ${mode}`)
                 d3.selectAll(`.entities-mode li`).classed('selected', false)
                 d3.select(`.entities-mode li.${mode}-mode`).classed('selected', true)
+
+                switch(mode){
+                    case 'responsible':
+                        ui.handle.toggleReIncognito(true)
+                        break
+                    default:
+                }    
             },
             setServiceMode: function(mode){
                 mode = ui.state.mode.service.mode = mode ?? ui.state.mode.service.mode 
@@ -1143,41 +1153,77 @@ class Interface{
 
             /** UPDATE FILTERING OPTIONS */
             setResponsibleEntity:  function(el, id) {
+                /**
+                 *  I. Deactivate if already selected
+                 */ 
+                if(ui.state.mode.entities.responsible === id && el){
+                    console.log('Deselect', el, el.name )
+
+                    // i. Reset radio selector
+                    const selected = document.querySelector(`input[name="${el.name}"]:checked`);
+                    if (selected)  selected.checked = false;
+                    
+                    // ii. Reset the visual
+                    ui.handle.reset()
+
+                    // iii.Reset the selector labels
+                    d3.selectAll('.responsible-entity-selector-label')
+                        .html( d => ui.state.mode.entities.reIncognito ? `${d.meta['label-incognito']}` : `${d.meta.label}`)
+
+                    // iv. Reset selected
+                    ui.state.mode.entities.responsible = null
+
+                    // v. Reset labels (for when labels are toggled on)
+                    ui.handle.resetLabelSelection()
+                    return 
+                } 
+
+                /**
+                 *  II. Set responsible entity
+                 */
                 // i. Update state and get selected RE node 
                 ui.state.mode.entities.responsible = id ?? ui.state.mode.entities.responsible 
 
-                const selectedRE = node[ui.state.mode.entities.responsible]
-                if(!selectedRE) return
+                if(typeof node !== 'undefined'){
+                    const selectedRE = node[ui.state.mode.entities.responsible]
+                    if(!selectedRE) return
 
-                // ii. Reset the visualisation 
-                ui.handle.reset()
+                    // ii. Reset the visualisation 
+                    ui.handle.reset()
 
-                // iii. Perform visual trace
-                switch(ui.state.mode.entities.responsibleDepthFull){
-                    case true:
-                        ui.handle.visualTraceToEnd(selectedRE)
-                        break
-                    case false:
-                    default: 
-                        ui.handle.visualTrace(selectedRE)
-                }
+                    // iii. Perform visual trace
+                    switch(ui.state.mode.entities.responsibleDepthFull){
+                        case true:
+                            ui.handle.visualTraceToEnd(selectedRE)
+                            break
+                        case false:
+                        default: 
+                            ui.handle.visualTrace(selectedRE)
+                    }
 
-                ui.handle.updateTraceUI()
-                selectedNodes = [...new Set([...selectedNodes, selectedRE])]
+                    ui.handle.updateTraceUI()
+                    selectedNodes = [...new Set([...selectedNodes, selectedRE])]
 
-                // vi. Update data legend and reset labels
-                ui.handle.updateLegend()
-                ui.handle.resetLabelSelection()
+                    // vi. Update data legend and reset labels
+                    ui.handle.updateLegend()
+                    ui.handle.resetLabelSelection()
 
-                // vii. Set RE selector labels
-                if(ui.state.mode.entities.reIncognito){
-                    d3.selectAll('.responsible-entity-selector-label')
-                        .html( d => `${d.meta['label-incognito']}`)
-                    d3.selectAll(`#re-label-${selectedRE.id}`)
-                        .html(d => `${d.meta.label}`)
+                    // vii. Set RE selector labels
+                    if(ui.state.mode.entities.reIncognito){
+                        d3.selectAll('.responsible-entity-selector-label')
+                            .html( d => `${d.meta['label-incognito']}`)
+                        d3.selectAll(`#re-label-${selectedRE.id}`)
+                            .html(d => `${d.meta.label}`)
+                    } else {
+                        d3.selectAll('.responsible-entity-selector-label')
+                            .html(d => `${d.meta.label}`)
+                    }
+
                 } else {
+                    // On load. Set RE selector labels
                     d3.selectAll('.responsible-entity-selector-label')
-                        .html(d => `${d.meta.label}`)
+                        .html( d => ui.state.mode.entities.reIncognito ? `${d.meta['label-incognito']}` : `${d.meta.label}`)
+        
                 }
             },
             setEWS:  function(el, id) {
@@ -1451,7 +1497,8 @@ class Interface{
                 .attr('name', 'responsible-entity-selector')
                 .attr('value', node.id)
                 .attr('type', 'radio')
-                .on('change', function(){ ui.handle.setResponsibleEntity(this, node.id)})
+                // .on('change', function(){ ui.handle.setResponsibleEntity(this, node.id)})
+                .on('click', function(){ ui.handle.setResponsibleEntity(this, node.id)})
 
             const label = inputContainer.append('label')
                 .datum(node)
