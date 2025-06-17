@@ -1119,6 +1119,7 @@ class Interface{
 
                 switch(mode){
                     case 'responsible':
+                        ui.handle.reset()
                         ui.handle.toggleReIncognito(true)
                         break
                     default:
