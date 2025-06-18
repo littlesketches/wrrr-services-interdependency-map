@@ -400,11 +400,11 @@ class Interface{
                 const noIntermediateREs = activeNodes.length === 0 ? ui.layout.node.cluster.byCategory.responsibleEntity.length 
                     : [...new Set(activeNodes.filter(el => el.classList.contains('responsible-entity')))].length
 
-                const noIntermediateNonREs = activeNodes.length === 0 ? ui.layout.node.cluster.byCategory.intermediate.length - ui.layout.node.cluster.byCategory.responsibleEntity.length
-                    : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate')))].length - [...new Set(activeNodes.filter(el => el.classList.contains('responsible-entity')))].length
-
                 const noUnconnected = activeNodes.length === 0 ? ui.layout.node.cluster.intermediateNodes.unconnected.all.length 
                     : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate-unconnected')))].length 
+
+                const noIntermediateNonREs = activeNodes.length === 0 ? ui.layout.node.cluster.byCategory.intermediate.length - ui.layout.node.cluster.byCategory.responsibleEntity.length
+                    : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate')))].length - [...new Set(activeNodes.filter(el => el.classList.contains('responsible-entity')))].length + noUnconnected
 
                 const noIntermediateSource  = activeNodes.length === 0 ? ui.layout.node.cluster.intermediateNodes.source.length 
                     : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate-source')))].length 
@@ -412,7 +412,7 @@ class Interface{
                 const noIntermediateSink  = activeNodes.length === 0 ? ui.layout.node.cluster.intermediateNodes.sink.length
                     : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate-sink')))].length 
 
-                const noIntermediateIntermediate = noIntermediate - noUnconnected - noIntermediateSource - noIntermediateSink
+                const noIntermediateIntermediate = noIntermediate - noUnconnected - noIntermediateSource - noIntermediateSink + noUnconnected
 
                 const noIntermediateLinks = activeNodes.length === 0 ? Object.values(ui.layout._data.link).filter(link => link.node.from.state.config.isIntermediate && link.node.to.state.config.isIntermediate ).length
                     : [...new Set(activeIntermediateLinks)].length 
