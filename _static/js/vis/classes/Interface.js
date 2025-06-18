@@ -784,10 +784,11 @@ class Interface{
             
             },
             resetLabelSelection(){
+                // A. TOGGLE ON
                 if(ui.state.view.networkLabels){
 
                     let nodesSelected = Object.values(ui.state.selection.node.instances).flat()
-
+                    // i. WITH SELECTION 
                     if(nodesSelected.length > 0){
                         d3.selectAll('.node-label-group-all').classed('visible', false )
 
@@ -804,15 +805,31 @@ class Interface{
                         d3.selectAll('.node-label-group-all').filter(d => nodesSelected.includes(d))
                              .classed('visible', ui.state.view.networkLabels )
                     
+                    // ii. WITHOUT SELECTION 
                     } else {
+                        // Outside of 'responsible entities' mode/option OR when RE incognito is OFF 
                         if((ui.state.mode.app !== 'entities' && ui.state.mode.entities !== 'responsible') || !ui.state.mode.entities.reIncognito){
                             d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+
+                        } 
+                        // If in RE incognito, switch off all labels
+                        if(ui.state.mode.entities.reIncognito){
+                            d3.selectAll('.node-label-group-all').classed('visible', false )
                         }
                     } 
-                } else {
-                    if(!ui.state.mode.entities.reIncognito){
-                        d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+
+                    // Always 
+                    if(ui.state.mode.entities.reIncognito){
+
                     }
+                } else {
+                    // B. TOGGLE OFF
+                    // i. WITH INCOGNTIO OFF
+                    // if(!ui.state.mode.entities.reIncognito){
+                    //     d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+                    // } else {
+                        d3.selectAll('.node-label-group-all').classed('visible', ui.state.view.networkLabels )
+                    // }
                 }
             },
             // Interaction handler
@@ -1158,7 +1175,6 @@ class Interface{
                  *  I. Deactivate if already selected
                  */ 
                 if(ui.state.mode.entities.responsible === id && el){
-                    console.log('Deselect', el, el.name )
 
                     // i. Reset radio selector
                     const selected = document.querySelector(`input[name="${el.name}"]:checked`);
