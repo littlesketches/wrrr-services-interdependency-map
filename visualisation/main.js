@@ -304,7 +304,9 @@ function renderVis(layout, ui, node, link, schema){
                     .attr('class', (link, i, d) => `${d[i].getAttribute('class')} frequency_${link.config.frequency} major-direction_${link.config.direction.major} minor-direction_${link.config.direction.minor}`)
             },
             raise: (selection) => {
-                if(selection.node()) d3.select(selection.node().parentNode).raise()
+                if(selection.node()){
+                    d3.select(selection.node().parentNode).raise()
+                }
             }
         },
         annotation:{
