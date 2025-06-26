@@ -59,8 +59,9 @@ const insert = {
 // Join/merge arrays 
 const join = {
     interleaveBalanced: (arr1, arr2) => {
-        const longer = arr1.length > arr2.length ? arr1 : arr2,
+        const longer = arr1.length >= arr2.length ? arr1 : arr2,
             shorter = arr1.length < arr2.length ? arr1 : arr2
+
 
         const result = [];
         const totalSlots = longer.length + shorter.length;

@@ -242,9 +242,12 @@ class Node{
 
         // For intermediate nodes
         if(this.state.config.isIntermediate ){
+
             // Test if node is connected to any other intermediate nodes with external (non-loop) links
             const outLinks = Object.values(this.link.out).filter( Link => Link.node.to.state.config.isIntermediate && (Link.node.to !== Link.node.from)),   // Connected from as a source fto another intermediate node (excluding loops)
-                inLinks    = Object.values(this.link.in).filter( Link => Link.node.from.state.config.isIntermediate && (Link.node.to !== Link.node.from))  // Connected to as a sink from another intermediate node (excluding loops)                                    
+                inLinks    = Object.values(this.link.in).filter( Link => Link.node.from.state.config.isIntermediate && (Link.node.to !== Link.node.from)),  // Connected to as a sink from another intermediate node (excluding loops)                                    
+                outLinkNo = outLinks.length,
+                inLinkNo = inLinks.length
 
             this.state.config.intermediate = {
                 isSource:          outLinks.length > 0 && inLinks.length === 0,         // Source: has out links but no in links (to intermediates)

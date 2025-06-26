@@ -435,6 +435,7 @@ class Layout{
             // ii. Along major axis: adds and calculates as 'sort level'
             this.node.cluster.intermediateNodes.intermediate = sortIntermediatesMajor(this.node.cluster.intermediateNodes.intermediate.filter( node =>  node.state.config.intermediate.isIntermediate ))
 
+
             // x. Sorting algorithms for intermediate network
             function sortIntermediatesMinor(nodes){
 
@@ -755,6 +756,7 @@ class Layout{
          */
 
             // i. Sort intermediate source: 
+
             this.node.cluster.intermediateNodes.source.sort((a, b) => {
                 const interNodeToA = d3.mean(Object.values(a.link.out).map(link => link.node.to).filter(node => node.state.config?.intermediate?.isIntermediate).map(node => this.node.cluster.intermediateNodes.intermediate.indexOf(node))),
                     interNodeToB = d3.mean(Object.values(b.link.out).map(link => link.node.to).filter(node => node.state.config?.intermediate?.isIntermediate).map(node => this.node.cluster.intermediateNodes.intermediate.indexOf(node)))
@@ -1071,6 +1073,8 @@ class Layout{
                 nodeCount.source++
             }
 
+
+
             // 2. Intermediate nodes
             if(node.state.config.isIntermediate){
 
@@ -1082,13 +1086,15 @@ class Layout{
                     intermediate:   'isIntermediate'
                 }
 
-                for( const [type , flagProp] of Object.entries(intermediateTypes)){
 
+
+                for( const [type , flagProp] of Object.entries(intermediateTypes)){
                     if(node.state.config.intermediate[flagProp]){
                         // Update size and position
                         this.updateNodeSize(node, `intermediate-${type}`) 
 
                         if( type === 'sink' || type === 'source'){
+
                             this.updateNodePosition(node, `intermediate-${type}`, nodeCount.intermediate.sourceAndSink)
                             nodeCount.intermediate.sourceAndSink++
                         } else {
@@ -1099,6 +1105,8 @@ class Layout{
                         nodeCount.intermediate[type]++
                     }
                 }
+
+
 
                 // Update counter
                 nodeCount.intermediate.all++
@@ -1180,6 +1188,8 @@ class Layout{
 
     updateNodePosition(node, type, index){
         const { source, sink, intermediate } = this.node.layout
+
+
 
         const nodeCluster = this.node.cluster,
             dims = this.config.dims,
@@ -1297,6 +1307,7 @@ class Layout{
           
             case 'intermediate-source':
             case 'intermediate-sink':
+
                 // i. Get node size, padding and get layer position
                 nodeCount   = index  
                 nodeSize    = intermediate.nodeSize  

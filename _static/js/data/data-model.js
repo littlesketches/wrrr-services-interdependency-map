@@ -120,7 +120,6 @@ function buildVisDataModel(inputData, reportYear){
 
             
     // II. Non-Responsible entity nodes: 
-        /// NEED TO ENSURE LINK DATA IS BY REPORTING YEAR
     // a. Extract unique list of node ids from link upstream and downstream data
     const linkDataMerged = inputData['link-upstream'].concat(inputData['link-downstream'])
 
