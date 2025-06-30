@@ -453,7 +453,6 @@ class Interface{
                 d3.select('#data-node-intermediate-intermediate').html(`x ${noIntermediateIntermediate}`)
                 d3.select('#data-node-intermediate-intermediate_unit').html(`${noIntermediateIntermediate === 1 ? 'entity is' : 'entities are'}`)
 
-
                 d3.select('#data-link-intermediate').html(`x ${noIntermediateLinks}`)
                 d3.select('#data-link-intermediate_unit').html(`${noIntermediateLinks === 1 ? 'link' : 'links'}`)
                 d3.select('#data-link-loops').html(`x ${noLoopLinks}`)
@@ -1506,6 +1505,8 @@ class Interface{
         const reNodes = Object.values(this.layout._data.node).filter(node => node.state.config.isResponsibleEntity), 
             container = d3.select('.responsible-entities-input-container')
 
+         container.selectAll('*').remove()  
+
         for( const node of reNodes){
             const inputContainer = container.append('div').classed('re-input checkbox-input', true)
 
@@ -1530,6 +1531,8 @@ class Interface{
     #addEwsUI(){
         const eswSchema = this.layout._data.schema['essential-wrrr-services'], 
             container = d3.select('.esw-inputs-container')
+
+        container.selectAll('*').remove()        // Clear existing  
 
         for( const [id, state] of Object.entries(this.state.mode.service.eswSelect)){
             const nodeCount = Object.values(this.layout._data.node)
@@ -1559,7 +1562,11 @@ class Interface{
                 sink:           d3.select('.service-sink-inputs-container')
             }
 
+
         for(const [type, container] of Object.entries(containerByType)){
+
+            container.selectAll('*').remove()       // Clear existing
+
             for( const [id, state] of Object.entries(this.state.mode.service.serviceSelect[type])){
                 const inputContainer = container.append('div').classed(`service-input checkbox-input ${type}`, true)
 
@@ -1594,6 +1601,8 @@ class Interface{
     #addFrequencyUI(){
         const frequencySchema = this.layout._data.schema['frequency'], 
             container = d3.select('.frequency-inputs-container')
+
+         container.selectAll('*').remove()      // Clear existing
 
         for( const [id, state] of Object.entries(frequencySchema)){
             const inputContainer = container.append('div').classed('frequency-input checkbox-input', true)
