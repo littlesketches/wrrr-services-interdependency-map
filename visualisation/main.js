@@ -55,14 +55,29 @@ console.log({data: visData, layout, ui, node, link, schema})
 ///////////////////////////////////////////////////////////////
 
 
+// Setup date selector
+const yearSelector = d3.select('.report-year-select')   
+
+for( const year of reportingYears){
+    yearSelector.append('option')
+        .attr('value', year)
+        .classed(`report-year-option year-${year}`, true)
+        .attr('selected', year === latestReportYear )
+        .html(year)
+}
+
+
 function initApp(reportYear){
 
-    const { node, link, schema, meta } = visData[reportYear] 
+    const { node, link, schema, meta } = visData[+reportYear] 
     const layout = new Layout( node, link, schema )
-    const ui = new Interface(layout, reportingYears)
+    const ui = new Interface(layout, reportingYears, reportYear)
 
     // Call renderVis
     renderVis(layout, ui, node, link, schema)
+
+    // Date selector
+    d3.selectAll('.report-year-option').attr('selected', false)
 
     // Make all app variables available on window (to support re-rendering)
     window.node = node

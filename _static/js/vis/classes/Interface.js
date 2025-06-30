@@ -5,7 +5,7 @@
 //  => Layout Class
 class Interface{
     
-    constructor(layout, reportingYears){
+    constructor(layout, reportingYears, selectedYear){
 
         this.layout = layout
 
@@ -13,7 +13,7 @@ class Interface{
         this.state = {
             meta: {
                 reportingYears,
-                reportYear:  reportingYears[reportingYears.length-1]
+                reportYear:  selectedYear
             }, 
             isShift:            false,          // Shift mode functions
 
@@ -97,7 +97,7 @@ class Interface{
 
     #init(){
         // Add UI components
-        this.#addYearSelectUI()
+        // this.#addYearSelectUI()
         this.#addEwsUI()
         this.#addServicesUI()
         this.#addFrequencyUI()
@@ -1486,20 +1486,6 @@ class Interface{
         document.addEventListener('keyup', handle.keyup)
     }
 
-    // Setup year select RE, Service UI input/selection options
-    #addYearSelectUI() {
-        const reportingYears = this.state.meta.reportingYears
-        const yearSelector = d3.select('.report-year-select')   
-
-        yearSelector.selectAll('*').remove()
-
-        for( const year of reportingYears){
-            yearSelector.append('option')
-                .attr('value', year)
-                .attr('selected', year ===  this.state.meta.reportYear )
-                .html(year)
-        }
-    }
 
     #addResponsibleEntityUI(){
         const reNodes = Object.values(this.layout._data.node).filter(node => node.state.config.isResponsibleEntity), 
