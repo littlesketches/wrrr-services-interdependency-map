@@ -374,11 +374,12 @@ class Interface{
            
                 const noSourceLinks = activeNodes.length === 0 ? ui.layout.render.linkData.source.length   
                     : [... new Set(activeSourceLinks)].length
-                 
+                
                 const noSourceMultiLinks = activeNodes.length === 0 ? Object.values(ui.layout.node.cluster.byCategory.source).filter( node => Object.values(node.link.out).length > 1).length
                     : [...new Set(activeSourceNodes.filter( el => Object.values(el.__data__.link.out).length > 1)) ].length
                         
-                const noSourceSingleLinks = noSourceLinks - noSourceMultiLinks
+                const noSourceSingleLinks = activeNodes.length === 0 ? Object.values(ui.layout.node.cluster.byCategory.source).filter( node => Object.values(node.link.out).length === 1).length
+                    : [...new Set(activeSourceNodes.filter( el => Object.values(el.__data__.link.out).length === 1)) ].length
 
                 d3.select('#data-node-source').html(`x ${noSources}`)
                 d3.select('#data-node-source_unit').html(`${noSources === 1 ? 'entity' : 'entities'}`)
@@ -404,7 +405,7 @@ class Interface{
                     : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate-unconnected')))].length 
 
                 const noIntermediateNonREs = activeNodes.length === 0 ? ui.layout.node.cluster.byCategory.intermediate.length - ui.layout.node.cluster.byCategory.responsibleEntity.length
-                    : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate')))].length - [...new Set(activeNodes.filter(el => el.classList.contains('responsible-entity')))].length + noUnconnected
+                    : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate')))].length - [...new Set(activeNodes.filter(el => el.classList.contains('responsible-entity')))].length // + noUnconnected
 
                 const noIntermediateSource  = activeNodes.length === 0 ? ui.layout.node.cluster.intermediateNodes.source.length 
                     : [...new Set(activeNodes.filter(el => el.classList.contains('intermediate-source')))].length 
@@ -483,7 +484,9 @@ class Interface{
                 const noSinkMultiLinks = activeNodes.length === 0 ? Object.values(ui.layout.node.cluster.byCategory.sink).filter( node => Object.values(node.link.in).length > 1).length
                     : [...new Set(activeSinkNodes.filter( el => Object.values(el.__data__.link.in).length > 1)) ].length
                         
-                const noSinkSingleLinks = noSinkLinks - noSinkMultiLinks
+                const noSinkSingleLinks = activeNodes.length === 0 ? Object.values(ui.layout.node.cluster.byCategory.sink).filter( node => Object.values(node.link.in).length === 1).length
+                    : [...new Set(activeSinkNodes.filter( el => Object.values(el.__data__.link.in).length === 1)) ].length
+                        
 
                 d3.select('#data-node-sink').html(`x ${noSinks}`)
                 d3.select('#data-node-sink_unit').html(`${noSinks === 1 ? 'entity' : 'entities'}`)

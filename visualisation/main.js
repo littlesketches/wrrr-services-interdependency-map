@@ -545,7 +545,7 @@ function renderVis(layout, ui, node, link, schema){
                 .data(nodeData.intermediate.unconnected.sideA)
                 .join('g')
                 .attr('id', d => `node_${d.id}`)
-                .attr('class', `intermediate-unconnected node-group side-A`)
+                .attr('class', `intermediate intermediate-unconnected node-group side-A`)
                 .classed('responsible-entity', d=> d.state.config.isResponsibleEntity)
                 .attr('transform',  render.node.position)            // Node positioning is done at the group level via the translate prop         
                 .append('g')
